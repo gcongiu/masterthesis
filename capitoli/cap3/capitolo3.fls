@@ -1,0 +1,5 @@
+PWD /Users/giuseppe/MasterThesis/capitoli/cap3
+INPUT /opt/local/etc/texmf/texmf.cnf
+INPUT /opt/local/var/db/texmf/web2c/pdftex/pdflatex.fmt
+INPUT capitolo3.tex
+OUTPUT capitolo3.log

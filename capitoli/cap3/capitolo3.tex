@@ -1,0 +1,725 @@
+\chapter{L'architettura per Network on Chip $\times$pipes} \label{cap:capitolo3}
+
+$\times$pipes è un'architettura per Network on Chip basata su uno standard di comunicazione a pacchetti. Il progetto nasce come libreria di componenti sviluppata congiuntamente dalle Università di Cagliari, Bologna e Stanford.\\
+Il punto di forza di $\times$pipes sta nel suo alto grado di flessibilità, legato all'elevato livello di parametrizzazione della rete, sia in termini di parametri globali (dimensione del flit, configurazione topologica, ecc\ldots), sia in termini di parametri locali dei singoli blocchi hardware.\\
+La libreria è composta da tre componenti di base: \emph{Network Interface} (NI), \emph{Switch} e \emph{Link}. Le NI sono il punto di accesso che gli IP core utilizzano per interfacciarsi con la rete. Lo standard di comunicazione adottato a tale scopo è l'Open Core Protocol (OCP). I messaggi OCP vengono convertiti dalla NI in unità informative elementari chiamate flit\footnote{Ogni messaggio inviato alla NI da un core viene convertito in un pacchetto che poi a sua volta è diviso in flit}, che vengono inoltrate, attraverso gli switch interni, verso la NI destinataria, la quale ricostruisce il messaggio originale e lo consegna all'IP core target. 
+
+\section{Open Core Protocol}
+Lo standard OCP definisce un'interfaccia di comunicazione tra due IP~core all'interno di un circuito integrato e la sua caratteristica è quella di essere ad alte performance, indipendente dal supporto di comunicazione e riconfigurabile.
+
+Tradizionalmente la scelta di un determinato supporto di comunicazione comportava al progettista un notevole sforzo di adattamento dell'interfaccia del core alle specifiche del supporto. L'OCP riduce al minimo questa fase di progetto poiché prevede la riconfigurabilità del protocollo. In altri termini si può affermare che questo standard è stato ideato pensando alle esigenze dell' IP~core piuttosto che a quelle del mezzo di interconnessione. Ne consegue una ottimizzazione dell'area morta, in quanto è possibile configurare solo quelle caratteristiche dello standard necessarie ad un certo core per la comunicazione. 
+
+Rispetto ad un bus abbiamo un alto grado di flessibilità\footnote{Mentre un bus tipicamente interconnette più di due cores, l'OCP è una semplice interconnessione tra due soli cores.}: la maggiore parte dei gruppi di segnali ha diverse dimensioni mentre altri gruppi sono completamente opzionali. In questo modo il progettista di SoC ha a sua disposizione una interfaccia di comunicazione strutturata ed altamente configurabile.
+
+\subsection{Caratteristiche Open Core Protocol}
+
+L'OCP definisce un'interfaccia punto-punto (\textit{point to point}\index{point to point}) tra due entità comunicanti quali un IP core ed un modulo per la comunicazione presente sul bus (\textit{bus wrapper}\index{bus wrapper}). Una di queste entità recita il ruolo di master e l'altra quello di slave. Solo il master può presentare comandi ed è l'entità che controlla la comunicazione. Lo slave risponde ai comandi che gli vengono presentati o accettando la richiesta fatta dal master, o presentando i dati di risposta alla richiesta fatta dal master. Se due entità vogliono comunicare alla pari (\textit{peer to peer}\index{peer to peer}) è necessario che ognuna di esse abbia istanziato due connessioni di tipo~OCP: una per svolgere il ruolo di master, l'altra per svolgere il ruolo di slave. La figura~\ref{fig:comunicazione-ocp} mostra un semplice sistema contenente tre IP~cores che si scambiano informazioni mediante un bus condiviso sul quale sono montate le opportune interfacce compatibili~OCP. 
+\begin{figure}[!htbp]
+        \begin{center}
+        \includegraphics[width=13cm]{figure/comunicazione-ocp}
+        \end{center}
+        \caption{Esempio di comunicazione tra IP secondo il protocollo~OCP}
+        \label{fig:comunicazione-ocp}
+\end{figure}
+
+Sono le caratteristiche dell'IP core a determinare se questo debba essere un master, uno slave, o entrambe le cose. Il bus wrapper interface svolge il ruolo di slave se connesso ad un IP~core master, quello di master in caso contrario.
+
+Per quanto riguarda i trasferimenti, il master OCP presenta il comando, le informazioni di controllo ed eventualmente i dati allo slave con cui è connesso: si dice che il master~OCP è il  \textit{system initiator}\index{system initiator}. L'interfaccia presente sul bus (lo slave) converte quelle che sono le richieste e le inoltra sul bus: l'OCP non specifica le modalità con cui tale richieste devono essere inoltrate sul supporto di comunicazione. Il compito del progettista del bus wrapper interface sarà quello di convertire le richieste di tipo~OCP in una richiesta di trasferimento su bus che dipende dal bus utilizzato. Tali richieste sono ricevute da un modulo duale che sta all'altro capo del collegamento: questo farà le operazioni inverse, ossia convertirà in una richiesta di tipo~OCP le informazioni ricevute.
+
+\subsection{Concetti base e terminologia del protocollo}
+Diamo un quadro dei concetti che fanno capo al protocollo OCP introducendo la terminologia 
+utilizzata per descrivere l'interfacciamento tra le unità funzionali (IP cores).
+
+\subsubsection{Comunicazione point to point sincrona}
+Per semplificare la comprensione dello standard ed il progetto delle interfacce, l'OCP è 
+composto di segnali unidirezionali campionati sul fronte positivo del clock (l'OCP è 
+completamente sincrono). Tutti i segnali sono di tipo point to point, gli unici due che fanno 
+eccezione sono il reset ed il clock.
+
+\subsubsection{Indipendenza dal bus}
+Un core che fa uso dell'OCP può essere interfacciato a qualsiasi bus, non vi è alcun bisogno 
+di intervenire sulla struttura del mezzo di comunicazione; per esempio, le tecniche di 
+selezione dei dispostivi (tecniche di arbitraggio) rimangono immutate. Uno slave compatibile 
+OCP (slave OCP compliant) riceve informazioni sul dispositivo, destinatario del messaggio, 
+inglobate nei comandi base dell'OCP. Sarà l'interfaccia di bus a convertire la richiesta 
+secondo una politica di arbitraggio dipendente esclusivamente dal supporto di comunicazione 
+utilizzato. Questo è coerente con quanto detto in precedenza: lo standard di comunicazione OCP definisce un protocollo per l'interfacciamento tra due IP solamente, dunque virtualmente non vi è bisogno di alcuna 
+tecnica di arbitraggio.
+
+
+\subsubsection{Comandi}
+Ci sono due comandi base, read e write, questi possono essere trasferimenti di tipo single o di 
+tipo burst. Vi sono poi due comandi opzionali che rappresentano una estensione dei 
+precedenti. Il primo di questi è il broadcast, questo ha la stessa semantica del write, l'unica 
+differenza è che il messaggio arriverà a tutti gli slave presenti nel sistema. Il secondo 
+comando estensivo è il read exclusive, questo comando ha una semantica molto simile ad una 
+read, ma garantisce la atomicità dell'operazione secondo uno schema read-modify-write. Uno 
+slave ricevente un comando di questo tipo spedisce una indicazione al master del fatto che ha 
+acquisito in modo esclusivo la risorsa. A questo punto il master manda una write allo slave in 
+modo tale da aggiornare il dato cui lo slave sta facendo riferimento. Il termine della write 
+rende libera la risorsa, cui fa capo lo slave, ad altri master.
+
+
+\subsubsection{Indirizzi e Dati}
+La larghezza dei campi indirizzo e dato è configurabile a seconda del tipo di IP. Questo 
+permette di ridurre l'area morta poiché solamente i bit che sono necessari e significativi per un 
+IP~core verranno passati allo slave. 
+
+Lo spazio di indirizzamento è a byte e di tipo little-endian; per aumentare l'effcienza dei trasferimenti molti IP~cores hanno un campo dati maggiore di un un byte. L'OCP supporta fino a 128 bit di dato permettendo così trasferimenti simultanei di 16 bytes. 
+
+Nella terminologia dello standard l'ampiezza del campo dati, scelta per un determinato IP, viene detta \textit{word size}\index{word size} e rappresenta l'unità base di informazione trasferita da un certo ~IP. Qualora vi siano trasferimenti che avrebbero bisogno di un numero di bit inferiori alla word size si può fare uso di un byte enable che indichi quali byte, del campo dati, sono da considerarsi validi per il trasferimento.
+
+\subsubsection{Response phase}
+L'OCP separa le richieste dalle risposte. Uno slave può accettare un comando di richiesta in 
+un ciclo e rispondere dopo diversi cicli, andando nel frattempo ad accettare altre richieste;
+questo permette un elevato grado di pipelined. Inoltre è possibile scegliere se attendersi una 
+response anche per una write o se invece terminarla immediatamente una volta accettata la richiesta da parte dello slave.
+
+\subsubsection{Thread e connessioni}
+Per supportare concorrenza e trasferimenti non ordinati, l'OCP mette a disposizione, nella sua 
+configurazioni più evoluta, strumenti per il multithreading. Trasferimenti con differenti 
+identificatori di thread possono essere processati in modo non ordinato, mentre tutti i trasferimenti~OCP a singolo thread devono restare ordinati.
+
+
+\subsection{Segnali e codifica}
+I segnali previsti per un interfacciamento di tipo OCP sono raggruppati in \textit{dataflow}\index{dataflow}, \textit{sideband}\index{sideband} e  \textit{test signal}\index{test signal}, e la convenzione adottata nel descriverli è di porre il prefisso~M per i segnali pilotati dal master, S per quelli pilotati dallo slave.
+
+I segnali dataflow vengono suddivisi in \textit{basic signals}\index{basic signals}, \textit{simple extensions}\index{simple extensions}, \textit{burst extensions}\index{burst extensions} e \textit{thread extensions}.
+Un piccolo insieme dei segnali appartenenti al gruppo basic è richiesto in tutte le configurazioni dell'OCP, mentre segnali opzionali possono essere utilizzati per supportare ulteriori caratteristiche di comunicazione.
+
+Nel nostro progetto prenderemo in considerazione esclusivamente segnali opzionali di tipo burst extensions\footnote{Per quanto riguarda la descrizione degli altri segnali opzionali si faccia riferimento alle specifiche del protocollo~\cite{OCP}.}.
+
+\subsubsection{Basic signals}
+
+Nella tabella~\ref{tab:basic-signals} sono riportati i segnali dataflow appartenenti al gruppo basic; solo i segnali \texttt{Clk} e \texttt{MCmd} sono necessari.
+\begin{table}[!htbp]
+\begin{center}
+\begin{tabular}{  l  c  l  }
+\textbf{Nome} & \textbf{\hspace{1cm}Ampiezza\hspace{1cm}} & \textbf{Funzione} \\
+\hline
+\texttt{Clk} & $1$ & clock \\
+\texttt{MAddr} & configurabile & indirizzo trasferimento \\
+\texttt{MCmd} & $3$ & comando del trasferimento \\
+\texttt{MData} & configurabile & dato da scrivere \\
+\texttt{MDataValid} & $1$ & validità di \texttt{MData} \\
+\texttt{MRespAccept} & $1$ & risposte accettate \\
+\texttt{SCmdAccept} & $1$ & trasferimento accettato \\
+\texttt{SData} & configurabile & dato letto \\
+\texttt{SDataAccept} & $1$ & \texttt{MData} accettato \\ 
+\texttt{SResp} & $2$ & esito del trasferimento \\
+\hline
+\end{tabular}
+\caption{Gruppo dei segnali dataflow di tipo \textit{basic signals}}
+\label{tab:basic-signals}
+\end{center}
+\end{table}
+\newline
+Diamo una breve spiegazione della funzionalità di questi segnali:
+\begin{itemize}
+\item[$\circ$] \texttt{Clk} è segnale di clock della interfaccia: tutti i segnali sono sincroni e campionati sul 
+fronte positivo del clock;
+\item[$\circ$] \texttt{MAddr} è l'indirizzo cui fa riferimento il trasferimento ed il suo campo è configurabile;
+\item[$\circ$] \texttt{MCmd} è il tipo di comando che il trasferimento comporta. Tali comandi sono codificati 
+come segue:
+\begin{table}[!htbp]
+\begin{center}
+\begin{tabular}{  c l c c  }
+\texttt{MCmd} & \textbf{Command} & \textbf{Mnemonic} & \textbf{Request Type} \\
+\hline 
+$000$ & \texttt{Idle} & IDLE & (none) \\
+$001$ & \texttt{Write} & WR & write \\
+$010$ & \texttt{Read} & RD & read \\
+$011$ & \texttt{ReadEx} & RDEX & read \\
+$100$ & \texttt{ReadLinked} & RDL & read \\
+$101$ & \texttt{WriteNonPost} & WRNP & write \\
+$110$ & \texttt{WriteConditional} & WRC & write \\
+$111$ & \texttt{Broadcast} & BCST & write \\
+\hline
+\end{tabular}
+        \caption{Transizioni possibili e codifica di \texttt{MCmd}}
+         \label{tab:transizioni-mcmd}
+\end{center}
+\end{table}      
+\item[$\circ$] \texttt{MData} è il segnale contenente il dato da trasmettere da master a slave (caso di write) ed è il suo campo è configurabile;
+\item[$\circ$] quando \texttt{MDataValid} è a uno il valore di \texttt{MData} è valido;
+\item[$\circ$] quando \texttt{MRespAccept} è a uno il master indica allo slave che ha accettato la risposta al 
+trasferimento;
+\item[$\circ$] se \texttt{SCmdAccept} è uguale a uno significa che lo slave è in grado di accettare un 
+tasferimento;
+\item[$\circ$] \texttt{SData} è il campo contenente il dato da trasmettere da slave a master ed il suo campo è configurabile;
+\item[$\circ$] quando \texttt{SDataAccept} è a uno lo slave indica al master che accetta un valore di \texttt{MData};
+\item[$\circ$] \texttt{SResp} comunica l'esito della transazione al master. 
+\begin{table}[!htbp]
+\begin{center}
+\begin{tabular}{  c l c }
+\texttt{SResp} & \textbf{Response} & \textbf{Mnemonic}  \\
+\hline 
+$00$ & No response & NULL \\
+$01$ & Data valid/accept & DVA \\
+$10$ & Request falled & FAIL \\
+$11$ & Response error & ERR \\
+\hline
+\end{tabular}
+\caption{Codifica di \texttt{SResp}}
+\label{tab:sresp}
+\end{center}
+\end{table}   
+\end{itemize}
+
+\subsubsection{Simple extension}
+
+I segnali di tipo simple extension usati nel progetto dell'interfaccia IP-NI sono i seguenti:
+\begin{itemize}
+\item[$\circ$] \texttt{MAddrSpace}: permette di estendere il campo di \texttt{MAddr} ed è utilizzato per indicare ulteriori regioni di indirizzamento possibili in un trasferimento. Il suo campo è 
+configurabile;
+\item[$\circ$] \texttt{MByteEn}: indica quali bytes, all'interno del campo \texttt{MData}, sono da considerarsi validi per il trasferimento. Anche il suo campo è configurabile.
+\end{itemize}
+
+\subsubsection{Burst extensions}
+
+Il protocollo OCP prevede tre tipi di comunicazione burst:
+\begin{enumerate}
+\item \textit{imprecise burst}\index{imprecise burst}: necessita di una fase di richiesta per ogni trasferimento. La durata del trasferimento, indicata dal campo \texttt{MBurstLength}, può cambiare durante la trasmissione;
+\item \textit{precise burst}\index{precise burst}: prevede sempre una fase di richiesta per ogni trasferimento. La durata del trasferimento è nota e viene segnalata al modulo ricevente tramite il campo \texttt{MBurstLength};
+\item burst con richiesta singola e trasferimento multiplo dei dati, che permette di ottenere una trasmissione di più dati mediante una sola richiesta.
+\end{enumerate}
+Il gruppo di segnali utilizzati dalla~NI che garantiscono la modalità di trasferimento burst sono riportati in tabella~\ref{tab:burst-extensions}.
+\begin{table}[!htbp]
+\begin{center}
+\begin{tabular}{  l  c  l  }
+\textbf{Nome} & \textbf{\hspace{0.5cm}Ampiezza\hspace{0.5cm}} & \textbf{Funzione} \\
+\hline
+\texttt{MBurstLength} & configurabile & lunghezza trasferimento \\
+\texttt{MBurstPrecise} & $1$ & segnalazione precise burst \\
+\texttt{MBurstSeq} & $3$ & gestion campi \texttt{MAddr} \\
+\texttt{MBurstSingleReq} & $1$ & una richiesta, più trasferimenti \\
+\texttt{MDataLast} & $1$ & trasferimento dell'ultimo dato \\
+\texttt{MReqLast} & $1$ & ultima richiesta di trasmissione \\
+\texttt{SRespLast} & $1$ & ultima risposta \\ 
+\hline
+\end{tabular}
+\caption{Gruppo dei segnali \textit{burst extensions} utilizzati dalla NI di $\times$pipes}
+\label{tab:burst-extensions}
+\end{center}
+\end{table}
+\begin{itemize}
+\item[$\circ$] \texttt{MBurstLength}: viene utilizzato per indicare il numero di trasferimenti  burst da effettuare. Inoltre si ha l'opportunità di configurare la larghezza in termini di bit.
+In caso di trasmissione precisa il suo valore indica il numero totale dei trasferimenti da effettare e risulta costante durante la comnicazione. Nel caso di trasmissione imprecisa invece il valore deve essere interpretato come un'indicazione orientativa del numero di trasferimenti rimanenti e di conseguenza può cambiare nel corso della trasmissione;
+\item[$\circ$] \texttt{MBurstPrecise}: quando vale uno segnala che la trasmissione è precisa;
+\item[$\circ$] \texttt{MBurstSeq}: specifica come deve essere gestita la sequenza di campi \texttt{MAdrr} trasmessi assieme agli altri segnali. Sono supportati solo i due casi principali: \textit{incrementing}\index{incrementing}, quando l'indirizzo viene incrementato ad ogni trasferimento, \textit{streaming}\index{streaming} quando l'indirizzo rimane costante durante il corso della trasmissione. 
+\begin{table}[!htbp]
+\begin{center}
+\begin{tabular}{  l  l  l  }
+\texttt{MBurstSeq} & \textbf{Burst sequence} & \textbf{Mnemonic} \\
+\hline
+$000$ & incrementing & INCR \\
+$001$ & custom (packed) & DFLT1 \\
+$010$ & wrapping & WRAP \\
+$011$ & custom (not packed) & DFLT2 \\
+$100$ & exclusive or & XOR \\
+$101$ & streaming & STRM \\
+$110$ & unknown & UNKN \\
+\hline
+\end{tabular}
+\caption{Codifica del segnale \texttt{MBurstSeq}}
+\label{tab:mburstseq}
+\end{center}
+\end{table}
+\item[$\circ$] \texttt{MBurstSingleReq}: quando è alto viene fatta una singola richiesta di trasferimento multiplo;
+\item[$\circ$] \texttt{MDataLast}: segnala che è in corso di trasmissione l'ultimo campo \texttt{MData};
+\item[$\circ$] \texttt{MReqLast}: quando è alto si sta inviando l'ultima richiesta di trasmissione;
+\item[$\circ$] \texttt{SRespLast}: svolge lo stesso ruolo di \texttt{MDataLast} ma relativo alla tramissione dei campi \texttt{SResp}.
+\end{itemize}
+
+\subsubsection{Tipi di segnali e dipendenze}
+
+Poiché alcuni campi  devono essere attivi contemporaneamente, i segnali vengono raggruppati in tre categorie: \textit{request}\index{request}, \textit{reponse}\index{reponse} e \textit{datahandshake}\index{datahandshake}\footnote{I segnali \texttt{MData} e \texttt{MDataInfo} appartengono al request group, a meno che non sia abilitato il parametro \textit{datahandshake}; in questo caso i due segnali appartengono al datahandshake group.}.
+\begin{table}[!htbp]
+\begin{center}
+\begin{tabular}{  l | l | l  }
+\textbf{Gruppo} & \hspace*{0.4cm}\textbf{Segnale} & \hspace*{0.7cm}\textbf{Condizione} \\
+\hline \hline
+\multirow{15}{*}{Richiesta}
+& \hspace*{0.4cm}\texttt{MAddr} & \hspace*{0.7cm}sempre \\
+& \hspace*{0.4cm}\texttt{MAddrSpace} & \hspace*{0.7cm}sempre \\
+& \hspace*{0.4cm}\texttt{MAtomicLength} & \hspace*{0.7cm}sempre \\
+& \hspace*{0.4cm}\texttt{MBurstLength} & \hspace*{0.7cm}sempre \\
+& \hspace*{0.4cm}\texttt{MBurstPrecise} & \hspace*{0.7cm}sempre \\
+& \hspace*{0.4cm}\texttt{MBurstSeq} & \hspace*{0.7cm}sempre \\
+& \hspace*{0.4cm}\texttt{MBurstSingleReq} & \hspace*{0.7cm}sempre \\
+& \hspace*{0.4cm}\texttt{MByteEn} & \hspace*{0.7cm}sempre \\
+& \hspace*{0.4cm}\texttt{MCmd} & \hspace*{0.7cm}sempre \\
+& \hspace*{0.4cm}\texttt{MConnID} & \hspace*{0.7cm}sempre \\
+& \hspace*{0.4cm}\texttt{MData} & \hspace*{0.7cm}$\text{datahandshake}=1$ \\
+& \hspace*{0.4cm}\texttt{MDataInfo} & \hspace*{0.7cm}$\text{datahandshake}=1$ \\
+& \hspace*{0.4cm}\texttt{MReqInfo} & \hspace*{0.7cm}sempre \\
+& \hspace*{0.4cm}\texttt{MReqLast} & \hspace*{0.7cm}sempre \\
+& \hspace*{0.4cm}\texttt{MThreadID} & \hspace*{0.7cm}sempre \\
+\hline
+\multirow{6}{*}{Risposta} 
+& \hspace*{0.4cm}\texttt{SData} & \hspace*{0.7cm}sempre \\
+& \hspace*{0.4cm}\texttt{SDataInfo} & \hspace*{0.7cm}sempre \\
+& \hspace*{0.4cm}\texttt{SResp} & \hspace*{0.7cm}sempre \\
+& \hspace*{0.4cm}\texttt{SRespInfo} & \hspace*{0.7cm}sempre \\
+& \hspace*{0.4cm}\texttt{SRespLast} & \hspace*{0.7cm}sempre \\
+& \hspace*{0.4cm}\texttt{SThreadID} & \hspace*{0.7cm}sempre \\
+\hline
+\multirow{6}{*}{Datahandshake} 
+& \hspace*{0.4cm}\texttt{MData} & \hspace*{0.7cm}$\text{datahandshake}=1$ \\
+& \hspace*{0.4cm}\texttt{MDataByteEn} & \hspace*{0.7cm}sempre \\
+& \hspace*{0.4cm}\texttt{MDataInfo} & \hspace*{0.7cm}$\text{datahandshake}=1$ \\
+& \hspace*{0.4cm}\texttt{MDataLast} & \hspace*{0.7cm}sempre \\
+& \hspace*{0.4cm}\texttt{MDataThreadID} & \hspace*{0.7cm}sempre \\
+& \hspace*{0.4cm}\texttt{MDataValid} & \hspace*{0.7cm}sempre \\
+\hline
+\end{tabular}
+\caption{Suddivisione dei segnali OCP in tre categorie}
+\label{tab:tre-categorie}
+\end{center}
+\end{table}
+
+\subsubsection{Dipendenze combinatorie}
+
+È legittimo per qualsiasi segnale o gruppo di segnali d'uscita che sia derivato da degli ingressi 
+senza la presenza di un latch point cioè in modo combinatorio. 
+Per evitare \textit{combinatorials loops}\index{combinatorials loops} alcune uscite non possono essere derivate in questa maniera. Nella figura~\ref{fig:dipendenze-combinatorie} è descritto un ordine col quale gestire queste dipendenze. 
+\begin{figure}[!htbp]
+        \begin{center}
+       \includegraphics[width=10cm]{figure/dipendenze-combinatorie}
+        \end{center}
+        \caption{dipendenze combinatorie }
+         \label{fig:dipendenze-combinatorie}
+\end{figure}
+\newline
+Per ogni freccia disegnata, il segnale o gruppo di segnali può essere derivata in maniera combinatoria dai segnali al punto d'origine 
+della freccia o da altri segnali da cui essi dipendono.
+
+\subsubsection{Temporizzazioni e fasi del protocollo}
+
+I segnali del request group sono validi quando \texttt{MCmd} è diverso da IDLE; i segnali del reponse group sono validi quando \texttt{SResp} è diverso da NULL, mentre i segnali dell'handshake group sono validi quando \texttt{MDataValid} è alto.
+
+Per i segnali di accettazione si ha che \texttt{SCmdAccept} è attivo solo quando \texttt{MCmd} è diverso da zero, \texttt{MRespAccept} è valido solo quando \texttt{SResp} è diverso da zero e
+\texttt{SDataAccept} è valido solo quando \texttt{MDataValid} è uguale ad uno. 
+
+Ciascun segnale di un gruppo deve restare stabile dall'inizio alla fine di una fase. All'esterno 
+della fase che gli compete il segnale è ``don't care'', a parte naturalmente i segnali che 
+caratterizzano l'inizio di una fase:
+\begin{itemize}
+\item[$\circ$] una request phase inizia quando i segnali del request group sono attivi e termina 
+quando il segnale \texttt{SCmdAccept} è campionato ad uno;
+\item[$\circ$] una reponse phase inizia quando i segnali di questa fase sono attivi e termina 
+quando il seganle \texttt{MRespAccept} è campionato alto.
+Nel caso \texttt{MRespAccept} non sia implementato, viene supposto sempre alto per cui la 
+reponse phase dura sempre un solo ciclo di clock;
+\item[$\circ$] una datahandshake phase inizia quando i segnali corrispondenti sono 
+attivi e termina quando viene campionato alto il bit \texttt{SDataAccept}.
+\end{itemize}
+Da notare che se gli IP~core che rispondono sono abbastanza veloci possono presentare alta la 
+risposta nello stesso colpo di clock in cui inizia la fase così che questa si conclude in un solo 
+ciclo di clock.
+
+L'OCP è un protocollo causale, nel senso che all'interno di ogni trasferimento una request phase deve sempre precedere la sua associata datahandshake phase che, a sua volta, deve precedere la 
+response phase. I vincoli fondamentali da rispettare sono:
+\begin{itemize}
+\item[$\circ$] una datahandshake phase non può iniziare prima che la request phase corrispondente 
+sia iniziata ma può iniziare nello stesso ciclo di clock. Allo stesso modo non può 
+terminare prima che la request phase sia terminata ma può terminare nello stesso ciclo 
+di clock;
+\item[$\circ$] una reponse phase non può iniziare prima che la request phase corrispondente sia 
+iniziata ma può iniziare nello stesso ciclo di clock. Allo stesso modo non può terminare 
+prima che la request phase sia terminata ma può terminare nello stesso ciclo di clock;
+\item[$\circ$] se esistono sia una datahandshake phase che una reponse phase, quest'ultima non 
+può iniziare prima che l'associata datahandshake phase sia iniziata,  ma può comunque 
+iniziare nello stesso ciclo di clock. Inoltre la reponse phase non può 
+terminare prima che termini l'assiociata datahandshake phase, ma può terminare nello 
+stesso ciclo di clock.
+\end{itemize}
+
+\subsection{Diagrammi temporali}
+
+Mostriamo ora il funzionamento dal punto di vista temporale di alcuni segnali descritti in questa appendice. 
+
+\subsubsection*{Single write seguita da una single read}
+
+La figura~\ref{fig:simple-rw} mostra una write singola seguita da una read singola, secondo un interfacciamento di tipo OCP basic.
+Il master da inizio ad una \textit{request phase}\index{request phase} portando il valore di \texttt{MCmd} da IDLE a WRITE e ponendo allo stesso tempo in \texttt{MAddr} un indirizzo valido e su \texttt{MData} un dato valido. Quando il master campiona il valore di \texttt{SCmdAccept} a uno la request phase termina ed il master torna in IDLE. 
+
+Al quarto fronte positivo di \texttt{Clk} il master da inizio ad una nuova request phase presentando una richiesta di read. Successivamente viene campionato \texttt{SCmdAccept} ad uno e viene portata a termine anche questa request phase. 
+
+Al sesto fronte positivo di \texttt{Clk} viene presentata la risposta alla read: il master legge \texttt{SResp} uguale a DVA (dato valido) e quindi campiona \texttt{SData}.
+\begin{figure}[!htbp]
+        \begin{center}
+       \includegraphics[width=13.6cm]{figure/simple-rw}
+        \end{center}
+        \caption[Temporizzazioni di una write singola seguita da una read]{Andamento temporale di una write singola seguita da una read}
+         \label{fig:simple-rw}
+\end{figure}
+
+\subsubsection{Accettazione della risposta}
+
+Rispetto al caso illustrato in figura~\ref{fig:simple-rw} abbiamo un ulteriore segnale nella response phase: \texttt{MRespAccept}. Nella figura\ref{fig:response-accept} il master presenta due read sulla rete; quando arriva la prima risposta, per due cicli (secondo e terzo fronte ascendente del clock) non è ancora pronto a campionare \texttt{SData}. Ne consegue che lo 
+slave manterrà valida la risposta fino a quando il master non pone \texttt{MRespAccept} a uno.
+
+\subsubsection{Datahandshake}
+
+Vengono aggiunti due segnali: \texttt{MDataValid} e \texttt{SDataAccept}. In figura~\ref{fig:datahandshake} il master richiede una scrittura e mette un indirizzo valido su \texttt{MAddr}. Lo slave tiene alto \texttt{SCmdAccept,} e non c'è bisogno che tenga alto 
+anche \texttt{SDataAccept} poiché \texttt{MDataValid} è alto. 
+\begin{figure}[!htbp]
+        \begin{center}
+       \includegraphics[width=13.6cm]{figure/response-accept}
+        \end{center}
+        \caption{Diagramma temporale relativo all'accettazione della risposta}
+         \label{fig:response-accept}
+\end{figure}
+\begin{figure}[!htbp]
+        \begin{center}
+       \includegraphics[width=13.6cm]{figure/datahandshake}
+        \end{center}
+        \caption{Diagramma temporale relativo alla fase di datahandshake}
+         \label{fig:datahandshake}
+\end{figure}
+\newline
+Nel secondo colpo di clock, lo slave legge l'indirizzo sul quale il master vuole scrivere. Successivamente il master è pronto al trasferimento del dato e solleva \texttt{MDataValid}; quando lo slave sarà pronto solleverà \texttt{SDataAccept}. 
+Al passo successivo il master comanda due scritture che vengono 
+immediatamente accettate, mentre i dati relativi ad esse vengono forniti in maniera 
+indipendente nei colpi di clock successivi.
+
+\subsubsection{Burst read}
+
+In figura~\ref{fig:burst-read-precisa} è mostrato l'andamento temporale di una trasmissione burst read precisa.
+\begin{figure}[!htbp]
+        \begin{center}
+       \includegraphics[width=13.6cm]{figure/burst-read-precisa}
+        \end{center}
+        \caption{Andamento temporale di una trasmissione burst read precisa}
+         \label{fig:burst-read-precisa}
+\end{figure}
+\newline
+Poiché la trasmissione burst è precisa il segnale \texttt{MBurstLength} è costante per l'intera durata della trasmissione. Quando \texttt{MReqLast} è alto si ha l'ultima richiesta della trasmissione burst; quando è alto \texttt{SRespLast} viene trasmessa l'ultima risposta.
+
+Un esempio di andamento temporale per un trasferimento burst read impreciso è mostrato in figura~\ref{fig:burst-read-imprecisa}. 
+\begin{figure}[!htbp]
+        \begin{center}
+       \includegraphics[width=13.6cm]{figure/burst-read-imprecisa}
+        \end{center}
+        \caption[Temporizzazioni di una trasmissione burst read imprecisa]{Andamento temporale di una trasmissione burst read imprecisa}
+         \label{fig:burst-read-imprecisa}
+\end{figure}
+\newline
+La trasmissione avviene nel seguente modo:
+\begin{itemize}
+\item[\textbf{A}] il master fa una richiesta di lettura, scrive un indirizzo valido su \texttt{MAddr}, assegna il valore tre a \texttt{MBurstLength}, INCR a \texttt{MBurstSeq} e specifica che la trasmissione burst è imprecisa. A questo punto il master ha stabilito la lunghezza della trasmissione per cui \texttt{MBurstSeq} e \texttt{MBurstPrecise} vengono considerate costanti. Lo slave pone alto \texttt{SCmdAccept} informando che è pronto ad accettare qualsiasi richiesta;
+\item[\textbf{B}] il master effettua la seconda richiesta di read, \texttt{MAddr} viene incrementato e a \texttt{MBurstLength} viene assegnato ancora il valore tre;
+\item[\textbf{C}] il master effettua la terza richiesta di read, a \texttt{MBurstLength} viene assegnato il valore due e \texttt{MAddr} viene incrementato. Lo slave campiona l'indirizzo relativo alla seconda richiesta, mantiene \texttt{SCmdAccept} alto e assegna DVA a \texttt{SResp}, informando così di aver accettato la prima richiesta di lettura e di aver posto il dato richiesto su \texttt{SData};
+\item[\textbf{D}] il master effettua l'ultima richiesta di lettura, incrementa \texttt{MAddr}, assegna il valore uno  a \texttt{MBurstLength} e pone alto \texttt{MReqLast}. Inoltra il master campiona il primo dato trasmesso dallo slave; quest'ultimo trasmette il secondo dato richiesto e campiona l'indirizzo relativo all'ultima richiesta;
+\item[\textbf{E}] il master legge il secondo dato e lo slave risponde alla terza richiesta;
+\item[\textbf{F}] il master campiona il terzo dato, lo slave risponde alla quarta richiesta e pone alto \texttt{SRespLast};
+\item[\textbf{G}] il master campiona l'ultimo dato richiesto.
+\end{itemize}
+
+\subsubsection{Burst write}
+La Figura~\ref{fig:burst-write} illustra una burst write single request, con una fase di data handshake intermedia. Attraverso la fase di request il master fornisce la lunghezza del trasferimento, l'indirizzo di partenza, la sequenza di trasferimento e identifica la transazione come single request tramite il segnale \emph{MBurstSingleReq}. Questo caso corrisponde a un'unica richiesta con trasmissione multipla di dati. L'esempio mostra anche come lo slave carica gli \emph{SResp} alla fine del trasferimento.
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width = 13.5cm]{figure/burst-write}
+	\caption{Andamento temporale di una transazione burst write precisa}
+	\label{fig:burst-write}
+\end{figure}
+La transazione avviene nel seguente modo:
+\begin{itemize}
+\item[\textbf{A}] il master fa una richiesta di scrittura mettendo un indirizzo valido su \emph{MAddr}, il codice INCR su \emph{MBurstSeq}, cinque su \emph{MBurstLength}, mette alti \emph{MBurstPrecise}, \emph{MBurstSingleReq}, \emph{MDataValid} e un dato valido su \emph{MData}, contemporaneamente abbassa \emph{MDataLast} (questo deve restare basso fino al termine della fase di dato);
+\item[\textbf{B}] finché il master non riceve \emph{SCmdAccept} o \emph{SDataAccept} blocca tutti i segnali della fase di request, tenendo alto \emph{MDataValid} e mantenendo stabile \emph{MData}. Allo stesso tempo lo slave solleva \emph{SCmdAccept} e \emph{SDataAccept} per indicare che è pronto ad accettare la richiesta e la prima fase di dato (che verrà campionato sul successivo fronte positivo del clock);
+\item[\textbf{C}] il master completa la fase di request, mette alto \emph{MDataValid} e carica un nuovo dato su \emph{MData}. Lo slave cattura il dato iniziale e mantiene \emph{SDataAccept} alto per indicare che è pronto per un nuovo dato;
+\item[\textbf{D}] il master tiene alto \emph{MDataValid} e carica un nuovo dato su \emph{MData}. Lo slave elabora i campi relativi al secondo dato e tiene alto \emph{SDataAccept};
+\item[\textbf{E}] il master mantiene \emph{MDataValid} alto e carica un nuovo dato su \emph{MData}. Lo slave cattura la terza fase di dato e mantiene alto \emph{SDataAccept};
+\item[\textbf{F}] il master tiene ancora alto \emph{MDataValid}, mette un nuovo dato su \emph{MData} e alza anche \emph{MDataLast} per indicare l'ultimo dato del trasferimento. Lo slave cattura la quarta fase di dato e tiene \emph{SDataAccept} alto per denotare che può ricevere ancora un altro dato;
+\item[\textbf{G}] lo slave cattura i campi trasmessi.
+\end{itemize}
+
+\section{$\times$pipes: blocchi costitutivi e loro caratteristiche}
+Come già detto nella parte introduttiva del capitolo $\times$pipes adotta una tecnica di trasmissione basata sulla commutazione di pacchetto, che permette al messaggio di attraversare i vari switch e di giungere fino a destinazione. 
+Poiché non è possibile prevedere in che istante un pacchetto giungerà a un certo switch, ogniuno di questi deve fornire risorse per il buffering dei flit e implementare i meccanismi di arbitraggio.
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width = 13.5cm]{figure/xp-block-diagram}
+	\caption{Diagramma a blocchi dell'architettura della rete}
+	\label{fig:xp-block-diagram}
+\end{figure}
+La rete comunica con gli IP core on-chip tramite delle interfacce che fanno uso del protocollo OCP. Come descritto nel paragrafo precedente, questo definisce due tipi di entità di comunicanti: entità \emph{master} e entità \emph{slave}. In questo modo, come riportato anche in Figura~\ref{fig:xp-block-diagram}, la rete di interconnessione deve fornire due diversi tipi di interfaccia: una di tipo \emph{master} (denominata anche \emph{NI initiator}) per la comunicazione con IP core \emph{slave} e una \emph{slave} (detta anche \emph{NI target}) usata per la comunicazione con gli IP core \emph{master}.\\
+La configurazione topologica adottata, come anche suggerito dalla stessa Figura~\ref{fig:xp-block-diagram}, è arbitraria in modo da lasciare al progettista la scelta della soluzione che meglio si adatta alla specifica applicazione.\\
+In questo paragrafo vengono analizzati nel dettaglio gli elementi riportati in Figura~\ref{fig:xp-block-diagram}. 
+  
+\subsection{Network Interface}
+
+Essendo la NI lo strumento messo a disposizione da $\times$pipes per l'interfacciamento con il protocollo OCP (Figura~\ref{fig:xp-block-diagram}), a questa viene delegata l'implementazione delle seguenti funzionalità:
+\begin{itemize}
+	\item[$\circ$] sincronizzazione tra $\times$pipes e OCP, poiché viene supportato un doppio dominio di clock;
+	\item[$\circ$] conversione delle transazioni OCP in flit $\times$pipes e viceversa, in modo da nascondere al protocollo di comunicazione dei core i dettagli sulla rete;
+	\item[$\circ$] elaborazione dell'informazione sul routing; e infine
+	\item[$\circ$] buffering dei flit per migliorare le performance.
+\end{itemize}
+La NI è progettata in modo da essere compatibile con la versione 2.0 delle specifiche OCP. \\
+
+\subsubsection{Struttura interna}
+A seconda della direzione del flusso dati possono essere identificate due diverse NI: \emph{initiator} e \emph{target}. La prima è collegata a un core di tipo master e si occupa di inviare verso la rete i messaggi di richiesta da questo prodotti. La seconda è invece collegata a un core di tipo slave e si occupa di ricevere i messaggi dalla rete e convertirli nei segnali dello standard OCP, in modo tale che l'IP target possa soddisfare la richiesta originale. A questo punto, a seconda del fatto che la richiesta sia una \emph{read} o una \emph{write}, l'IP slave può rispondere o meno; nel primo caso questo manda indietro al master la risposta e i ruoli delle NI vengono invertiti, come di seguito illustrato. \\
+Il blocco NI può essere ulteriormente suddiviso lungo la direzione verticale e lungo quella orizzontale. Dal punto di vista della dimensione verticale può essere scomposto in due differenti livelli: il primo si occupa del packeting/(un)packeting e della conversione del protocollo (da OCP a $\times$pipes e viceversa), mentre il secondo si occupa del buffering, del routing e del flow control. Tali livelli verranno chiamati, d'ora in avanti, \emph{front-end} e \emph{back-end}, rispettivamente. Nella dimensione orizzontale la NI può essere divisa in due canali, uno per le richieste (request) e uno per le risposte (response). Il primo inoltra i commandi del master allo slave, mentre il secondo fornisce allo slave il mezzo per rispondere. Nelle Figure ~\ref{fig:ni-initiator-diagram} e ~\ref{fig:ni-target-diagram}, sono riportati i diagrammi a blocchi tenendo conto delle separazioni appena introdotte. 
+\begin{figure}
+	\centering
+	\includegraphics[width = 13.5cm]{figure/ni-initiator}
+	\caption{Diagramma a blocchi del modulo ni initiator}
+	\label{fig:ni-initiator-diagram}
+\end{figure}
+\begin{figure}
+	\centering
+	\includegraphics[width = 13.5cm]{figure/ni-target}
+	\caption{Diagramma a blocchi del modulo ni target}
+	\label{fig:ni-target-diagram}
+\end{figure}
+Attualmente $\times$pipes implementa un solo canale di response (si vedano Figura~\ref{fig:ni-initiator-diagram} e Figura~\ref{fig:ni-target-diagram}), ciò comporta il blocco delle transazioni ogni volta che viene elaborata una richiesta che prevede una risposta (ad esempio una \emph{read} o una \emph{write non-posted}).\\
+I canali di request e di response sono debolmente accoppiati nella sezione di front-end. Ogni volta che una transazione, richiedente una risposta, viene elaborata dal canale di request, ciò è notificato al canale di response; quando la risposta viene ricevuta, il canale di request viene sbloccato.\\
+Il back-end è più strettamente legato alla scelta architetturale adottata per la NoC, poiché comunica esplicitamente con gli switch. Questo è composto da un input buffer e un output buffer, aventi una doppia interfaccia con la rete. Lo stadio di uscita della NI è identico a quello degli switch, nonostante questo sono separatamente parametrizzabili (ad esempio variando la dimensione dei buffer).
+
+\subsubsection{Codifica del messaggio}
+Tutti i messaggi inviati da un IP possono essere divisi in pacchetti e l'unità base di ogni pacchetto è chiamata flit; così, da un punto di vista fisico, ogni messaggio viene codificato dalla NI attraverso una serie di flit. \\
+Quando vengono considerate architetture di NoC, tipicamente si osserva una banda disponibile significativa, che può essere aumentata semplicemente incrementando la dimensione del link. Di contro, la latenza può raggiungere facilmente livelli inacettabili. Per questa ragione per $\times$pipes è stata fatta la scelta di limitare leggermente il formato.
+A dispetto delle specifiche originali, che puntavano a massimizzare l'informazione contenuta nei flit, è stato preferito un formato con un campo di offset fisso e una politica di inoltro diretta, per una gestione più efficace della latenza e dell'area.  Questo aiuta anche a mantenere basso il livello di logica richiesto per packeting e (un)packeting.
+In accordo con tale concetto, tutti i messaggi possono essere divisi in due differenti sezioni: header e payload. Il primo incorpora informazioni sul mittente, sul destinatario e sul tipo di transazione, insieme all'informazione sul routing. Il secondo contiene il messaggio stesso; ad ogni modo, entrambi possono essere codificati in uno o più flit.\\
+Header e payload non possono mai essere mischiati nello stesso flit, questo semplifica la logica richiesta. A seconda della dimensione del flit, questo può immagazzinare completamente l'header o il payload. L'header viene sempre trasmesso completamente mentre, a seconda del tipo di transazione, una parte del payload può restare inutilizzata (ad esempio il segnale OCP \emph{MData} è significativo solo nelle richieste di \emph{write} ma non in quelle di \emph{read}), così il numero di flit di payload da inviare può essere variabile. Un'altra differenza tra header e payload è che l'header è presente una sola volta, mentre il payload può essere presente più di una volta se la transazione è di tipo burst (il numero di volte dipende dal segnale OCP \emph{MBurstLenght}).\\
+Ogni flit ha un campo Flit Type di tre bit; attualmente sono fornite le codifiche di Head, Payload, Single e Tail (si veda la Tabella~\ref{tab:flit-type}).
+\begin{table}[!htbp]
+	\centering 	
+	\begin{tabular}{|c|c|}
+	\hline
+	\multicolumn{2}{|c|}{FLIT TYPE}\\
+	\hline 1xx & Applicazioni Future \\
+	\hline 011 & Head \\
+	\hline 010 & Payload \\
+ 	\hline 011 & Single \\
+	\hline 000 & Tail \\
+	\hline
+	\end{tabular}
+	\caption{Codifica del campo Flit Type}
+	\label{tab:flit-type}
+\end{table}
+Queste etichette sono legate alla sequenza fisica dei flit, non al contenuto del pacchetto; in questo modo, solo il primo flit di un pacchetto è etichettato come Head, l'ultimo come Tail e ogni altro flit come Payload. L'etichetta Single viene invece usata quando tutto il messaggio è contenuto in un solo flit, allora questo rappresenta Head e Tail allo stesso tempo. La Figura~\ref{fig:packet} mostra un esempio di pacchetto composto da differenti flit: i primi tre sono di header (ma solo il primo è etichettato come Head), i seguenti sei flit sono di payload e infine l'ultimo di tail.
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width = 13.5cm]{figure/packet}
+	\caption{Esempio di pacchetto diviso in 8 diversi flit}
+	\label{fig:packet}
+\end{figure}
+
+\subsubsection{Struttura interna dei flit}
+La struttura dell'header non dipende dal tipo di request ma differisce da quella di una response, poiché in questo caso è richiesta meno informazione. Le Figure \ref{fig:head-struct1} e \ref{fig:head-struct2} presentano, rispettivamente, l'header della fase di request e quello della fase di response.
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width = 13.5cm]{figure/head-struct1}
+	\caption{Struttura dell'header per la fase di request}
+	\label{fig:head-struct1}
+\end{figure}
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width = 5.5cm]{figure/head-struct2}
+	\caption{Struttura dell'header per la fase di response}
+	\label{fig:head-struct2}
+\end{figure}
+Gli aspetti importanti che devono essere notati sono: prima di tutto in entrambe le strutture di header i bit meno significativi (LSB) sono a destra e secondo, la lunghezza di ogni campo è parametrica e può essere scelta dal progettista.\\
+Nelle righe che seguono vengono descritti in dettaglio tutti i campi inoltrati:
+\begin{itemize}
+	\item[$\circ$] \emph{SOURCE} è l'identificativo della NI che inizia la transazione;
+	\item[$\circ$] \emph{MCmd} indica il tipo di comando richiesto dall'initiator o al quale il target sta rispondendo;
+	\item[$\circ$] \emph{MBurstLenght}, \emph{MBurstSeq} e \emph{MBurstPrecise} sono inseriti nell'header in modo che la NI target sia capace di valutare il tipo di payload che sta per ricevere, per selezionare tutti i bit formanti i segnali OCP correttamente. Malgrado il target riceva solo un campo \emph{MAddr} nell'header, in accordo con \emph{MBurstSeq}, è capace di ricostruire il giusto \emph{MAddr} per ogni comando inviato;
+	\item[$\circ$] \emph{PATH} ha la stessa lunghezza sia nel caso di IP core mittente che ricevente e dipende da quanti switch i flit del pacchetto devono attraversare. Il contenuto di questo campo è memorizzato in una look-up table all'indirizzo dato dai bit più significativi (MSB) del campo \emph{MAddr}. La sua dimensione dipende dal numero di IP core che devono essere indirizzati ed è fissato dal progettista;
+	\item[$\circ$] \emph{MAddr} contiene i bit meno significativi del segnale OCP \emph{MAddr} (non usati per indirizzare la LUT). Questi bit sono utili per accedere alle locazioni di memoria interna degli IP riceventi, così il progettista deve settare la lunghezza di questo campo in accordo con il numero di locazioni disponibili.
+\end{itemize}
+La struttura del payload è più semplice poiché deve immagazzinare solamente il messaggio (\emph{MData} nella fase di request e \emph{SData} nella fase di response).
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width = 5.5cm]{figure/payload-struct1}
+	\caption{Struttura del payload per la fase di request}
+	\label{fig:payload-struct1}
+\end{figure}
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width = 5.5cm]{figure/payload-struct2}
+	\caption{Struttura del payload per la fase di response}
+	\label{fig:payload-struct2}
+\end{figure}
+
+\subsection{Modello di link punto-punto}
+Il progetto dei link di comunicazione (switch-to-switch e network interface-to-switch) rappresenta un aspetto critico per le performance del sistema. Con lo scaling geometrico dei dispositivi (noto anche con il termine\emph{die shrink}), il ritardo delle porte migliora più rapidamente di quello associato ai lunghi fili. Perciò, l'allungamento di questi ultimi determina la massima frequenza di clock e quindi le performance dell'intero progetto. Il problema diventa particolarmente serio quando si considerano system-on-chip eterogenei per applicazioni specifiche, dove la struttura dei fili è altamente irregolare e può comprendere collegamenti estremamente lunghi ma anche molto corti. $\times$pipes cerca di disaccoppiare il throughput del link dalla sua lunghezza. \\
+Un link che collega due switch è suddiviso in segmenti base, la cui lunghezza soddisfa le specifiche di temporizzazione prestabilite (ad esempio la frequenza di clock desiderata per il progetto), attraverso la presenza di un certo numero di ripetitori. Questi ripetitori sono usati per ricostruire l'informazione ricevuta ed eliminare i problemi legati al clock skew\footnote{E' un fenomeno che si verifica nei circuiti sincroni in cui il segnale di clock (inviato dal circuito di distribuzione del clock) arriva ai diversi componenti in istanti differenti. Questo può essere causato da diversi fattori, come appunto la diversa lunghezza dei percorsi.} o interferenze elettromagnetiche, che possono essere presenti su una struttura basata su bus condiviso.\\
+Se gli switch della rete sono progettati in modo che il loro corretto funzionamento dipenda dall'ordine di arrivo dei flit e non dalla loro temporizzazione, i link in ingresso ai vari switch possono essere diversi e di qualunque lunghezza. In questo modo, il ritardo associato al link viene tramutato in latenza, ma la frequenza di introduzione dei dati non è più limitata dal ritardo del link. Per raggiungere l'utilizzo della piena banda, i flit vengono inviati in diversi momenti, in modo da sfruttare il tempo di propagazione dell'informazione lungo il link (Figura~\ref{fig:link}). Questo parallellismo non implica alcuna memorizzazione dell'informazione ne la presenza di alcun registro, così non rallenta il tempo di propagazione e conseguentemente non riduce la banda disponibile.
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width = 13.5cm]{figure/link}
+	\caption{Struttura pipelined del link punto-punto}
+	\label{fig:link}
+\end{figure}
+
+\subsection{Switch}
+Lo switch $\times$pipes implementa 2 cicli di latenza sulla coda di uscita del router, che supporta un arbitraggio a priorità fissa e round robin sulle linee di ingresso e un protocollo per il controllo di flusso ACK/nACK e Go-Back-N (questo significa che se un flit viene rifiutato, allora anche tutti quelli che seguono vengono rifiutati).\\
+Poiché più di un pacchetto potrebbe far richiesta della stessa uscita dello switch, è necessaria della logica per risolvere la contesa; per questa ragione ogni uscita ha un modulo allocator. Assumendo che un ingresso possieda l'accesso all'uscita $O_i$, allora questa sarà mantenuta occupata finché non viene ricevuto il flit di tail. L'arbitraggio viene attivato a seguito della ricezione di un flit di header che nell'informazione di routing contiene la richiesta della porta $O_i$.\\
+Un flit in ingresso può essere rifiutato, e quindi nACKed, a causa di una o più delle seguenti ragioni:
+\begin{itemize}
+	\item[$\circ$] La linea di uscita è occupata da un pacchetto precedente.
+	\item[$\circ$] Lo spazio di buffering della risorsa $O_i$ è esaurito.
+	\item[$\circ$] E' presente un altro pacchetto in ingresso che richiede la stessa uscita  e che ha vinto l'arbitraggio. 
+\end{itemize}
+Una volta che un pacchetto ha vinto l'arbitraggio, il suo flit di header viene modificato in modo da prapararlo per lo switch successivo, previsto per giungere allo slave. Più specificatamente, tutta l'informazione di routing riguardante lo switch corrente viene sostituita da quella relativa allo switch che segue in modo che questo possa accedervi direttamente. Per indicare la route di ogni flit vengono usati un numero prestabilito di bit, scelto tenendo conto del caso peggiore in termini di salti all'interno della rete (dal mittente al ricevente).\\
+Lo switch è parametrizzabile nel numero di ingressi e di uscite, così come nella profondità dei buffer di uscita. Ogni porta di uscita dello switch è dotata di buffer che abilitano la gestione della congestione. Questo tipo di buffer è lo stesso usato anche dalla network interface.\\
+La Figura~\ref{fig:switch} rappresenta un'istanza di uno switch $4\times4$.  Questo ha quattro ingressi e quattro uscite, così saranno presenti anche quattro sottoblocchi allocator e quattro buffer per gestire il traffico sulle quattro porte di uscita. Il significato di ogni segnale sarà più chiaro nelle seguenti sezioni.
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width = 13.5cm]{figure/switch}
+	\caption{Diagramma a blocchi dello switch $4\times4$}
+	\label{fig:switch}
+\end{figure}
+
+\subsection{Transazioni supportate}
+La comunicazione end-to-end tra gli IP collegati alla rete è basata sul protocollo OCP, in particolare sulla versione 2.0. Di seguito vengono elencate le transazioni supportate da $\times$pipes:
+\begin{itemize}
+	\item[$\circ$] \emph{Single read}
+	\item[$\circ$] \emph{Single write}
+	\item[$\circ$] \emph{Burst read (single request \& precise length)}
+	\item[$\circ$] \emph{Burst read (multiple request)}
+	\item[$\circ$] \emph{Burst write non posted (single request \& precise length)}
+	\item[$\circ$] \emph{Burst write non posted (multiple request)}
+	\item[$\circ$] \emph{Burst write posted (single request \& precise length)}
+	\item[$\circ$] \emph{Burst write posted (multiple request)}
+\end{itemize}
+
+Ai fini del lavoro di tesi le uniche transazioni supportate sono la \emph{Burst read (single request \& precise length)} e la \emph{Burst write posted (single request \& precise length)}, perciò solo queste due verranno di seguito descritte, per le restanti si faccia riferimento a ~\cite{francesca}.
+
+\subsubsection{Burst read (single request \& precise length)}
+Questo tipo di transazione è combinata con il campo \emph{MBurstLength} che ne indica la lunghezza. Nel caso della read, durante la fase di request, viene mandato attraverso la rete solamente l'header, poiché, come appena visto, questo contiene tutte le informazioni necessarie (PATH, MAddr e tutte le informazioni disponibili sul burst).
+
+\subsubsection{Burst write posted (single request \& precise length)}
+Quando viene letto un comando dal campo \emph{MCmd}, in accordo con l'estensione di handshake, la network interface si dedica alla transazione senza più preoccuparsi della fase di request. L'header viene mandato verso la rete seguito da un certo numero di flit di payload (composti da \emph{MData}, \emph{MByteEn} e \emph{MBurstLength}) corrispondenti ai dati campionati durante la fase di richiesta.\\
+Il campionamento dei comandi e dei dati può avvenire in momenti separati, così il campo \emph{MBurstLength} contenuto nel flit di header può non essere significativo in alcuni casi, per questa ragione la stessa informazione viene inviata anche nei flit di payload. \\
+Il campo \emph{MBurstLength} della sezione payload assume il valore dell'omonimo segnale durante la fase di campionamento del primo comando (lo stesso immagazzinato nell'header) a meno che, quando il dato viene campionato, questo non sia più grande. In questo caso \emph{MBurstLength} viene aggiornato al nuovo valore. 
+
+\subsection{Parametri architetturali}
+Tutti i parametri architetturali possono essere divisi in due categorie, una legata all'interfaccia OCP e l'altra legata all'interfaccia $\times$pipes.
+
+\subsubsection{Parametri OCP}
+\begin{itemize}
+	\item[$\circ$] \emph{SOURCEWD}: legato al campo SOURCE dell'header, rappresenta la dimensione del campo di identificazione di ogni core collegato alla rete (ID\_IP\-\_CORE\_MASTER/SLAVE) e dipende dal numero di IP;
+	\item[$\circ$] \emph{MCMDWD}: definisce il numero di bit assegnati al campo \emph{MCmd} usato per distinguere i vari tipi di transazione OCP supportati. In questo contesto vengono utilizzati tre bit di codifica;
+	\item[$\circ$] \emph{SRESPWD e SDATAWD}: dimensione in bit dei campi \emph{SResp} e \emph{SData} rispettivamente;
+	\item[$\circ$] \emph{MBURSTSEQWD e MBURSTLENGTHWD}: legati alla lunghezza degli omonimi campi OCP. Inoltre è importante notare che \emph{MBURSTLENGTHWD} limita il massimo numero di valori ammessi in una transazione \emph{precise};
+	\item[$\circ$] \emph{MADDRWD}: lunghezza in bit del campo \emph{MAddr}.
+\end{itemize}
+
+\subsubsection{Parametri $\times$pipes}
+
+\begin{itemize}
+	\item[$\circ$] \emph{FLITWD}: permette di modificare la lunghezza dei flit. Questo parametro ha un forte impatto sulla dimensione dei registri usati per immagazzinarli e sul numero di cicli di clock necessari a trasmettere l'intero messaggio;
+	\item[$\circ$] \emph{FTYPEWD}: dimensione del campo type del flit (come appena detto, in questo contesto, sono stati scelti tre bit per la codifica);
+	\item[$\circ$] \emph{MADDRWD}: è il numero di bit meno significativi di \emph{MAddr} trasmessi all'interno dell'header per indirizzare le richieste verso la giusta locazione di memoria interna del ricevente;
+	\item[$\circ$] \emph{Clock\_div}: specifica quanto il clock interno alla rete deve essere più veloce di quello dei core a essa connessi (nell'applicazione in esame questo parametro è stato posto pari a uno);
+	\item[$\circ$] \emph{NUMREQMADEWD}: da la profondità del Request made register, usato nel canale di request del target per comunicare il numero di campi \emph{SResp} che il response sta aspettando di ricevere. Questo valore fissa un limite superiore al numero massimo di campi \emph{SResp} ammessi nella stessa fase di response;
+	\item[$\circ$] \emph{lut\_address}: identificativo degli IP core, conseguentemente può anche essere considerato come un indentificativo delle NI ad essi connesse. Questo campo viene passato, come ingresso, alla LUT per ottenere il \emph{PATH}, contenuto nel segnale \emph{lut\_path}, che ogni flit del messaggio deve seguire per raggiungere la specificata destinazione. La sua dimensione è fissata da un altro parametro \emph{SOURCEWD}, anche se ogni aggiornamento deve essere ancora fatto manualmente. 
+\end{itemize}
+
+\subsection{Network Interface Initiator}
+Come detto precedentemente, la NI initiator è collegata all'IP core master e il suo compito è quello di avviare le richieste di trasmissione e attendere le risposte dallo slave.\\
+La sua architettura può essere divisa in quattro differenti sottoblocchi per permettere una separazione tra le differenti funzionalità offerte, in termini di:
+\begin{itemize}
+	\item[$\circ$] flusso della comunicazione dati (da OCP verso $\times$pipes o nella direzione opposta); e
+	\item[$\circ$] supporto di interfacce esterne (OCP o $\times$pipes).
+\end{itemize}
+Questi sottoblocchi sono:
+\begin{itemize}
+	\item[$\circ$] \textbf{ni\_request}: flusso dati da OCP a $\times$pipes e l'interfaccia esterna supportata è quella OCP;
+	\item[$\circ$] \textbf{out\_buffer}: la direzione è ancora quella da OCP a $\times$pipes ma ora l'interfaccia esterna è la seconda;
+	\item[$\circ$] \textbf{ni\_buffer}: il flusso dati è diretto da $\times$pipes verso OCP e l'interfaccia esterna supportata è $\times$pipes;
+	\item[$\circ$] \textbf{ni\_response}: la direzione è ancora quella da $\times$pipes a OCP ma stavolta l'interfaccia esterna è OCP.
+\end{itemize}
+In Figura~\ref{fig:ni-slave} è presentato il modulo NI initiator con i suoi sottoblocchi. Si può notare come questa sia una versione più dettagliata della Figura~\ref{fig:ni-initiator-diagram}, con tutti i segnali mostrati; inoltre i sottoblocchi riportano gli stessi nomi che assumono nell'implementazione. Tra perentesi tonde sono indicati i nomi delle porte nel caso in cui queste e i segnali globali non abbiano lo stesso nome; questo è dovuto al fatto che ni\_buffer e out\_buffer condividono gli stessi nomi per le porte che comunicano con il front-end.  
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width = 13.5cm]{figure/ni-slave}
+	\caption{Diagramma a blocchi completo della NI initiator}
+	\label{fig:ni-slave}
+\end{figure}
+Nelle righe che seguono vengono descritti tutti i segnali coinvolti:
+\begin{itemize}
+	\item[a)] \emph{Segnali globali}
+		\begin{itemize}
+			\item[$\circ$] \emph{OCP\_clock}: segnale di clock OCP;
+			\item[$\circ$] \emph{$\times$pipes\_clock}: clock di ingresso per $\times$pipes;
+			\item[$\circ$] \emph{rst}: ingresso
+		\end{itemize}
+	\item[b)] \emph{Segnali OCP}
+		\begin{itemize}
+			\item[$\circ$] \emph{MCmd, MBurstLength, MBurstSeq, MAddr, MBurstPrecise, MBurstSingleReq and MReqLast}: tutti segnali di ingresso, rappresentano i campi OCP legati alla fase di request;
+			\item[$\circ$] \emph{MData, MByteEn, MDataLast e MDataValid}: ancora segnali OCP di ingresso, ma riferiti alla fase di data handshake nel protocollo OCP;
+			\item[$\circ$] \emph{SCmdAccept}: uscita, indica che tutti i campi della fase di request sono stati accettati;
+			\item[$\circ$] \emph{SDataAccept}: uscita, ha lo stesso significato del precedente ma riguarda la fase di data handshake;
+			\item[$\circ$] \emph{SResp, SData e SRespLast}: uscita OCP del sottoblocco ni\_response. Comunicano la risposta dell'IP core slave al master;
+			\item[$\circ$] \emph{SRespAccept}: segnale di ingresso OCP del canale di risposta. E' utile per allertare la network interface che la trasmissione dei campi della fase di response è avvenuta correttamente.			
+		\end{itemize}
+		(I segnali \emph{MFlag, SInterrupt} e \emph{SFlag} non sono attualmente implementati, ma comunque sono presenti per futuri sviluppi della network interface)
+	\item[c)] \emph{Segnali dedicati alla comunicazione interna tra front-end e back-end e viceversa}:
+		\begin{itemize}
+			\item[$\circ$] \emph{flitout}: è un'uscita della ni\_request. Lungo questo filo tutti i flit, prodotti dalla network interface per impacchettare il messaggio dell'IP sender, lasciano il front-end.
+			\item[$\circ$] \emph{req\_tx\_flit}: è diretto dalla ni\_request verso l'out\_buffer (dove assume il nome di \emph{req}). Questo flag è alzato ogni volta che un nuovo flit in uscita è pronto. Se non viene data una esplicita risposta negativa, si assume che i flit siano stati accettati e una nuova request potrà essere fatta al successivo ciclo di clock. Quindi, se il flit viene accettato immediatamente, \emph{req\_tx\_flit} deve stare alto per un solo ciclo di clock;
+			\item[$\circ$] \emph{busy\_buffer}: è un ingresso di ni\_request proveniente da out\_buffer (dove assume il nome di \emph{busy}). Questo segnale viene settato dal back-end per bloccare il flusso dei flit dal front-end. Se viene alzato, il mittente deve assumere che il target non possa ricevere richieste di servizio a partire dal prossimo fronte positivo di clock fino al ciclo dopo la deasserzione;
+			\item[$\circ$] \emph{flit}: è orientato da ni\_buffer verso ni\_response e ha lo stesso significato del segnale \emph{flitout};
+			\item[$\circ$] \emph{req}: simile a req\_tx\_flit ma orientato in senso opposto, poiché è un output di ni\_buffer e un ingresso di ni\_response. Quando è alto un nuovo \emph{flit} può essere caricato;
+			\item[$\circ$] \emph{busy}: in ni\_buffer gioca lo stesso ruolo di \emph{busy\_buffer} ma ha direzione opposta.
+		\end{itemize}
+	\item[d)] Segnali di interfacciamento tra canale di response e request:
+		\begin{itemize}
+			\item[$\circ$] \emph{stand\_by}: questo segnale allerta il canale di response che sono state inviate una \emph{read} o una \emph{write non-posted} e che il master deve attendere la risposta;
+			\item[$\circ$] \emph{trans\_id}: questo segnale è valido quando anche \emph{stand\_by} è alto ed è utile per mettere al corrente il canale di response dell'identificativo del ricevente, il quale risponderà alla richiesta. Questa informazione è immagazzinata in un registro dall'ni\_response. Attualmente questo registro è formato da una sola locazione, così solo la richiesta in fase di elaborazione può essere supportata (ma uno degli obiettivi delle future versioni di $\times$pipes è aumentare questo numero). Quando un flit di header di una risposta arriva al sottoblocco ni\_response il suo campo \emph{SOURCE} viene comparato con valore \emph{trans\_id} contenuto nel registro. Se questi sono identici, quando anche il flit di tail viene ricevuto, il valore del registro viene cancellato;
+			\item[$\circ$] \emph{full\_response}: viene usato dal canale di response per allertare ni\_request che il registro adibito al contenimento del campo \emph{trans\_id} è pieno. Altre eventuali richieste di \emph{read} o \emph{write non-posted} devono essere sospese.
+		\end{itemize}
+	\item[e)] Segnali $\times$pipes:
+		\begin{itemize}
+			\item[$\circ$] \emph{FLIT\_out}: trasporta i flit in uscita verso la NoC;
+			\item[$\circ$] \emph{VALID\_out}: questo segnale è alzato ogni volta che un nuovo dato in uscita viene presentato su \emph{FLIT\_out};
+			\item[$\circ$] \emph{FWDAUX1\_out}: in caso di risposta nACK da parte dello switch, la NI solleva questo segnale per un solo ciclo di clock durante la ritrasmissione del primo frammento di informazione rifiutata. Questo consente allo switch di scartare facilmente i flit di ingresso spuri successivi a un nACK finché non viene fatta la ritrasmissione;
+			\item[$\circ$] \emph{BWDAUX2\_in}: subito dopo all'asserzione del \emph{VALID\_out}, la NI aspetta che questo filo vada alto, dopo un non specificato numero di cicli di clock, per confermare la ricezione da parte dello switch. Comunque, la risposta dello switch può essere sia positiva che negativa a seconda del seguente segnale;
+			\item[$\circ$] \emph{BWDAUX1\_in}: valutato quando \emph{BWDAUX2\_in} è alto, questo filo segnala la corretta ricezione o meno (ACK/nACKed), da parte dello switch, del flit in uscita dalla network interface. In caso di risposta nACK, la NI dovrà rispedire il flit nACKed (e quelli successivi, se ce ne sono), mettendo il segnale \emph{FWDAUX1\_out} alto solo per il primo;
+			\item[$\circ$] \emph{FLIT\_in}: attraverso questo filo la NI riceve i flit di risposta dalla rete;
+			\item[$\circ$] \emph{VALID\_in}: analogo a \emph{req}, ma in questo caso è un ingresso della network interface;
+			\item[$\circ$] \emph{FWDAUX1\_in}: porta di ingresso di ni\_buffer, ha lo stesso significato di \emph{FWDAUX1\_out} ma riferito al canale di response ed è orientato in senso opposto;
+			\item[$\circ$] \emph{BWDAUX2\_out}: simile a \emph{BWDAUX1\_in} ma settato da ni\_buffer per essere ricevuto dal primo switch;
+			\item[$\circ$] \emph{BWDAUX1\_out}: analogo ad \emph{BWDAUX1\_in} ma diretto come \emph{BWDAUX1\_out}.
+		\end{itemize}
+\end{itemize}
+
+\subsection{Network Interface Target}
+La network interface target è collegata agli IP core di tipo slave. Essa si occupa di ricevere le richieste trasmesse ed eventualmente spedisce indietro al master la risposta.\\
+La sua architettura può essere divisa in quattro differenti sottoblocchi per permettere la separazione tra le differenti funzionalità offerte, in termini di:
+\begin{itemize}
+	\item[$\circ$] flusso della comunicazione dati (da $\times$pipes verso OCP o nella direzione opposta); e
+	\item[$\circ$] supporto di interfacce esterne (OCP o $\times$pipes).
+\end{itemize}
+I sottoblocchi in questione sono:
+\begin{itemize}
+	\item[$\circ$] \textbf{ni\_buffer}: flusso dati da $\times$pipes a OCP e l'interfaccia esterna supportata è $\times$pipes;
+	\item[$\circ$] \textbf{ni\_receive}: la direzione è ancora quella da $\times$pipes a OCP ma ora l'interfaccia esterna è OCP;
+	\item[$\circ$] \textbf{out\_buffer}: flusso dati da OCP a $\times$pipes e l'interfaccia esterna supportata è $\times$pipes;
+	\item[$\circ$] \textbf{ni\_resend}: la direzione è ancora quella da OCP a $\times$pipes ma ora l'interfaccia esterna è OCP.
+\end{itemize}
+La Figura~\ref{fig:ni-master} riporta la NI target con i relativi sottoblocchi. Si può notare come questa sia una rappresentazione dettagliata della Figura~\ref{fig:ni-target-diagram}, con tutti i segnali mostrati; inoltre i sottoblocchi assumono gli stessi nomi che hanno nell'implementazione. 
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width = 13.5cm]{figure/ni-master}
+	\caption{Diagramma a blocchi completo della NI target}
+	\label{fig:ni-master}
+\end{figure}
+Tra parentesi tonde sono indicati i nomi delle porte, nel caso in cui queste abbiamo un nome diverso dal segnale ad esse collegato (come nell'esempio, la porta di ingresso è \emph{flit} mentre il segnale globale è \emph{fliout}; questo in modo da eliminare l'ambiguità legata al fatto che anche ni\_buffer ha una porta con lo stesso nome).
+Il significato dei segnali è identico al caso della NI initiator tranne per i segnali di comunicazione introdotti tra i canali di request e response che di seguito andiamo a descrivere:
+\begin{itemize}
+	\item[$\circ$] \emph{enable\_new\_msg}: è utilizzato dal sottoblocco ni\_resend per allertare ni\_receive che l'IP core slave è pronto per accettare una nuova richiesta che richiede una risposta, poiché la trasmissione della precendente risposta è terminata;
+	\item[$\circ$] \emph{start\_receive\_response}: questo segnale sta alto per un ciclo di clock per avvisare il canale di response che l'IP core slave sta per spedire un campo \emph{SResp};
+	\item[$\circ$] \emph{MCmd\_resp}: è valido quando \emph{start\_receive\_response} è vero. Tale segnale trasporta l'MCmd da caricare nell'header del messaggio di risposta, dal canale di request verso il canale di response.
+	\item[$\circ$] \emph{source\_msg}: è diretto come \emph{MCmd\_resp} ed è valido quando è valido anche questo. Questo campo rappresenta l'identificativo dell'IP core master da caricare nell'header del messaggio di risposta;
+	\item[$\circ$] \emph{num\_request\_made\_valid}: orientato da ni\_receive verso ni\_resend, quando alto segnala che \emph{num\_request\_made} è valido;
+	\item[$\circ$] \emph{num\_request\_made}: segnala quanti campi \emph{SResp} saranno usati per formare il messaggio di risposta. Il canale di request allerta in anticipo il canale di response così che questo possa sapere quanti \emph{SResp} deve attendersi. La dimensione di questo segnale viene fissata durante la fase di progetto poiché limita il numero di campi ammessi come parte della stessa risposta. 
+\end{itemize}
+Ai fini del lavoro di tesi il livello di descrizione fornito per la network on chip è sufficente. Per maggiori approfondimenti si rimanda a ~\cite{francesca}. 

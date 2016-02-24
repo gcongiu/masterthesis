@@ -1,0 +1,59 @@
+\chapter*{Prefazione}
+\markboth{PREFAZIONE}{PREFAZIONE}
+\addcontentsline{toc}{chapter}{\numberline{}Prefazione}
+\setcounter{footnote}{0}
+
+Nelle ultime tre decadi il miglioramento delle performance nelle CPU è stato raggiunto esclusivamente attraverso l'incremento delle frequenze di clock. Questo è stato possibile grazie al maggior numero di circuiti integrabili su un singolo die di silicio (processo largamente conosciuto come legge di Moore\cite{moore}). Da un lato ciò ha consentito l'inserimento, all'interno di un singolo chip, di più unità funzionali; mentre le prime CPU erano piuttosto semplici, in seguito si sono gradualmente evolute incorporando unità Floating Point (FP), Single Instruction Multiple Data (SIMD), complicati sistemi di branch prediction, ecc\ldots Oltre a tutto ciò, una maggiore densità di integrazione ha portato alla riduzione della lunghezza dei percorsi all'interno del chip, che ha avuto come diretta conseguenza il sostenimento di frequenze di clock più elevate.\\ 
+Attualmente, questo incremento esponenziale nelle performance delle CPU pare giungere lentamente a un punto d'arresto. \\
+Innanzitutto, per le CPU single threaded si hanno benefici ridotti a fronte di un aumento del numero di transistors. Mentre in passato le CPU potevano essere migliorate aggiungendo più unità funzionali, oggi questo aumenta la difficoltà nell'identificazione del parallelismo celato nel flusso seriale di istruzioni e necessario per mantenere impegnate tutte le unità funzionali aggiuntive. \\
+In secondo luogo, la velocità delle memorie non aumenta di pari passo con quella delle CPU, così i cache miss diventano molto costosi. Come risultato, viene richiesta maggiore area sul chip per l'inserimento di logica di branch prediction più complessa, esecuzione fuori ordine, cache più grandi. A quanto detto si aggiunga anche il problema legato al consumo di potenza e alla dissipazione di calore. \\
+Per questi motivi, i progettisti di CPU stanno cercando soluzioni alternative a quella del semplice aumento delle frequenze di clock, per incrementare la potenza di calcolo. In particolare, una delle soluzioni vede lo studio di architetture multi-core che abbiano varie SIMD, in modo da esporre il parallelismo tra i vari blocchi funzionali.\\
+Un progetto più nuovo e radicale è il processore Cell, o Cell Broadband Engine Architecture (CBEA). Piuttosto che evolvere lentamente verso architetture multi-core, il Cell è stato progettato da zero tenendo a mente questi concetti.
+\\
+CBEA è il risultato di quattro anni di sviluppo da parte del consorzio STI, formato da Sony, Toshiba e IBM per la realizzazione di un MultiProcessor System on Chip (MPSoC) ad alte prestazioni. Per Sony il Cell rappresenta il cuore della console PlayStation3, Toshiba ne prevede l’utilizzo nei suoi prodotti televisivi ad alta definizione, mentre IBM lo impiega nei server per il calcolo scientifico. \\
+Cell è un MPSoC di tipo eterogeneo costituito da 12 unità (cores), interconnesse attraverso un Element Interconnect Bus (EIB). Il sistema integra un Power Processing Element (PPE), 8 Synergistic Processing Elements (SPEs), un Memory Interface Controller (MIC) e un bus controller diviso in due elementi separati (IOIF0 e IOIF1). La PPE è un microprocessore con architettura Power di IBM a 64bit \cite{PowerArchitecture} avente 32-KB di cache di primo livello e 512-KB di cache di secondo livello che operano alla frequenza di clock della PPE, pari a 3.2 GHz. \\
+Le SPE sono unità di elaborazione SIMD a 128 bit, ciascuna delle quali contiene una Local Store (LS) di 256-KB e opera a 3.2 GHz. Il Memory Flow Controller (MFC), presente nelle SPE, si occupa della gestione della memoria e del DMA, il quale rappresenta il solo metodo supportato per lo spostamento di dati tra le LS e la memoria di sistema. Il MIC è capace di fornire accessi alla memoria RAMBUS XDR RAM di oltre 512-MB.\\
+Ogni unità elencata è in grado di produrre un throughput di 51.2 GB/s. Per questo motivo, un ruolo cruciale nel raggiungimento di elevate prestazioni è giocato dall’elemento di interconnessione, che deve essere in grado di sfruttare appieno le potenzialità del sistema.  \\
+L’evoluzione dei SoC verso architetture nelle quali le unità funzionali sono rappresentate da complessi sistemi di elaborazione (MPSoC) sposta dunque, in modo ancora più marcato, i vincoli prestazionali sul mezzo di interconnessione, il quale diventa la principale causa di limitazione delle performance. Secondo l’International Roadmap for Semiconductors, l’aumento delle frequenze di clock, legato alla sempre crescente capacità di integrazione, in dieci anni renderà possibile, per i progettisti di sistemi digitali, la realizzazione di chip contenenti più di un miliardo di transistor e funzionanti a frequenze vicine ai 10 GHz\cite{ITRS}. Non è possibile pensare di sfruttare appieno tali miglioramenti tecnologici facendo uso di sistemi di connessione basati su bus condiviso, come avviene tuttora. Infatti, i lunghi fili che viaggiano da una parte all’altra del chip per collegare le diverse unità funzionali, fissano il limite superiore per la frequenza di clock utilizzabile, a causa dell’allungamento del percorso critico. Per tutti questi motivi, le architetture di Network on Chip (NoC) vanno assumendo sempre più popolarità tra la comunità scientifica. In aggiunta, l’adozione di questo tipo di architettura porta diversi benefici:
+
+\begin{itemize}
+	\item[$\circ$] È possibile trarre vantaggio da buona parte delle tecnologie sviluppate per le reti packet-switched di calcolatori, adattandole all’ambiente delle connessioni on chip.
+	\item[$\circ$] È possibile raggiungere un elevato grado di flessibilità tramite
+	\begin{itemize}
+		\item[-] Modularità (uso estensivo di blocchi funzionali parametrizzati)
+		\item[-] Riconfigurabilità (i blocchi funzionali possono essere mutuamente connessi in vari modi per ottenere
+la topologia richiesta da una data applicazione).
+	\end{itemize}
+	\item[$\circ$] È possibile integrare facilmente Intellectual Property\footnote{Per IP si intende un componente HW o SW riutilizzabile in diversi sistemi eterogenei.} (IP cores) sviluppati da terze parti, posto che essi condividano la stessa interfaccia per la comunicazione con l’ambiente esterno.
+\end{itemize}
+
+Questo lavoro di tesi ha come obiettivo la valutazione delle performance dell'infrastruttura di comunicazione EIB integrata in CBEA. Il lavoro si articola in tre parti principali. \\
+In una prima fase, in collaborazione con il Barcelona Supercomputing Center \cite{BSC},  ci si è occupati dello sviluppo di un ambiente di simulazione chiamato CellSim \cite{Cellsim}, creato tramite l’utilizzo della libreria UniSim \cite{Unisim}. In particolare l’attenzione è stata focalizzata sull’integrazione di un modello di simulazione dettagliato e parametrico relativo  all’EIB.  Tramite appositi benchmark software, sono state misurate le performance al variare dei parametri architetturali.  
+\\
+In una seconda fase, è stato integrato, all’interno di CellSim, il modello di simulazione, codificato in SystemC \cite{Systemc} cycle accurate, di una architettura NoC basata su comunicazione a pacchetti denominata XPIPES \cite{XPIPES}, nata come libreria di componenti sviluppata congiuntamente dalle università di Cagliari, Bologna \cite{Bologna} e Stanford \cite{Stanford}. 
+\\
+In una terza fase, diverse metriche di valutazione delle prestazioni sono state considerate per paragonare i benefici ottenibili tramite l’utilizzo di diverse configurazioni topologiche ed architetturali della NoC e della infrastruttura EIB tuttora adottata.
+\\
+\subsection*{Struttura della tesi}
+Nel primo capitolo viene presentata la Cell Broadband Engine Architecture a cominciare dalla concezione fino alla sua prima incarnazione, rappresentata dalla prima generazione di processori Cell. In particolare, l'attenzione viene focalizzata sulle novità introdotte dai progettisti per superare i limiti prestazionali che affliggono molte delle architetture tuttoggi in uso, come ad esempio i multiprocessori simmetrici. 
+
+Nel secondo capitolo viene presentato il simulatore Cellsim, utilizzato per la caratterizzazione delle performance delle infrastrutture di comunicazione oggetto della tesi, EIB e $\times$pipes. Viene anche descritto in modo dettagliato il framework UNISIM, utilizzato dal simulatore per la descrizione dei moduli software che modellano i blocchi hardware, la loro connessione e simulazione. 
+
+Nel terzo capitolo viene descritta l'architettura per Network on Chip $\times$pipes, con particolare riferimento alle network interface e al protocollo di comunicazione OCP, da queste adottato per lo scambio di informazioni con gli IP core.
+
+Nel quarto capitolo viene descritto accuratamente il modello di simulazione, sviluppato in collaborazione con il Barcelona Supercomputing Center, per l'element interconnect bus del Cell e l'infrastruttura supplementare introdotta per la misurazione delle prestazioni del sistema.
+
+Nel quinto capitolo si affrontano le problematiche legate all'integrazione del modello SystemC di $\times$pipes all'interno del simulatore Cellsim. Viene presentato il modello di network interface utilizzato per rendere compatibili gli IP core Cellsim e $\times$pipes.
+
+Infine, nel capitolo sei vengono presentati i risultati ottenuti attraverso l'utilizzo di appositi benchmark software. Le prestazioni sono state misurate adottando come metriche il numero di cicli di esecuzione dell'applicazione e latenza media dei messaggi all'interno del mezzo di comunicazione.
+%\begin{itemize}
+%	\item \textbf{Capitolo~\ref{cap:capitolo1}}: presentazione del Cell Broadband Engine Architecture.
+%	\item \textbf{Capitolo~\ref{cap:capitolo2}}: introduzione all’ambiente di simulazione Cellsim.
+%	\item \textbf{Capitolo~\ref{cap:capitolo3}}: l’architettura NoC XPIPES.
+%	\item \textbf{Capitolo~\ref{cap:capitolo4}}: estensione del modello di simulazione dell’ EIB all’interno di % 
+%		Cellsim.
+%	\item \textbf{Capitolo~\ref{cap:capitolo5}}: sviluppo di un modulo wrapper SystemC-Unisim per l’integrazione %
+%		del modello di simulazione xpipes all’interno di Cellsim.
+%	\item \textbf{Capitolo~\ref{cap:capitolo6}}: valutazione delle prestazioni ottenibili utilizzando le due %
+%		architetture di interconnessione e confronto delle prestazioni.
+%\end{itemize}
