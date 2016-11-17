@@ -1,0 +1,232 @@
+\documentclass[a4paper,titlepage,oneside,12pt]{book}
+%*******************************************************************************************
+% USEPACKAGE
+%*******************************************************************************************
+\usepackage[ansinew]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{indentfirst}
+\usepackage{makeidx}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{subfigure}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{amsmath,amssymb}
+\usepackage{multicol}
+\usepackage{multirow/multirow}
+\usepackage{calc}
+\usepackage[a4paper,top=3cm,bottom=3cm,left=3cm,right=3cm]{geometry}
+\usepackage[pdfauthor={Giuseppe Congiu},pdftitle={Tesi},bookmarks,colorlinks]{hyperref}
+%*******************************************************************************************
+% END USEPACKAGE
+%*******************************************************************************************
+\pagestyle{headings}
+\definecolor{sfondo_sorgente}{rgb}{0.95,0.95,0.95}
+\definecolor{myblue}{rgb}{0,0,1}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mykey}{rgb}{0.7,0.4,0}
+\definecolor{stringa}{rgb}{1,0.4,0}
+\renewcommand{\lstlistingname}{Listato}
+\lstset{
+ language=C++,
+ basicstyle=\small\ttfamily,
+ keywordstyle=\color{myblue}\small\ttfamily,
+ emphstyle=\color{black}\small\bfseries\sffamily,
+ emph={[2] finish, monitor, time},
+ emphstyle={[2]\color{mykey}\small\ttfamily},
+ emph={[3] timescale},
+ emphstyle={[3]\color{stringa}\small\ttfamily},
+ emphstyle={[5]\color{myblue}\small\ttfamily},
+ stringstyle=\ttfamily,
+ showstringspaces=false,
+ captionpos=b,
+ belowcaptionskip=10pt,
+ columns=flexible,
+ aboveskip=10pt,
+ backgroundcolor=\color{sfondo_sorgente},
+ frame=single,
+ framerule=0pt, 
+ tabsize=2,
+ framexleftmargin=1mm,
+ framexrightmargin=1mm,
+ commentstyle=\color{mygreen}\ttfamily,
+ extendedchars=true, 
+ literate=
+ {uint32_t}{{{\color{myblue}uint32\_t }}}1
+ {address_t}{{{\color{myblue}address\_t}}}1
+ {size_t}{{{\color{myblue}size\_t}}}1
+ {uint8_t}{{{\color{myblue}uint8\_t}}}1
+ {sc_uint}{{{\color{myblue}sc\_uint}}}1
+ {instance}{{{\color{myblue}instance }}}1
+% {inport}{{{\color{myblue}inport}}}1
+% {outport}{{{\color{myblue}outport}}}1
+}
+%*******************************************************************************************
+% FRONTESPIZIO
+%*******************************************************************************************
+\begin{document}
+
+\hypersetup{colorlinks,citecolor=black,filecolor=black,linkcolor=black,urlcolor=blue} %settare i calori dei link
+
+\begin{titlepage}
+\thispagestyle{empty}
+
+\begin{flushleft}
+\vbox to0pt{
+\vbox to\textheight{\vfil
+\vspace{11cm}
+\includegraphics[width=5cm]{figure/unica-black}
+\vfil}\vss}
+\end{flushleft}
+
+\begin{center}
+	\large UNIVERSIT\`A DEGLI STUDI DI CAGLIARI \\
+	FACOLT\`A DI INGEGNERIA \\
+	\large \textbf{Corso di laurea in Ingegneria Elettronica} \\
+	\large (Anno Accademico 2007-2008)
+\end{center}
+
+\begin{center}
+	\vspace{2cm}
+	{
+                \Huge \textsc{\textbf{CELL BE: performance analisys of the Element Interconnect Bus and development of an alternative packet switched solution}
+%		\Huge \textsc{\textbf{CELL BE: studio delle performance dell'infrastruttura di comunicazione EIB e 
+%		progettazione di una soluzione a pacchetti alternativa}
+	} \\
+	\vspace{0.45cm}
+	\rule{\textwidth}{1.5mm}} \\
+	\vspace{0.2cm}
+\end{center}
+\vspace{3cm}
+
+\begin{flushright}
+	Tesi di Laurea di:\\
+	\textbf{Giuseppe Congiu}\\
+	%Versione 1.0, \today
+\end{flushright}
+
+\begin{flushright}
+	Relatori:\\
+	\textbf{Prof. Luigi Raffo}\\
+	\textbf{Ing. Paolo Meloni}
+\end{flushright}
+
+\end{titlepage}
+%*******************************************************************************************
+%END FRONTESPIZIO
+%*******************************************************************************************
+
+\newpage
+\thispagestyle{empty}
+%\pagenumbering{roman}\setcounter{page}{1}
+\null
+\newpage
+\pagenumbering{roman}\setcounter{page}{1}
+\tableofcontents
+\mainmatter
+
+%*******************************************************************************************
+%CAPITOLI
+%*******************************************************************************************
+\pagenumbering{roman}\setcounter{page}{4}
+\input{introduzione/abstract}
+\input{introduzione/prefazione}
+\pagenumbering{arabic}\setcounter{page}{8}
+\input{capitoli/cap1/capitolo1}
+\input{capitoli/cap2/capitolo2}
+\input{capitoli/cap3/capitolo3}
+\input{capitoli/cap4/capitolo4}
+\input{capitoli/cap5/capitolo5}
+\input{capitoli/cap6/capitolo6}
+%*******************************************************************************************
+%END CAPITOLI
+%*******************************************************************************************
+
+%*******************************************************************************************
+%BIBLIOGRAFIA
+%*******************************************************************************************
+\cleardoublepage
+\addcontentsline{toc}{chapter}{Bibliografia}
+%\bibliographystyle{plain}
+%\bibliography{sample}
+
+\begin{thebibliography}{3}
+
+\bibitem{moore} Moore's law, see \url{http://en.wikipedia.org/wiki/Moore's_law}
+\bibitem{PowerArchitecture}Power Architecture Version 2.02; see %
+		\url{http://www-106.ibm.com/developerworks/eserver/library/es-archguide-v2.html}.
+\bibitem{ITRS} Semiconductor Industry Association. International Technology Roadmap %
+		for Semiconductors (ITRS), 2005.
+\bibitem{BSC} Centro Nacional de Supercomputacin: Barcelona Supercomputing Center, \url{http://www.bsc.es/}.
+\bibitem{Cellsim} Cellsim: Modular Simulator for Heterogeneous Multiprocessor Architectures %
+		\url{http://pcsostres.ac.upc.edu/cellsim/doku.php}.
+\bibitem{Unisim} UNISIM: UNIted SIMulation environment, \url{http://unisim.org/site/}.
+\bibitem{Systemc} IEEE Standard SystemC\copyright Language %
+		Reference Manual version 2.1, 31 March 2006.
+\bibitem{XPIPES} Network on Chip Architectures, \url{http://www.diee.unica.it/eolab2/NoC.html}.
+\bibitem{Stanford} Stanford University, \url{http://www.stanford.edu}.
+\bibitem{Bologna} DEIS: Dipartimento di Elettronica Informatica e Sistemistica, %
+		Università di Bologna (Italy), \url{http://www.deis.unibo.it/DEIS/default.htm}.
+\bibitem{memorywall} W. Wulf and S. McKee, "Hitting the Memory Wall: Implications of the Obvious", ACM Computer % 
+		Architecture News 23, No. 1, 2024 (March 1995).
+\bibitem{Ghoshal}U. Ghoshal and R. Schmidt, ‘‘Refrigeration Technologies for Sub-Ambient Temperature Operation of %
+		Computing Systems,’’ ISSCC Digest of Technical Papers, February 2000, pp. 216–217.		
+\bibitem{Isaac}R. D. Isaac, ‘‘The Future of CMOS Technology,’’ IBM J. Res. \& Dev. 44, No. 3, 369–378 (May 2000).
+\bibitem{Hofstee}H. Peter Hofstee, ‘‘Power Efficient Processor Architecture and the Cell Processor,’’ Proceedings %
+		of the 11th Conference on High Performance Computing Architectures, February 2005, pp. 258–262.
+\bibitem{Srinivasan}V. Srinivasan, D. Brooks, M. Gschwind, P. Bose, V. Zyuban,P. N. Strenski, and P. G. Emma, %
+		‘‘Optimizing Pipelines for Power and Performance,’’ Conference Proceedings of the 35th Annual IEEE/ACM %
+		International Symposium on Microarchitecture, 2002, pp. 333–344.
+\bibitem{BPA}See \url{http://www-306.ibm.com/chips/techlib/techlib.nsf/products/Cell}.
+\bibitem{Flachs}B. Flachs, S. Asano, S. H. Dhong, H. P. Hofstee, G. Gervais, R. Kim, T. Le, P. Liu, J. Leenstra, %
+		J. Liberty, B. Michael, H.-J. Oh, S. M. Mueller, O. Takahashi, A. Hatakeyama, Y. Watanabe, and N. Yano, %
+		‘‘The Microarchitecture of the Streaming Processor for a CELL Processor,’’ Proceedings of the IEEE %
+		International Solid-State Circuits Symposium, February 2005, pp. 184–185.
+\bibitem{Anderson}C. J. Anderson, J. Petrovick, J. M. Keaty, J. Warnock, G. Nussbaum, J. M. Tendler, C. Carter, %
+		S. Chu, J. Clabes, J. DiLullo, P. Dudley, P. Harvey, B. Krauter, J. LeBlanc, P.-F. Lu, B. McCredie, G. % 
+		Plum, P. J. Restle, S. Runyon, M. Scheuermann, S. Schmidt, J. Wagoner, R. Weiss, S. Weitzel, and B. %
+		Zoric, ‘‘Physical Design of a Fourth-Generation POWER GHz Microprocessor,’’ ISSCC Digest of Technical %
+		Papers, February 2001, pp. 232–233.
+\bibitem{Clabes}J. Clabes, J. Friedrich, M. Sweet, J. DiLullo, S. Chu, D. Plass, J. Dawson, P. Muench, L. Powell, %
+		M. Floyd, B. Sinharoy, M. Lee, M. Goulet, J. Wagoner, N. Schwartz, S. Runyon, G. Gorman, P. Restle, R. %
+		Kalla, J. McGill, and S. Dodson, ‘‘Design and Implementation of the POWER5 Microprocessor,’’ Proceedings %
+		of the 41st Design Automation Conference, 2004, pp. 670–672.
+\bibitem{Asano}B. Flachs, S. Asano, S. H. Dhong, H. P. Hofstee, G. Gervais, R. Kim, T. Le, P. Liu, J. Leenstra, %
+		J. Liberty, B. Michael, H.-J. Oh, S. M. Mueller, O. Takahashi, A. Hatakeyama, Y. Watanabe, and N. Yano, %
+		‘‘The Microarchitecture of the Streaming Processor for a CELL Processor,’’ Proceedings of the IEEE %
+		International Solid-State Circuits Symposium, February 2005, pp. 184–185.
+\bibitem{Nakazato}T. Asano, T. Nakazato, S. Dhong, A. Kawasumi, J. Silberman, O. Takahashi, M. White, and H. %
+		Yoshihara, ‘‘A 4.8GHz Fully Pipelined Embedded SRAM in the Streaming Processor of a CELL Processor,’’ %
+		Proceedings of the IEEE International Solid-State Circuits Symposium, February 2005, pp. 486–487.
+\bibitem{XDR}Rambus XDR DRAM, See \url{http://www.rambus.com/products/xdr/}.
+\bibitem{Yang}H. S. Yang, R. Malik, S. Narasimha, Y. Li, R. Divakaruni, P. Agnello, S. Allen, A. Antreasyan, J. C.%
+		 Arnold, K. Bandy, M. Belyansky, A. Bonnoit, G. Bronner, V. Chan, X. Chen, Z. Chen, D. Chidambarrao, A. % 
+		Chou, W. Clark, S. W. Crowder, B. Engel, H. Harifuchi, S. F. Huang, R. Jagannathan, F. F. Jamin, Y. %
+		Kohyama, H. Kuroda, C. W. Lai, H. K. Lee, W.-H. Lee, E. H. Lim, W. Lai, A. Mallikarjunan, K. Matsumoto, %
+		A. McKnight, J. Nayak, H. Y. Ng, S. Panda, R. Rengarajan, M. Steigerwalt, S. Subbanna, K. Subramanian, J. %
+		Sudijono, G. Sudo, S.-P. Sun, B. Tessier, Y. Toyoshima, P. Tran, R. Wise, R. Wong, I. Y. Yang, C. H. Wann,%
+		 L. T. Su, M. Horstmann, Th. Feudel, A. Wei, K. Frohberg, G. Burbach, M. Gerhardt, M. Lenski, R. Stephan, %
+		K. Wieczorek, M. Schaller, H. Salz, J. Hohage, H. Ruelke, J. Klais, P. Huebler, S. Luning, R. van Bentum, %
+		G. Grasshoff, C. Schwan, E. Ehrichs, S. Goad, J. Buller, S. Krishnan, D. Greenlaw, M. Raab, and N. Kepler,%
+		 ‘‘Dual Stress Liner for High Performance Sub-45-nm Gate Length SOI CMOS Manufacturing,’’ Proceedings of %
+		the 2004 IEEE International Electron Devices Meeting, December 2004, pp. 1075–1078.
+\bibitem{Unisim-tutorial} Basics of cycle-level simulation with Unisim, see %
+		\url{https://unisim.org/tutorial/feb_2006_tutorial/part1/part1.html}.
+\bibitem{cellsim-journal}Felipe Cabarcas, Alejandro Rico, David Rodenas, Xavier Martorell, Alex Ramirez, Eduard, % 
+		Ayguade, ‘‘CellSim: A Validated Modular Heterogeneous Multiprocessor Simulator’’.
+\bibitem{OCP} OCP-IP association, ‘‘Open Core Protocol Specification’’, Release 2.0.
+\bibitem{wiki-parsing} \url{http://it.wikipedia.org/wiki/Parsing}.
+\bibitem{flow-control} Antonio Pullini, Federico Angiolini, Davide Bertozzi, Luca Benini, ‘‘Fault Tolerance Overhead in NetworkonChip Flow Control Schemes’’.
+\bibitem{francesca} Master thesis of Francesca Palumbo, ‘‘HDL modeling, implementation on silicon and power dissipation evaluations of Network-on-Chip modules’’, academic year 2003-2004.
+%\bibitem{nano-cmos} "Nano-CMOS Circuit and Physical Design", by Ban P. Wong, Anurag Mittal, Yu Cao, and Greg Starr		ISBN 0-471-46610-7 Copyright\copyright 2005 John Wiley \& Sons, Inc.
+\end{thebibliography}
+%*******************************************************************************************
+%END BIBLIOGRAFIA
+%*******************************************************************************************
+\end{document}
+%*******************************************************************************************
+%*******************************************************************************************
+%  END   DOCUMENT 
+%*******************************************************************************************
+%*******************************************************************************************
