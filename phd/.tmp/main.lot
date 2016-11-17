@@ -1,9 +1,0 @@
-\select@language {english}
-\addvspace {10\p@ }
-\addvspace {10\p@ }
-\addvspace {10\p@ }
-\contentsline {table}{\numberline {3.1}{\ignorespaces Values for \textit {advice} in the \textit {posix\_fadvise()} system call\relax }}{15}{table.caption.3}
-\contentsline {table}{\numberline {3.2}{\ignorespaces GPFS hint data structures\relax }}{16}{table.caption.4}
-\addvspace {10\p@ }
-\contentsline {table}{\numberline {4.1}{\ignorespaces Collective I/O hints in ROMIO.\relax }}{36}{table.caption.15}
-\contentsline {table}{\numberline {4.2}{\ignorespaces Proposed MPI-IO hints extensions.\relax }}{39}{table.caption.17}
