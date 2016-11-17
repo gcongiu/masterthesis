@@ -1,0 +1,89 @@
+%% Creator: Inkscape inkscape 0.91, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'sync_thread.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{595.27559055bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,1.41428571)%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{sync_thread.pdf}}%
+    \put(0.23913023,0.83669569){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{pending}}}%
+    \put(0.4030879,0.90657929){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{submitted}}}%
+    \put(0.41383922,0.75337294){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{waiting}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{sync_thread.pdf}}%
+    \put(0.17336508,0.82650793){\color[rgb]{1,1,1}\makebox(0,0)[lb]{\smash{1}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{sync_thread.pdf}}%
+    \put(0.40451852,0.80769311){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{2}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{sync_thread.pdf}}%
+    \put(0.82382011,0.87220105){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{NVM}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{sync_thread.pdf}}%
+    \put(0.82382011,0.71361904){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{PFS}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{sync_thread.pdf}}%
+    \put(0.52672811,0.92001844){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Sync Thread}}}%
+    \put(0.37824882,0.95524902){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{ADIOI_Sync_thread_t}}}%
+    \put(0.52941594,0.82594437){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Sync Buffer}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{sync_thread.pdf}}%
+    \put(0.6222328,0.87757671){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{3}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{sync_thread.pdf}}%
+    \put(0.52672811,0.68617717){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Main Thread}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{sync_thread.pdf}}%
+    \put(0.6222328,0.72168253){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{4}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{sync_thread.pdf}}%
+    \put(0.05366991,0.76949992){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Main Thread}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=11]{sync_thread.pdf}}%
+    \put(0.21099471,0.62895237){\color[rgb]{1,1,1}\makebox(0,0)[lb]{\smash{1}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=12]{sync_thread.pdf}}%
+    \put(0.21099471,0.58997882){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{2}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=13]{sync_thread.pdf}}%
+    \put(0.21099471,0.55100528){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{3}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=14]{sync_thread.pdf}}%
+    \put(0.21099471,0.51203173){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{4}}}%
+    \put(0.24116945,0.62464588){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{ADIOI_Sync_thread_enqueue}}}%
+    \put(0.24116945,0.58606411){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{ADIOI_Sync_thread_flush}}}%
+    \put(0.24116945,0.54759519){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{ADIOI_Sync_thread_start}}}%
+    \put(0.24116945,0.5090698){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{ADIOI_Sync_thread_wait}}}%
+  \end{picture}%
+\endgroup%

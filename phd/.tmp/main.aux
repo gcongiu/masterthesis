@@ -1,0 +1,348 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
+\HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldcontentsline\contentsline
+\gdef\contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
+\global\let\oldnewlabel\newlabel
+\gdef\newlabel#1#2{\newlabelxx{#1}#2}
+\gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\contentsline\oldcontentsline
+\let\newlabel\oldnewlabel
+\fi}
+\fi}
+\global\let\hyper@last\relax 
+\gdef\HyperFirstAtBeginDocument#1{#1}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\AC@reset@newl@bel
+\select@language{english}
+\@writefile{toc}{\select@language{english}}
+\@writefile{lof}{\select@language{english}}
+\@writefile{lot}{\select@language{english}}
+\citation{Braam02}
+\citation{CarnsLRT}
+\citation{SchmuckH02}
+\citation{AliCIKLLRWS09}
+\citation{ThakurGL96}
+\citation{ThakurGL99}
+\citation{hdf5}
+\citation{netcdf}
+\@writefile{toc}{\contentsline {chapter}{\numberline {1}Introduction}{8}{chapter.1}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{cap: introduction}{{1}{8}{Introduction}{chapter.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.1}{\ignorespaces HPC I/O Stack\relax }}{8}{figure.caption.2}}
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{figure: hpc-io-stack}{{1.1}{8}{HPC I/O Stack\relax }{figure.caption.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.1}Guided I/O Interfaces}{9}{section.1.1}}
+\newlabel{sec: guided-io}{{1.1}{9}{Guided I/O Interfaces}{section.1.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1.1}Guided I/O in MPI-IO}{9}{subsection.1.1.1}}
+\newlabel{subsec: mpi-io-hints}{{1.1.1}{9}{Guided I/O in MPI-IO}{subsection.1.1.1}{}}
+\citation{AdviseAPI}
+\citation{GPFSHINTS}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1.2}Guided I/O in Linux File Systems}{10}{subsection.1.1.2}}
+\newlabel{subsec: posix-advice}{{1.1.2}{10}{Guided I/O in Linux File Systems}{subsection.1.1.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.2}Opportunities with Non-Volatile Memories}{10}{section.1.2}}
+\newlabel{sec: nvm}{{1.2}{10}{Opportunities with Non-Volatile Memories}{section.1.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.3}Contribution}{11}{section.1.3}}
+\newlabel{sec: contribution}{{1.3}{11}{Contribution}{section.1.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.4}Thesis Reminder}{11}{section.1.4}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {2}Background on Guided I/O Intefaces in HPC}{12}{chapter.2}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\citation{Braam02}
+\citation{CarnsLRT}
+\citation{SchmuckH02}
+\citation{ThakurGL96}
+\citation{ThakurGL99}
+\citation{Ying08}
+\citation{ProstTHKW00}
+\citation{CarnsHABLLR11}
+\citation{ChingCLP06}
+\citation{AdviseAPI}
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}The Mercury Middleware}{13}{chapter.3}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}Motivation}{13}{section.3.1}}
+\newlabel{sec: motivation}{{3.1}{13}{Motivation}{section.3.1}{}}
+\citation{GPFSHINTS}
+\citation{Comer14}
+\citation{mercury}
+\citation{root}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Background on File System I/O Hints}{15}{section.3.2}}
+\newlabel{sec: background}{{3.2}{15}{Background on File System I/O Hints}{section.3.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}The POSIX Advice API}{15}{subsection.3.2.1}}
+\newlabel{subsec: posix_advice_api}{{3.2.1}{15}{The POSIX Advice API}{subsection.3.2.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces Values for \textit  {advice} in the \textit  {posix\_fadvise()} system call\relax }}{15}{table.caption.3}}
+\newlabel{table: advice_table}{{3.1}{15}{Values for \textit {advice} in the \textit {posix\_fadvise()} system call\relax }{table.caption.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}The GPFS Hints API}{16}{subsection.3.2.2}}
+\newlabel{subsec: gpfs_hints_api}{{3.2.2}{16}{The GPFS Hints API}{subsection.3.2.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.2}{\ignorespaces GPFS hint data structures\relax }}{16}{table.caption.4}}
+\newlabel{table: hints_table}{{3.2}{16}{GPFS hint data structures\relax }{table.caption.4}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.1}Multiple Access Range Hint Data Structure}{16}{lstlisting.3.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Concept \& Design}{17}{section.3.3}}
+\newlabel{sec: mercury_concept}{{3.3}{17}{Concept \& Design}{section.3.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces MERCURY I/O software stack. \textit  {Assisted I/O library} and \textit  {Advice Manager} communicate through UNIX domain sockets. The AM binds its socket to the local file system pathname \texttt  {/tmp/channel}, while the AIO connects its socket to the same pathname; exactly in the same way they would bind and connect to an IP address if they were located on different nodes in the network. Unix domain sockets are used to pass ancillary data as well as custom messages between the two software entities. Data can reside in a local Linux file system, in Lustre or in GPFS.\relax }}{18}{figure.caption.5}}
+\newlabel{figure: softwarestack}{{3.1}{18}{MERCURY I/O software stack. \textit {Assisted I/O library} and \textit {Advice Manager} communicate through UNIX domain sockets. The AM binds its socket to the local file system pathname \texttt {/tmp/channel}, while the AIO connects its socket to the same pathname; exactly in the same way they would bind and connect to an IP address if they were located on different nodes in the network. Unix domain sockets are used to pass ancillary data as well as custom messages between the two software entities. Data can reside in a local Linux file system, in Lustre or in GPFS.\relax }{figure.caption.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Interprocess Communication}{18}{subsection.3.3.1}}
+\newlabel{subsec: interprocess_comm}{{3.3.1}{18}{Interprocess Communication}{subsection.3.3.1}{}}
+\citation{StevensR13}
+\citation{UnixSock}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Detailed architecture for the \textit  {Advice Manager} (AM) component. This can be further divided into three blocks: \textit  {Request Manager} (RM), \textit  {Register Log} (RL), and \textit  {Advisor Thread} (AT).\relax }}{19}{figure.caption.6}}
+\newlabel{figure: architecture}{{3.2}{19}{Detailed architecture for the \textit {Advice Manager} (AM) component. This can be further divided into three blocks: \textit {Request Manager} (RM), \textit {Register Log} (RL), and \textit {Advisor Thread} (AT).\relax }{figure.caption.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}File Data Prefetching}{19}{subsection.3.3.2}}
+\newlabel{subsec: data_prefetching}{{3.3.2}{19}{File Data Prefetching}{subsection.3.3.2}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.2}Example of Json Configuration File}{20}{lstlisting.3.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.3}POSIX Advice integration with Lustre}{21}{subsection.3.3.3}}
+\newlabel{subsec: posix_advice_lustre}{{3.3.3}{21}{POSIX Advice integration with Lustre}{subsection.3.3.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Simplified function call graph for the read operation in Lustre. For page operations in the Linux kernel the picture also shows the call graph typically followed by local reads as well as the call graph for the \texttt  {POSIX\_FADV\_WILLNEED} advice in the \texttt  {posix\_fadvise()} implementation (dashed line).\relax }}{22}{figure.caption.7}}
+\newlabel{figure: kernel}{{3.3}{22}{Simplified function call graph for the read operation in Lustre. For page operations in the Linux kernel the picture also shows the call graph typically followed by local reads as well as the call graph for the \texttt {POSIX\_FADV\_WILLNEED} advice in the \texttt {posix\_fadvise()} implementation (dashed line).\relax }{figure.caption.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.4}Evaluation}{23}{section.3.4}}
+\newlabel{sec: mercury_evaluation}{{3.4}{23}{Evaluation}{section.3.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.1}Test Cluster}{23}{subsection.3.4.1}}
+\newlabel{subsec: test_cluster}{{3.4.1}{23}{Test Cluster}{subsection.3.4.1}{}}
+\citation{ioapps}
+\citation{mmpmon}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.2}Real World Application}{24}{subsection.3.4.2}}
+\newlabel{subsec: application}{{3.4.2}{24}{Real World Application}{subsection.3.4.2}{}}
+\newlabel{figure: iopat_profile}{{3.4a}{25}{\textit {}\relax }{figure.caption.8}{}}
+\newlabel{sub@figure: iopat_profile}{{a}{25}{\textit {}\relax }{figure.caption.8}{}}
+\newlabel{figure: iopat_zoom}{{3.4b}{25}{\textit {}\relax }{figure.caption.8}{}}
+\newlabel{sub@figure: iopat_zoom}{{b}{25}{\textit {}\relax }{figure.caption.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces I/O read profile of the target application under analysis (\ref  {figure: iopat_profile}), extracted from the the GPFS file system in the test cluster, and zoomed window (\ref  {figure: iopat_zoom}) showing the actual pattern details.\relax }}{25}{figure.caption.8}}
+\newlabel{figure: iopattern_with_statistics}{{3.4}{25}{I/O read profile of the target application under analysis (\ref {figure: iopat_profile}), extracted from the the GPFS file system in the test cluster, and zoomed window (\ref {figure: iopat_zoom}) showing the actual pattern details.\relax }{figure.caption.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces Comparison between different usage stategies of posix\_fadvise for an input file of 55GB residing in an ext4 file system. The first bar represents the case in which no advice is used, the second bar represents the case in which a POSIX\_FADV\_WILLNEED is issued for the whole file at the beginning of the application and the third bar represents the case in which POSIX\_FADV\_WILLNEED is issued using MERCURY.\relax }}{26}{figure.caption.9}}
+\newlabel{figure: fadvise_comparison}{{3.5}{26}{Comparison between different usage stategies of posix\_fadvise for an input file of 55GB residing in an ext4 file system. The first bar represents the case in which no advice is used, the second bar represents the case in which a POSIX\_FADV\_WILLNEED is issued for the whole file at the beginning of the application and the third bar represents the case in which POSIX\_FADV\_WILLNEED is issued using MERCURY.\relax }{figure.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.3}Execution Time}{26}{subsection.3.4.3}}
+\newlabel{subsec: results}{{3.4.3}{26}{Execution Time}{subsection.3.4.3}{}}
+\newlabel{figure: ext4_1}{{3.6a}{27}{\textit {}\relax }{figure.caption.10}{}}
+\newlabel{sub@figure: ext4_1}{{a}{27}{\textit {}\relax }{figure.caption.10}{}}
+\newlabel{figure: gpfs_1}{{3.6b}{27}{\textit {}\relax }{figure.caption.10}{}}
+\newlabel{sub@figure: gpfs_1}{{b}{27}{\textit {}\relax }{figure.caption.10}{}}
+\newlabel{figure: lustre_1}{{3.6c}{27}{\textit {}\relax }{figure.caption.10}{}}
+\newlabel{sub@figure: lustre_1}{{c}{27}{\textit {}\relax }{figure.caption.10}{}}
+\newlabel{figure: ext4_2}{{3.6d}{27}{\textit {}\relax }{figure.caption.10}{}}
+\newlabel{sub@figure: ext4_2}{{d}{27}{\textit {}\relax }{figure.caption.10}{}}
+\newlabel{figure: gpfs_2}{{3.6e}{27}{\textit {}\relax }{figure.caption.10}{}}
+\newlabel{sub@figure: gpfs_2}{{e}{27}{\textit {}\relax }{figure.caption.10}{}}
+\newlabel{figure: lustre_2}{{3.6f}{27}{\textit {}\relax }{figure.caption.10}{}}
+\newlabel{sub@figure: lustre_2}{{f}{27}{\textit {}\relax }{figure.caption.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces Running time of the ROOT application for the three file system under study using different input file sizes (\ref  {figure: ext4_1},~\ref  {figure: gpfs_1} and~\ref  {figure: lustre_1}) and different number of instances accessing a file of 5GB (\ref  {figure: ext4_2},~\ref  {figure: gpfs_2} and~\ref  {figure: lustre_2}).\relax }}{27}{figure.caption.10}}
+\newlabel{figure: runtime}{{3.6}{27}{Running time of the ROOT application for the three file system under study using different input file sizes (\ref {figure: ext4_1},~\ref {figure: gpfs_1} and~\ref {figure: lustre_1}) and different number of instances accessing a file of 5GB (\ref {figure: ext4_2},~\ref {figure: gpfs_2} and~\ref {figure: lustre_2}).\relax }{figure.caption.10}{}}
+\citation{TranR04}
+\citation{HEBTAGGMCS13}
+\citation{ChangG99}
+\newlabel{figure: ext4_3}{{3.7a}{28}{\textit {}\relax }{figure.caption.11}{}}
+\newlabel{sub@figure: ext4_3}{{a}{28}{\textit {}\relax }{figure.caption.11}{}}
+\newlabel{figure: gpfs_3}{{3.7b}{28}{\textit {}\relax }{figure.caption.11}{}}
+\newlabel{sub@figure: gpfs_3}{{b}{28}{\textit {}\relax }{figure.caption.11}{}}
+\newlabel{figure: lustre_3}{{3.7c}{28}{\textit {}\relax }{figure.caption.11}{}}
+\newlabel{sub@figure: lustre_3}{{c}{28}{\textit {}\relax }{figure.caption.11}{}}
+\newlabel{figure: ext4_4}{{3.7d}{28}{\textit {}\relax }{figure.caption.11}{}}
+\newlabel{sub@figure: ext4_4}{{d}{28}{\textit {}\relax }{figure.caption.11}{}}
+\newlabel{figure: gpfs_4}{{3.7e}{28}{\textit {}\relax }{figure.caption.11}{}}
+\newlabel{sub@figure: gpfs_4}{{e}{28}{\textit {}\relax }{figure.caption.11}{}}
+\newlabel{figure: lustre_4}{{3.7f}{28}{\textit {}\relax }{figure.caption.11}{}}
+\newlabel{sub@figure: lustre_4}{{f}{28}{\textit {}\relax }{figure.caption.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.7}{\ignorespaces Reads processed by local ext4, GPFS and Lustre I/O servers for various input file sizes (\ref  {figure: ext4_3},~\ref  {figure: gpfs_3} and~\ref  {figure: lustre_3}) and multiple instances of ROOT accessing a file of 5GB (\ref  {figure: ext4_4},~\ref  {figure: gpfs_4} and~\ref  {figure: lustre_4}).\relax }}{28}{figure.caption.11}}
+\newlabel{figure: read}{{3.7}{28}{Reads processed by local ext4, GPFS and Lustre I/O servers for various input file sizes (\ref {figure: ext4_3},~\ref {figure: gpfs_3} and~\ref {figure: lustre_3}) and multiple instances of ROOT accessing a file of 5GB (\ref {figure: ext4_4},~\ref {figure: gpfs_4} and~\ref {figure: lustre_4}).\relax }{figure.caption.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.4}Read Request Rate}{28}{subsection.3.4.4}}
+\newlabel{subsec: reads}{{3.4.4}{28}{Read Request Rate}{subsection.3.4.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.5}Related Work}{28}{section.3.5}}
+\newlabel{sec: mercury_related_work}{{3.5}{28}{Related Work}{section.3.5}{}}
+\citation{ChenBSTG08}
+\citation{BynaCST08}
+\citation{ChenR10}
+\citation{HEST12}
+\citation{VanDeBogartFK09}
+\citation{ProstTHJK01}
+\@writefile{toc}{\contentsline {section}{\numberline {3.6}Conclusion \& Future Work}{30}{section.3.6}}
+\newlabel{sec: mercury_conclusion}{{3.6}{30}{Conclusion \& Future Work}{section.3.6}{}}
+\citation{ChingCLP06}
+\citation{HeSSYT11}
+\citation{ThakurGL99}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}NVM Caching in MPI-IO}{31}{chapter.4}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Motivation}{31}{section.4.1}}
+\newlabel{sec: motivation}{{4.1}{31}{Motivation}{section.4.1}{}}
+\citation{WeikuanV08}
+\citation{LiaoA08}
+\citation{YinYTY12}
+\citation{YongXTRG11}
+\citation{XuechenJD09}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Example of how a 3-Dimensional dataset is represented logically in the file as a sequence of bytes and how it is finally translated in the parallel file system.\relax }}{32}{figure.caption.12}}
+\newlabel{fig: small-io}{{4.1}{32}{Example of how a 3-Dimensional dataset is represented logically in the file as a sequence of bytes and how it is finally translated in the parallel file system.\relax }{figure.caption.12}{}}
+\citation{e10}
+\citation{deep-er}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Collective I/O write example. A data set is partitioned and assigned to six processes. Four of them work as aggregators writing data to the global file system.\relax }}{33}{figure.caption.13}}
+\newlabel{figure: coll_io}{{4.2}{33}{Collective I/O write example. A data set is partitioned and assigned to six processes. Four of them work as aggregators writing data to the global file system.\relax }{figure.caption.13}{}}
+\citation{ThakurGL96}
+\citation{Ying08}
+\citation{ProstTHKW00}
+\citation{CarnsLRT}
+\citation{ThakurC96}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Collective I/O in ROMIO}{34}{section.4.2}}
+\newlabel{sec: collio}{{4.2}{34}{Collective I/O in ROMIO}{section.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Two Phase I/O}{34}{subsection.4.2.1}}
+\newlabel{sec: ext2ph}{{4.2.1}{34}{Two Phase I/O}{subsection.4.2.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces Collective I/O flow diagram for the write path in aggregators (non-aggregators neither receive nor write any data, just send it to aggregators). \texttt  {MPI\_File\_write\_all()} invokes \texttt  {ADIOI\_GEN\_WriteStridedColl()}. \texttt  {ADIO\_WriteContig} is a macro that is replaced by \texttt  {ADIOI\_GEN\_WriteContig()}. Performance critical functions for the collective I/O branch are highlighted in grey.\relax }}{34}{figure.caption.14}}
+\newlabel{figure: coll_io_impl}{{4.3}{34}{Collective I/O flow diagram for the write path in aggregators (non-aggregators neither receive nor write any data, just send it to aggregators). \codeword {MPI\_File\_write\_all()} invokes \codeword {ADIOI\_GEN\_WriteStridedColl()}. \codeword {ADIO\_WriteContig} is a macro that is replaced by \codeword {ADIOI\_GEN\_WriteContig()}. Performance critical functions for the collective I/O branch are highlighted in grey.\relax }{figure.caption.14}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}Collective I/O Hints}{36}{subsection.4.2.2}}
+\newlabel{subsec: hints}{{4.2.2}{36}{Collective I/O Hints}{subsection.4.2.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces Collective I/O hints in ROMIO.\relax }}{36}{table.caption.15}}
+\newlabel{table: coll_io_hints_table}{{4.1}{36}{Collective I/O hints in ROMIO.\relax }{table.caption.15}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}Concept \& Design}{36}{section.4.3}}
+\newlabel{sec: concept}{{4.3}{36}{Concept \& Design}{section.4.3}{}}
+\newlabel{figure: romio-architecture}{{4.4a}{37}{ROMIO architecture\relax }{figure.caption.16}{}}
+\newlabel{sub@figure: romio-architecture}{{a}{37}{ROMIO architecture\relax }{figure.caption.16}{}}
+\newlabel{figure: new-romio-architecture}{{4.4b}{37}{Proposed ROMIO architecture\relax }{figure.caption.16}{}}
+\newlabel{sub@figure: new-romio-architecture}{{b}{37}{Proposed ROMIO architecture\relax }{figure.caption.16}{}}
+\newlabel{list: lustre_table}{{4.1}{37}{Operation Table for Lustre Driver}{lstlisting.4.1}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.1}Operation Table for Lustre Driver}{37}{lstlisting.4.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}MPI-IO Hints Extensions}{38}{subsection.4.3.1}}
+\citation{E10-DEEPER}
+\@writefile{lot}{\contentsline {table}{\numberline {4.2}{\ignorespaces Proposed MPI-IO hints extensions.\relax }}{39}{table.caption.17}}
+\newlabel{table: hints_table}{{4.2}{39}{Proposed MPI-IO hints extensions.\relax }{table.caption.17}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}Cache Hints Integration in ROMIO}{39}{subsection.4.3.2}}
+\newlabel{subsec: support}{{4.3.2}{39}{Cache Hints Integration in ROMIO}{subsection.4.3.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Cache Synchronisation Request}{39}{section*.18}}
+\newlabel{subsubsec: cache-sync-req}{{4.3.2}{39}{Cache Synchronisation Request}{section*.18}{}}
+\newlabel{list: sync-req}{{4.2}{40}{Synchronisation Request API}{lstlisting.4.2}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.2}Synchronisation Request API}{40}{lstlisting.4.2}}
+\@writefile{toc}{\contentsline {subsubsection}{Cache Synchronisation Thread}{40}{section*.19}}
+\newlabel{subsubsec: cache-sync-thread}{{4.3.2}{40}{Cache Synchronisation Thread}{section*.19}{}}
+\newlabel{list: sync-thread}{{4.3}{40}{Synchronisation Thread API}{lstlisting.4.3}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.3}Synchronisation Thread API}{40}{lstlisting.4.3}}
+\@writefile{toc}{\contentsline {subsubsection}{Synchronisation Thread Pool Initialisation}{41}{section*.20}}
+\newlabel{subsubsec: thread-pool-init}{{4.3.2}{41}{Synchronisation Thread Pool Initialisation}{section*.20}{}}
+\newlabel{list: open-coll}{{4.4}{41}{Synchronisation Thread Initialisation}{lstlisting.4.4}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.4}Synchronisation Thread Initialisation}{41}{lstlisting.4.4}}
+\@writefile{toc}{\contentsline {subsubsection}{Synchronisation Request Submission}{43}{section*.21}}
+\newlabel{subsubsec: sync-req-sub}{{4.3.2}{43}{Synchronisation Request Submission}{section*.21}{}}
+\newlabel{list: req-sub}{{4.5}{43}{Synchronisation Request Submission}{lstlisting.4.5}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.5}Synchronisation Request Submission}{43}{lstlisting.4.5}}
+\@writefile{toc}{\contentsline {subsubsection}{Cache Flushing}{44}{section*.22}}
+\newlabel{subsubsec: cache-flush}{{4.3.2}{44}{Cache Flushing}{section*.22}{}}
+\newlabel{list: req-flush}{{4.6}{44}{Cache Flushing}{lstlisting.4.6}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.6}Cache Flushing}{44}{lstlisting.4.6}}
+\citation{ColomaCWWRP04}
+\@writefile{toc}{\contentsline {subsubsection}{Synchronisation Thread Pool Finalisation}{45}{section*.23}}
+\newlabel{subsubsec: thread-pool-fini}{{4.3.2}{45}{Synchronisation Thread Pool Finalisation}{section*.23}{}}
+\newlabel{list: thread-fini}{{4.7}{45}{Synchronisation Thread Pool Finalisation}{lstlisting.4.7}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.7}Synchronisation Thread Pool Finalisation}{45}{lstlisting.4.7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.3}Cache Consistency Semantics}{46}{subsection.4.3.3}}
+\newlabel{subsec: consistency}{{4.3.3}{46}{Cache Consistency Semantics}{subsection.4.3.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.4}Changes to the Application's Workflow}{47}{subsection.4.3.4}}
+\newlabel{subsec: new-workflow}{{4.3.4}{47}{Changes to the Application's Workflow}{subsection.4.3.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces Standard and modified workflows. When cache is disabled compute phase `k+1' starts after file `k' has been closed. When the cache is enabled compute `k+1' can start immediately after data has been written. At the same time, background synchronisation of cached data starts. File `k' is closed before the file `k+1' is opened, forcing the implementation to wait for cache synchronisation to complete.\relax }}{47}{figure.caption.24}}
+\newlabel{figure: workflow3}{{4.5}{47}{Standard and modified workflows. When cache is disabled compute phase `k+1' starts after file `k' has been closed. When the cache is enabled compute `k+1' can start immediately after data has been written. At the same time, background synchronisation of cached data starts. File `k' is closed before the file `k+1' is opened, forcing the implementation to wait for cache synchronisation to complete.\relax }{figure.caption.24}{}}
+\citation{mpe}
+\@writefile{toc}{\contentsline {subsubsection}{MPIWRAP Library}{48}{section*.25}}
+\newlabel{subsubsec: mpiwrap}{{4.3.4}{48}{MPIWRAP Library}{section*.25}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.5}I/O Bandwidth}{48}{subsection.4.3.5}}
+\newlabel{subsec: bw-impr}{{4.3.5}{48}{I/O Bandwidth}{subsection.4.3.5}{}}
+\newlabel{formula: bw}{{4.1}{48}{I/O Bandwidth}{equation.4.3.1}{}}
+\newlabel{formula: abw}{{4.2}{48}{I/O Bandwidth}{equation.4.3.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.4}Evaluation}{48}{section.4.4}}
+\newlabel{sec: evaluation}{{4.4}{48}{Evaluation}{section.4.4}{}}
+\citation{deep}
+\citation{deep-er}
+\citation{fhgfs}
+\citation{parastation}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.1}Testbed}{49}{subsection.4.4.1}}
+\newlabel{subsec: testbed}{{4.4.1}{49}{Testbed}{subsection.4.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.2}Coll\_perf}{49}{subsection.4.4.2}}
+\newlabel{subsec: coll_perf}{{4.4.2}{49}{Coll\_perf}{subsection.4.4.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.6}{\ignorespaces coll\_perf perceived bandwidth for all combinations of <aggregators>\_<coll\_bufsize>.\relax }}{50}{figure.caption.26}}
+\newlabel{figure: collperf-bw}{{4.6}{50}{coll\_perf perceived bandwidth for all combinations of <aggregators>\_<coll\_bufsize>.\relax }{figure.caption.26}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.3}Flash-IO}{51}{subsection.4.4.3}}
+\newlabel{subsec: flash}{{4.4.3}{51}{Flash-IO}{subsection.4.4.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.7}{\ignorespaces coll\_perf collective I/O contribution breakdown when cache is enabled.\relax }}{51}{figure.caption.27}}
+\newlabel{figure: collperf-elaps-enable}{{4.7}{51}{coll\_perf collective I/O contribution breakdown when cache is enabled.\relax }{figure.caption.27}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.8}{\ignorespaces coll\_perf collective I/O contribution breakdown when cache is disabled.\relax }}{52}{figure.caption.28}}
+\newlabel{figure: collperf-elaps-disable}{{4.8}{52}{coll\_perf collective I/O contribution breakdown when cache is disabled.\relax }{figure.caption.28}{}}
+\citation{WeikuanV08}
+\citation{CPE:CPE3125}
+\citation{YinYTY12}
+\citation{Liao11}
+\citation{YongXTRG11}
+\citation{XuechenJD09}
+\citation{JilianYY13}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.9}{\ignorespaces Flash-IO perceived bandwidth for all combinations of <aggregators>\_<coll\_bufsize>.\relax }}{53}{figure.caption.29}}
+\newlabel{figure: flash-bw}{{4.9}{53}{Flash-IO perceived bandwidth for all combinations of <aggregators>\_<coll\_bufsize>.\relax }{figure.caption.29}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.4}IOR}{53}{subsection.4.4.4}}
+\newlabel{subsec: ior}{{4.4.4}{53}{IOR}{subsection.4.4.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.10}{\ignorespaces Flash-IO collective I/O contribution breakdown when cache is enabled.\relax }}{54}{figure.caption.30}}
+\newlabel{figure: flash-elaps-enable}{{4.10}{54}{Flash-IO collective I/O contribution breakdown when cache is enabled.\relax }{figure.caption.30}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.5}Related Work}{54}{section.4.5}}
+\newlabel{sec: related}{{4.5}{54}{Related Work}{section.4.5}{}}
+\citation{LeeRTXW04}
+\citation{XiaosongWLS03}
+\citation{SCR}
+\citation{DorierACSO12}
+\citation{fastforward}
+\citation{DDN}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.11}{\ignorespaces IOR perceived bandwidth for all combinations of <aggregators>\_<coll\_bufsize>.\relax }}{55}{figure.caption.31}}
+\newlabel{figure: ior-bw}{{4.11}{55}{IOR perceived bandwidth for all combinations of <aggregators>\_<coll\_bufsize>.\relax }{figure.caption.31}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.12}{\ignorespaces IOR collective I/O contribution breakdown when cache is enabled.\relax }}{56}{figure.caption.32}}
+\newlabel{figure: ior-elaps-enable}{{4.12}{56}{IOR collective I/O contribution breakdown when cache is enabled.\relax }{figure.caption.32}{}}
+\bibstyle{plain}
+\bibdata{bibliography}
+\bibcite{DDN}{1}
+\bibcite{deep}{2}
+\bibcite{deep-er}{3}
+\bibcite{E10-DEEPER}{4}
+\bibcite{e10}{5}
+\bibcite{fastforward}{6}
+\bibcite{fhgfs}{7}
+\bibcite{mmpmon}{8}
+\bibcite{GPFSHINTS}{9}
+\bibcite{hdf5}{10}
+\bibcite{ioapps}{11}
+\bibcite{Comer14}{12}
+\bibcite{mercury}{13}
+\bibcite{mpe}{14}
+\bibcite{netcdf}{15}
+\bibcite{parastation}{16}
+\@writefile{toc}{\contentsline {chapter}{Bibliography}{57}{section.4.5}}
+\bibcite{AdviseAPI}{17}
+\bibcite{root}{18}
+\bibcite{SCR}{19}
+\bibcite{UnixSock}{20}
+\bibcite{AliCIKLLRWS09}{21}
+\bibcite{Braam02}{22}
+\bibcite{BynaCST08}{23}
+\bibcite{CarnsHABLLR11}{24}
+\bibcite{CarnsLRT}{25}
+\bibcite{ChangG99}{26}
+\bibcite{ChenBSTG08}{27}
+\bibcite{ChenR10}{28}
+\bibcite{YongXTRG11}{29}
+\bibcite{ChingCLP06}{30}
+\bibcite{ColomaCWWRP04}{31}
+\bibcite{DorierACSO12}{32}
+\bibcite{HEBTAGGMCS13}{33}
+\bibcite{HeSSYT11}{34}
+\bibcite{HEST12}{35}
+\bibcite{LeeRTXW04}{36}
+\bibcite{Liao11}{37}
+\bibcite{LiaoA08}{38}
+\bibcite{JilianYY13}{39}
+\bibcite{CPE:CPE3125}{40}
+\bibcite{YinYTY12}{41}
+\bibcite{XiaosongWLS03}{42}
+\bibcite{ProstTHJK01}{43}
+\bibcite{ProstTHKW00}{44}
+\bibcite{SchmuckH02}{45}
+\bibcite{StevensR13}{46}
+\bibcite{ThakurC96}{47}
+\bibcite{ThakurGL96}{48}
+\bibcite{ThakurGL99}{49}
+\bibcite{TranR04}{50}
+\bibcite{VanDeBogartFK09}{51}
+\bibcite{Ying08}{52}
+\bibcite{WeikuanV08}{53}
+\bibcite{XuechenJD09}{54}

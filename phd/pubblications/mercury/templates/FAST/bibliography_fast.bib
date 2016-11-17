@@ -1,0 +1,220 @@
+@STRING{proc = { Proc.\ of the }}
+
+@STRING{asplos = { International Conference on Architectural Support for Programming Languages and Operating Systems (ASPLOS) }}
+@STRING{atc = {Annual Technical Conference (ATC)}}
+@STRING{ccgrid = { IEEE International Symposium on Cluster Computing and the Grid (CCGrid)}}
+@STRING{cgw = { Cracow Grid Workshop (CGW)}}
+@STRING{cluster = { IEEE International Conference on Cluster Computing (Cluster)}}
+@STRING{dsn = {International Conference on Dependable Systems and Networks (DSN)}}
+@STRING{europar = {International Euro-Par Conference (Euro-Par)}}
+@STRING{ecrts = {Euromicro Conference on Real-Time Systems (ECRTS)}}
+@STRING{emsoft = { ACM & IEEE International conference on Embedded software (EMSOFT)}}
+@STRING{fast = { USENIX Conference on File and Storage Technologies (FAST) }}
+@STRING{hipc = { High Performance Computing Conference (HiPC) }}
+@STRING{hpcc = { IEEE International Conference on High Performance Computing and Communications (HPCC) }}
+@STRING{hotos = { Workshop on Hot Topics in Operating Systems (HotOS)}}
+@STRING{hotdep = { Workshop on Hot Topics in System Dependability (HotDep) }}
+@STRING{hotstorage = { USENIX Conference on Hot Topics in Storage and File Systems (HotStorage)}}
+@STRING{i2ts = { International Information and Telecommunication Technologies Symposium (I2TS)}}
+@STRING{icdcs = { IEEE International Conference on Distributed Computing Systems (ICDCS)}}
+@STRING{icon = { IEEE International Conference on Networks (ICON) }}
+@STRING{infocom = { IEEE International Conference on Computer and Communications (INFOCOM)}}
+@STRING{icdcs = { IEEE International Conference on Distributed Computing Systems (ICDCS)}}
+@STRING{ics = { Annual international conference on Supercomputing (ICS)}}
+@STRING{ipdps = { IEEE International Parallel and Distributed Processing Symposium (IPDPS)}}
+@STRING{icpads = { IEEE International Conference on Parallel and Distributed Systems (ICPADS)}}
+@STRING{ipccc = {IEEE Performance Computing and Communications Conference (IPCCC)}}
+@STRING{ipps = { International Parallel Processing Symposium (IPPS)}}
+@STRING{isorc = { IEEE International Symposium on Object-oriented Real-time distributed Computing (ISORC)}}
+@STRING{lcn = { IEEE Conference on Local Computer Networks (LCN)}}
+@STRING{jsspp = { Workshops on Job Scheduling Strategies for Parallel Processing (JSSPP)}}
+@STRING{mascots = { IEEE International Symposium on Modeling, Analysis, and Simulation (MASCOTS)}}
+@STRING{msst = { IEEE Conference on Mass Storage Systems and Technologies (MSST)}}
+@STRING{mpc = { IEEE International Symposium on The Frontiers of Massively Paralle Computation}}
+@STRING{nas = { IEEE International Conference on Networking, Architecture, and Storage (NAS)}}
+@STRING{nca = { IEEE International Symposium on Network Computing Applications (NCA)}}
+@STRING{osdi = { Conference on Operating Systems Design and Implementation (OSDI)}}
+@STRING{pdsw = { Petascale Data Storage Workshop (PDSW)}}
+@STRING{pdp = { Euromicro Conference on Parallel, Distributed and Network-based Processing (PDP)}}
+@STRING{pdps = {International Parallel and Distributed Symposium}}
+@STRING{prdc = { IEEE Pacific Rim International Symposium on Dependable Computing (PRDC)}}
+@STRING{rtn = { International Workshop on Real-Time Networks (RTN)}}
+@STRING{rtss = { IEEE Real-Time Systems Symposium (RTSS)}}
+@STRING{sigmetrics = {ACM SIGMETRICS International Conference on Measurement and Modeling of Computer Systems (SIGMETRICS)}}
+@STRING{sigmod = { ACM SIGMOD International Conference on Management of Data (SIGMOD)}}
+@STRING{sigops = { ACM SIGOPS European Workshop (SIGOPS)}}
+@STRING{snapi = { Internernational Workshop on Storage Network Architecture and Parallel I/Os (SNAPI) }}
+@STRING{soda = { ACM-SIAM Symposium on Discrete Algorithms (SODA) }}
+@STRING{sosp = { ACM Symposium on Operating Systems Principles (SOSP)}}
+@STRING{spaa = { ACM Symposium on Parallel Algorithms and Architectures (SPAA) }}
+@STRING{stoc = { ACM Symposium on Theory of Computing (STOC) }}
+@STRING{tos = { ACM Transactions on Storage (TOS) }},
+@STRING{super = { ACM/IEEE Conference on Supercomputing (SC)}}
+@STRING{vhpc = { Virtualization in High-Performance Cloud Computing (VHPC)}}
+
+
+
+@inproceedings{CarnsHABLLR11, 
+    author={Carns, P. and Harms, K. and Allcock, W. and Bacon, C. and Lang, S. and Latham, R. and Ross, R.}, 
+    booktitle = proc # " 27th " # msst,
+    title={Understanding and improving computational science storage access through continuous characterization}, 
+    year={2011}, 
+    pages={1-14}, 
+    keywords={storage management;I/O behavior;computational science storage access;powerful storage systems;production system;static file system analysis;storage device instrumentation;Aggregates;Benchmark testing;Instruments;Lead;Measurement;Production;Scientific computing}, 
+doi={10.1109/MSST.2011.5937212}, 
+    ISSN={2160-195X},
+}
+
+@inproceedings{ChingCLP06,
+    author = {Avery Ching and Alok Choudhary and Wei-keng Liao and Neil Pundit},
+    title = {Evaluating I/O characteristics and methods for storing structured scientific data},
+    booktitle = proc # " " # pdps,
+    year = {2006}
+}
+
+@inproceedings{ThakurGL96,
+    author = {Rajeev Thakur and William Gropp and Ewing Lusk},
+    title = {An Abstract-Device Interface for Implementing Portable Parallel-I/O Interfaces },
+    booktitle = proc # " 6th " # mpc,
+    year = {1996},
+    pages = {180--187},
+    publisher = {IEEE Computer Society Press}
+}
+
+@inproceedings{ThakurGL99,
+    author = {Thakur, Rajeev and Gropp, William and Lusk, Ewing},
+    title = {Data Sieving and Collective I/O in ROMIO},
+    booktitle = proc # " 7th " # mpc,
+    series = {FRONTIERS '99},
+    year = {1999},
+    isbn = {0-7695-0087-0},
+    pages = {182--},
+    url = {http://dl.acm.org/citation.cfm?id=795668.796733},
+    acmid = {796733},
+    publisher = {IEEE Computer Society},
+    address = {Washington, DC, USA},
+    keywords = {parallel I/O, MPI-IO, I/O optimizations},
+}
+
+@ONLINE{AdviseAPI,
+    title = {{posix\_fadvise}},
+    url = {http://linux.die.net/man/2/posix_fadvise},
+}
+
+@ONLINE{ROOT,
+    title ={{ROOT, A Data Analysis Framework}},
+    url = {http://root.cern.ch/drupal},
+}
+
+@article{TranR04,
+    author = {Tran, Nancy and Reed, Daniel A.},
+    title = {Automatic ARIMA Time Series Modeling for Adaptive I/O Prefetching},
+    journal = {IEEE Trans. Parallel Distrib. Syst.},
+ issue_date = {April 2004},
+    volume = {15},
+    number = {4},
+    month = apr,
+    year = {2004},
+    issn = {1045-9219},
+    pages = {362--377},
+    numpages = {16},
+    url = {http://dx.doi.org/10.1109/TPDS.2004.1271185},
+    doi = {10.1109/TPDS.2004.1271185},
+    acmid = {972266},
+    publisher = {IEEE Press},
+    address = {Piscataway, NJ, USA},
+    keywords = {Input/output, adaptive prefetching, access patterns, performance modeling and prediction, time series analysis, pattern analysis, least squares methods, wavelets.},
+} 
+
+@inproceedings{ChangG99,
+    author = {Chang, Fay and Gibson, Garth A.},
+    title = {Automatic I/O hint generation through speculative execution},
+    booktitle = proc # " 3rd " # osdi,
+    series = {OSDI '99},
+    year = {1999},
+    isbn = {1-880446-39-1},
+    location = {New Orleans, Louisiana, USA},
+    pages = {1--14},
+    numpages = {14},
+    url = {http://dl.acm.org/citation.cfm?id=296806.296807},
+    acmid = {296807},
+    publisher = {USENIX Association},
+    address = {Berkeley, CA, USA},
+} 
+
+@inproceedings{Chen10, 
+    author={Yong Chen and Roth, P.C.}, 
+    booktitle= proc # " 5th " # pdsw, 
+    title={Collective prefetching for parallel I/O systems}, 
+    year={2010}, 
+    pages={1-5}, 
+    keywords={input-output programs;parallel processing;storage management;I/O access;collective prefetching;concurrent process;data prefetching;parallel I/O system;parallel application;Bandwidth;Correlation;File systems;Optimization;Prediction algorithms;Prefetching;Protocols;MPI-IO;collective prefetching;exascale computing;high-performance computing;middleware;parallel I/O;parallel file systems;performance;prefetching;storage},
+    doi={10.1109/PDSW.2010.5668089}, 
+    ISSN={2157-7242},
+}
+
+@inproceedings{HeBTAGGMCS13,
+    author = {He, Jun and Bent, John and Torres, Aaron and Grider, Gary and Gibson, Garth and Maltzahn, Carlos and Sun, Xian-He},
+    title = {I/O acceleration with pattern detection},
+    booktitle = proc # " 22nd " # hpdc,
+    series = {HPDC '13},
+    year = {2013},
+    isbn = {978-1-4503-1910-2},
+    location = {New York, New York, USA},
+    pages = {25--36},
+    numpages = {12},
+    url = {http://doi.acm.org/10.1145/2462902.2462909},
+    doi = {10.1145/2462902.2462909},
+    acmid = {2462909},
+    publisher = {ACM},
+    address = {New York, NY, USA},
+    keywords = {I/O, PLFs, high performance com- puting, large-scale storage systems, pattern, prefetching},
+}
+
+@inproceedings{HeST12, 
+    author={Jun He and Xian-He Sun and Thakur, R.}, 
+    booktitle=proc # " " # cluster, 
+    title={KNOWAC: I/O Prefetch via Accumulated Knowledge}, 
+    year={2012}, 
+    pages={429-437}, 
+    keywords={microprocessor chips;optimisation;storage management;workstation clusters;I/O information;I/O optimizations;I/O prefetch;KNOWAC;PnetCDF framework;accumulated knowledge;cluster computing;data access behaviors;data access delay reduction;data access patterns;data usage patterns;effective data access optimizations;hardware data prefetchers;high-level I/O characteristics;high-level I/O libraries;lasting memory-wall problem;modern microprocessors;newly emerged big-data problem;performance optimizations;prefetch data;Computational modeling;Data models;Libraries;Optimization;Prefetching;Semantics}, 
+    doi={10.1109/CLUSTER.2012.83},
+}
+
+@inproceedings{VanDeBogartFK09,
+    author = {VanDeBogart, Steve and Frost, Christopher and Kohler, Eddie},
+    title = {Reducing seek overhead with application-directed prefetching},
+    booktitle = {Proceedings of the 2009 conference on USENIX Annual technical conference},
+    series = {USENIX'09},
+    year = {2009},
+    location = {San Diego, California},
+    pages = {24--24},
+    numpages = {1},
+    url = {http://dl.acm.org/citation.cfm?id=1855807.1855831},
+    acmid = {1855831},
+    publisher = {USENIX Association},
+    address = {Berkeley, CA, USA},
+} 
+
+@inproceedings{ChenBSTG08,
+    author = {Chen, Yong and Byna, Surendra and Sun, Xian-He and Thakur, Rajeev and Gropp, William},
+    title = {Hiding I/O latency with pre-execution prefetching for parallel applications},
+    booktitle = proc # " " # super,
+    series = {SC '08},
+    year = {2008},
+    isbn = {978-1-4244-2835-9},
+    location = {Austin, Texas},
+    pages = {40:1--40:10},
+    articleno = {40},
+    numpages = {10},
+    url = {http://dl.acm.org/citation.cfm?id=1413370.1413411},
+    acmid = {1413411},
+    publisher = {IEEE Press},
+    address = {Piscataway, NJ, USA},
+} 
+
+@MISC{BynaCST08,
+    author = {Surendra Byna and Yong Chen and Xian-he Sun and Rajeev Thakur},
+    title = {Parallel I/O Prefetching Using MPI File Caching and I/O Signatures},
+    year = {}
+}

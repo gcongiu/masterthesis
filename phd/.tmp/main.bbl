@@ -1,0 +1,313 @@
+\begin{thebibliography}{10}
+
+\bibitem{DDN}
+{DDN Infinite Memory Engine}.
+\newblock \url{http://www.ddn.com/products/infinite-memory-engine-ime14k/}.
+
+\bibitem{deep}
+{DEEP, Dynamic Exascale Entry Platform}.
+\newblock \url{http://www.deep-project.eu}.
+
+\bibitem{deep-er}
+{DEEP-ER, Dynamic Exascale Entry Platform - Extended Reach}.
+\newblock \url{http://www.deep-er.eu}.
+
+\bibitem{E10-DEEPER}
+{Exascale10 (E10) Code Base}.
+\newblock \url{http://www.github.com/gcongiu/E10.git}.
+
+\bibitem{e10}
+{Exascale10 (E10) initiative}.
+\newblock \url{http://www.exascale10.com}.
+
+\bibitem{fastforward}
+{Fast Forward I/O project}.
+\newblock \url{https://users.soe.ucsc.edu/~ivo/blog/2013/04/07/the-ff-stack}.
+
+\bibitem{fhgfs}
+{Fraunhofer File System}.
+\newblock \url{http://www.beegfs.com/cms}.
+
+\bibitem{mmpmon}
+{GPFS monitoring tool}.
+\newblock
+  \url{https://publib.boulder.ibm.com/infocenter/clresctr/vxrx/index.jsp?topic=%2Fcom.ibm.cluster.gpfs.v3r5.gpfs200.doc%2Fbl1adv_mmpmonch.htm}.
+
+\bibitem{GPFSHINTS}
+{gpfs\_fcntl subroutine}.
+\newblock
+  \url{https://publib.boulder.ibm.com/infocenter/clresctr/vxrx/index.jsp?topic=%2Fcom.ibm.cluster.gpfs.v3r5.gpfs100.doc%2Fbl1adm_fcntl.htm}.
+
+\bibitem{hdf5}
+{HDF5 Library}.
+\newblock \url{https://www.hdfgroup.org/HDF5}.
+
+\bibitem{ioapps}
+{ioapps I/O profiling tools}.
+\newblock \url{https://code.google.com/p/ioapps}.
+
+\bibitem{Comer14}
+{Lustre file system acceleration using server or storage-side caching: basic
+  approaches and application use cases}.
+\newblock
+  \url{http://opensfs.org/wp-content/uploads/2014/04/D2_S27_LustreFileSystemAccelerationUsingServerorStorageSideCaching.pdf}.
+
+\bibitem{mercury}
+{MERCURY guided I/O framework}.
+\newblock \url{https://github.com/gcongiu/mercury.git}.
+
+\bibitem{mpe}
+{MPI Parallel Environment}.
+\newblock \url{http://www.mcs.anl.gov/research/projects/perfvis/software/MPE}.
+
+\bibitem{netcdf}
+{netCDF Library}.
+\newblock \url{http://www.unidata.ucar.edu/software/netcdf}.
+
+\bibitem{parastation}
+{Parastation MPI}.
+\newblock \url{http://www.par-tec.com/products/parastation-mpi.html}.
+
+\bibitem{AdviseAPI}
+{posix\_fadvise}.
+\newblock \url{http://linux.die.net/man/2/posix_fadvise}.
+
+\bibitem{root}
+{ROOT, A Data Analysis Framework}.
+\newblock \url{http://root.cern.ch/drupal}.
+
+\bibitem{SCR}
+{Scalable Checkpoint Restart library}.
+\newblock
+  \url{http://computation.llnl.gov/projects/scalable-checkpoint-restart-for-mpi}.
+
+\bibitem{UnixSock}
+{UNIX Domain Sockets}.
+\newblock \url{http://linux.die.net/man/7/unix}.
+
+\bibitem{AliCIKLLRWS09}
+Nawab Ali, Philip~H. Carns, Kamil Iskra, Dries Kimpe, Samuel Lang, Robert
+  Latham, Robert~B. Ross, Lee Ward, and P.~Sadayappan.
+\newblock Scalable i/o forwarding framework for high-performance computing
+  systems.
+\newblock In {\em CLUSTER}, pages 1--10. IEEE Computer Society, 2009.
+
+\bibitem{Braam02}
+Peter~J. Braam.
+\newblock {Lustre: a scalable high-performance file system}.
+\newblock White Paper, November 2002.
+
+\bibitem{BynaCST08}
+Surendra Byna, Yong Chen, Xian he~Sun, and Rajeev Thakur.
+\newblock Parallel i/o prefetching using mpi file caching and i/o signatures.
+
+\bibitem{CarnsHABLLR11}
+P.~Carns, K.~Harms, W.~Allcock, C.~Bacon, S.~Lang, R.~Latham, and R.~Ross.
+\newblock Understanding and improving computational science storage access
+  through continuous characterization.
+\newblock In {\em Proceedings of the 27th IEEE Conference on Mass Storage
+  Systems and Technologies (MSST)}, pages 1--14, 2011.
+
+\bibitem{CarnsLRT}
+Philip~H. Carns, Walter~B. Ligon, III, Robert~B. Ross, and Rajeev Thakur.
+\newblock Pvfs: A parallel file system for linux clusters.
+\newblock In {\em Proceedings of the 4th Annual Linux Showcase and Conference},
+  pages 317--327, Atlanta, Georgia, USA, October 2000. USENIX Association.
+
+\bibitem{ChangG99}
+Fay Chang and Garth~A. Gibson.
+\newblock Automatic i/o hint generation through speculative execution.
+\newblock In {\em Proceedings of the 3rd Conference on Operating Systems Design
+  and Implementation (OSDI)}, OSDI '99, pages 1--14, Berkeley, CA, USA, 1999.
+  USENIX Association.
+
+\bibitem{ChenBSTG08}
+Yong Chen, Surendra Byna, Xian-He Sun, Rajeev Thakur, and William Gropp.
+\newblock Hiding i/o latency with pre-execution prefetching for parallel
+  applications.
+\newblock In {\em Proceedings of the ACM/IEEE Conference on Supercomputing
+  (SC)}, SC '08, pages 40:1--40:10, Piscataway, NJ, USA, 2008. IEEE Press.
+
+\bibitem{ChenR10}
+Yong Chen and P.C. Roth.
+\newblock Collective prefetching for parallel i/o systems.
+\newblock In {\em Proceedings of the 5th Parallel Data Storage Workshop
+  (PDSW)}, pages 1--5, 2010.
+
+\bibitem{YongXTRG11}
+Yong Chen, Xian-He Sun, R.~Thakur, P.C. Roth, and W.D. Gropp.
+\newblock Lacio: A new collective i/o strategy for parallel i/o systems.
+\newblock In {\em Proceedings of the $25^{th}$ IEEE International Parallel and
+  Distributed Processing Symposium (IPDPS)}, pages 794--804, Anchorage, Alaska,
+  USA, May 2011.
+
+\bibitem{ChingCLP06}
+Avery Ching, Alok~N. Choudhary, Wei{-}keng Liao, Lee Ward, and Neil Pundit.
+\newblock Evaluating i/o characteristics and methods for storing structured
+  scientific data.
+\newblock In {\em Proceedings of the $20^{th}$ IEEE International Parallel and
+  Distributed Processing Symposium (IPDPS)}, Rhodes Island, Greece, April 2006.
+
+\bibitem{ColomaCWWRP04}
+Kenin Coloma, A.~Choudhary, Wei-Keng Liao, L.~Ward, E.~Russell, and N.~Pundit.
+\newblock Scalable high-level caching for parallel i/o.
+\newblock In {\em Parallel and Distributed Processing Symposium, 2004.
+  Proceedings. 18th International}, pages 96--, April 2004.
+
+\bibitem{DorierACSO12}
+M.~Dorier, G.~Antoniu, F.~Cappello, M.~Snir, and L.~Orf.
+\newblock Damaris: How to efficiently leverage multicore parallelism to achieve
+  scalable, jitter-free i/o.
+\newblock In {\em Cluster Computing (CLUSTER), 2012 IEEE International
+  Conference on}, pages 155--163, Sept 2012.
+
+\bibitem{HEBTAGGMCS13}
+Jun He, John Bent, Aaron Torres, Gary Grider, Garth Gibson, Carlos Maltzahn,
+  and Xian-He Sun.
+\newblock I/o acceleration with pattern detection.
+\newblock In {\em Proceedings of the 22nd}, HPDC '13, pages 25--36, New York,
+  NY, USA, 2013. ACM.
+
+\bibitem{HeSSYT11}
+Jun He, Huaiming Song, Xian-He Sun, Yanlong Yin, and Rajeev Thakur.
+\newblock Pattern-aware file reorganization in mpi-io.
+\newblock In {\em Proceedings of the $6^{th}$ Parallel Data Storage Workshop
+  (PDSW)}, pages 43--48, Seattle, Washington, USA, 2011.
+
+\bibitem{HEST12}
+Jun He, Xian-He Sun, and R.~Thakur.
+\newblock Knowac: I/o prefetch via accumulated knowledge.
+\newblock In {\em Proceedings of the IEEE International Conference on Cluster
+  Computing (Cluster)}, pages 429--437, 2012.
+
+\bibitem{LeeRTXW04}
+J.~Lee, R.~Ross, R.~Thakur, Xiaosong Ma, and M.~Winslett.
+\newblock Rfs: efficient and flexible remote file access for mpi-io.
+\newblock In {\em Cluster Computing, 2004 IEEE International Conference on},
+  pages 71--81, Sept 2004.
+
+\bibitem{Liao11}
+Wei{-}keng Liao.
+\newblock Design and evaluation of {MPI} file domain partitioning methods under
+  extent-based file locking protocol.
+\newblock {\em {IEEE} Transactions on Parallel and Distributed Systems},
+  22(2):260--272, 2011.
+
+\bibitem{LiaoA08}
+Wei{-}keng Liao and Alok~N. Choudhary.
+\newblock Dynamically adapting file domain partitioning methods for collective
+  {I/O} based on underlying parallel file system locking protocols.
+\newblock In {\em Proceedings of the 2008 ACM/IEEE Conference on Supercomputing
+  (SC)}, Austin, Texas, {USA}, November 2008.
+
+\bibitem{JilianYY13}
+Jialin Liu, Yong Chen, and Yi~Zhuang.
+\newblock Hierarchical {I/O} scheduling for collective {I/O}.
+\newblock In {\em Proceedings of the $13^{th}$ {IEEE/ACM} International
+  Symposium on Cluster, Cloud, and Grid Computing (CCGrid)}, pages 211--218,
+  Delft, Netherlands, May 2013.
+
+\bibitem{CPE:CPE3125}
+Qing Liu, Jeremy Logan, Yuan Tian, Hasan Abbasi, Norbert Podhorszki, Jong~Youl
+  Choi, Scott Klasky, Roselyne Tchoua, Jay Lofstead, Ron Oldfield, Manish
+  Parashar, Nagiza Samatova, Karsten Schwan, Arie Shoshani, Matthew Wolf,
+  Kesheng Wu, and Weikuan Yu.
+\newblock Hello adios: the challenges and lessons of developing leadership
+  class i/o frameworks.
+\newblock {\em Concurrency and Computation: Practice and Experience},
+  26(7):1453--1473, 2014.
+
+\bibitem{YinYTY12}
+Yin Lu, Yong Chen, Rajeev Thakur, and Yu~Zhuang.
+\newblock Abstract: Memory-conscious collective {I/O} for extreme-scale {HPC}
+  systems.
+\newblock In {\em Proceedings of the 2012 High Performance Computing,
+  Networking, Storage and Analytics (SCC)}, pages 1360--1361, Salt Lake City,
+  UT, USA, November 2012.
+
+\bibitem{XiaosongWLS03}
+Xiaosong Ma, M.~Winslett, J.~Lee, and Shengke Yu.
+\newblock Improving mpi-io output performance with active buffering plus
+  threads.
+\newblock In {\em Parallel and Distributed Processing Symposium, 2003.
+  Proceedings. International}, pages 10 pp.--, April 2003.
+
+\bibitem{ProstTHJK01}
+Jean-Pierre Prost, Richard Treumann, Richard Hedges, Bin Jia, and Alice
+  Koniges.
+\newblock Mpi-io/gpfs, an optimized implementation of mpi-io on top of gpfs.
+\newblock In {\em Proceedings of the 2001 ACM/IEEE Conference on
+  Supercomputing}, SC '01, pages 17--17, New York, NY, USA, 2001. ACM.
+
+\bibitem{ProstTHKW00}
+Jean{-}Pierre Prost, Richard Treumann, Richard Hedges, Alice~E. Koniges, and
+  Alison White.
+\newblock Towards a high-performance implementation of {MPI-IO} on top of
+  {GPFS}.
+\newblock In {\em Proceedings of the $6^{th}$ International Euro-Par Conference
+  (Euro-Par)}, pages 1253--1262. Munich, Germany, August 2000.
+
+\bibitem{SchmuckH02}
+Frank Schmuck and Roger Haskin.
+\newblock Gpfs: A shared-disk file system for large computing clusters.
+\newblock In {\em Proceedings of the 2002 USENIX Conference on File and Storage
+  Technologies (FAST)}, pages 231--244, 2002.
+
+\bibitem{StevensR13}
+W.~Richard Stevens and Stephen~A. Rago.
+\newblock {\em {Advanced programming in the UNIX environment}}, chapter
+  {Advanced IPC}, pages 642--652.
+\newblock Addison-Wesley professional computing series, May 2013.
+
+\bibitem{ThakurC96}
+Rajeev Thakur and Alok~N. Choudhary.
+\newblock An extended two-phase method for accessing sections of out-of-core
+  arrays.
+\newblock {\em Scientific Programming}, 5(4):301--317, 1996.
+
+\bibitem{ThakurGL96}
+Rajeev Thakur, William Gropp, and Ewing Lusk.
+\newblock An abstract-device interface for implementing portable parallel-i/o
+  interfaces.
+\newblock In {\em Proceedings of the $6^{th}$ IEEE International Symposium on
+  Frontiers of Massively Parallel Computation (FRONTIERS)}, pages 180--187.
+  IEEE Computer Society Press, 1996.
+
+\bibitem{ThakurGL99}
+Rajeev Thakur, William Gropp, and Ewing Lusk.
+\newblock Data sieving and collective i/o in romio.
+\newblock In {\em Proceedings of the 7th IEEE International Symposium on
+  Frontiers of Massively Parallel Computation (FRONTIERS)}, page 182, 1999.
+
+\bibitem{TranR04}
+Nancy Tran and Daniel~A. Reed.
+\newblock Automatic arima time series modeling for adaptive i/o prefetching.
+\newblock {\em IEEE Trans. Parallel Distrib. Syst.}, 15(4):362--377, April
+  2004.
+
+\bibitem{VanDeBogartFK09}
+Steve VanDeBogart, Christopher Frost, and Eddie Kohler.
+\newblock Reducing seek overhead with application-directed prefetching.
+\newblock In {\em Proceedings of the 2009 conference on USENIX Annual technical
+  conference}, USENIX'09, pages 24--24, Berkeley, CA, USA, 2009. USENIX
+  Association.
+
+\bibitem{Ying08}
+Liu Ying.
+\newblock {Lustre ADIO collective write driver}.
+\newblock White Paper, October 2008.
+
+\bibitem{WeikuanV08}
+Weikuan Yu and J.~Vetter.
+\newblock Parcoll: Partitioned collective i/o on the cray xt.
+\newblock In {\em Proceedings of the $37^{th}$ International Conference on
+  Parallel Processing (ICPP)}, pages 562--569, September 2008.
+
+\bibitem{XuechenJD09}
+Xuechen Zhang, S.~Jiang, and K.~Davis.
+\newblock Making resonance a common case: A high-performance implementation of
+  collective i/o on parallel file systems.
+\newblock In {\em Proceedings of the 2009 IEEE International Parallel and
+  Distributed Processing Symposium (IPDPS)}, pages 1--12, May 2009.
+
+\end{thebibliography}

@@ -1,0 +1,59 @@
+Points to be addressed:
+
+- Why the tailored config performs worst then the sliding window approach;
+  - Decided to throw away the tailored config, it adds complexity, not 
+    pratically feasible for many different applications (one  per input file?
+    space too big for applications that have huge amount of files...)
+
+- To make it really clear so that reviewers don't have doubts:
+  - many studied and study hpc applications (the ones usually used in SC papers and so on and in 
+    studies from big Labs) that usually use parallel I/O (MPI-IO, HDF5, NETCDF,
+    PNETCDF, QMP(to verify this one...QCD)) and show write dominant behaviour, 
+    so attention is posed on writing.
+    We address (for the moment) not parallel applications in this study, 
+    which still run on hpc clusters, and in particular a class of this applications 
+    which are the ones dedicated
+    to data analysis which is usually the final-almost-final stage of a research effort. 
+    In a typical scenario, what happens is that data collected from raw detectors undergo 
+    several stage of processing to save and put in a convenient format the data which appear 
+    to be more important for a particular study.
+
+- Show the read/write performance at the filesytem level for what it concerns the servers:
+    - throughput (usually GB/s, up to +14% on Mogon with 128 client nodes)
+    - ops/s (and maybe distinguish reads/s and write/s at the server level)
+
+- Benchmarks to use: fio, iozone, ior, zip, tar, untar
+
+- Experiments to be conducted:
+    - Mogon:
+        - Scale the number of nodes and launch on every node an instance of the application
+          with an equal input files read by all the nodes and with different input files read by 
+          every node. This should be done reserving only 3/4 cores per node via LSF.
+        - Run on a single node with 3/4 cores reserved with different input files and report the effect/behaviour.
+        - Find another benchmark to run in a similar manner (unfortunately most are write focused )
+        - MADbench2-IO run on Mogon: can't get it to instrument properly --> seems write dominant, will run tests
+          with bigger apps parameters to see how read time is affected.
+
+    - Test cluster (4 nodes):
+        - good for playing around
+        - Lustre is installed, can play with it
+        - run benchmarks first here to understand them, then on Mogon...
+
+
+TODOS for improvement of the framework and for future papers:
+    - Address the writes --> it seems to be to important!!!
+    - Show/demonstrate that 
+    - Write test suite --> switch the softw. devel. process to test driven: every functionality should be 
+      fully tested!
+    - Clean up implementation, many parts are criptic at some point. Would be ideal to switch to a fully C++ mode!
+    - Check atomic queue implementation: at the moment some locks around std:: queue, not sure it's enough...check Boost
+    - Wrap MPI-IO, HDF5, NETCDF and PNETCDF calls (cannot miss out parallel I/O libraries)
+    - Address the problem of having more applications that are running on the same node. How do you
+      coordinate them? To which files/application is the coordinator giving priority?
+    - Have a full list of application I/O kernels and benchmarks updated to test the framework against them.
+    - Distributed advice: address the problem of coordinating advices between nodes --> distributed algo
+      This needs to be done for parallel applications or for same application on different nodes that try to read
+      from the same file
+    - Try to get calls (open, read, fread, fopen) that are called by higher level or another library
+    - Flame graphs and heat map for: application/cpu analysis, syscall analysis (better than strace, lower overhead!!!!)
+      , file system latency e disk IO latency analysis

@@ -1,0 +1,104 @@
+\documentclass[conference]{IEEEtran}
+\ifCLASSINFOpdf
+  \usepackage[pdftex]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../pdf/}{../jpeg/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+\else
+  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+  % will default to the driver specified in the system graphics.cfg if no
+  % driver is specified.
+  \usepackage[dvips]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../eps/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.eps}
+\fi
+
+\usepackage{listings}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[cmex10]{amsmath}
+%\usepackage[norelsize]{algorithm2e}
+%\usepackage{algorithmic}
+%\usepackage{array}
+%\usepackage{mdwmath}
+%\usepackage{mdwtab}
+%\usepackage{eqparbox}
+%\usepackage[tight,footnotesize]{subfigure}
+%\usepackage[caption=false]{caption}
+%\usepackage[font=footnotesize]{subfig}
+%\usepackage[caption=false,font=footnotesize]{subfig}
+%\usepackage{fixltx2e}
+%\usepackage{stfloats}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{todonotes}
+\hyphenation{guided-io}
+
+
+\begin{document}
+
+\title{MERCURY: a Transparent Guided I/O Framework for High Performance I/O Stacks}
+
+\author{
+%\IEEEauthorblockN{Giuseppe Congiu}
+%\IEEEauthorblockA{Emerging Technology Group\\
+%Xyratex Technology LTD\\
+%Havant, United Kingdom\\
+%Email: giuseppe\underline{ }congiu@xyratex.com}
+%\and
+%\IEEEauthorblockN{Matthias Grawinkel,\\Federico Padua} %Tim S\"u\ss{}, Andr\'e Brinkmann}
+%\IEEEauthorblockA{Zentrum f\"ur Datenverarbeitung\\
+%Johannes Gutenberg-University Mainz, Germany\\
+%Email: \{meatz,padua\}@uni-mainz.de}
+%\and
+%\IEEEauthorblockN{James Morse}
+%\IEEEauthorblockA{Emerging Technology Group\\
+%Xyratex Technology LTD\\
+%Havant, United Kingdom\\
+%Email: james\underline{ }morse@xyratex.com}
+%\and
+%\IEEEauthorblockN{Tim S\"u\ss{}, Andr\'e Brinkmann}
+%\IEEEauthorblockA{Zentrum f\"ur Datenverarbeitung\\
+%Johannes Gutenberg-University Mainz, Germany\\
+%Email: \{t.suess,brinkman\}@uni-mainz.de}}
+
+\IEEEauthorblockN{Giuseppe Congiu\IEEEauthorrefmark{1}, Matthias Grawinkel\IEEEauthorrefmark{2}, Federico Padua\IEEEauthorrefmark{2}, James Morse\IEEEauthorrefmark{1}, Tim S\"u\ss{}\IEEEauthorrefmark{2}, Andr\'e Brinkmann\IEEEauthorrefmark{2}}
+\IEEEauthorblockA{\IEEEauthorrefmark{1}Emerging Technology Group Seagate Systems Ltd Havant, United Kingdom\\
+Email: \{giuseppe.congiu, james.s.morse\}@seagate.com}
+\IEEEauthorblockA{\IEEEauthorrefmark{2}Zentrum f\"ur Datenverarbeitung Johannes Gutenberg-Universit\"{a}t Mainz, Germany\\
+Email: \{grawinkel, padua, t.suess, brinkman\}@uni-mainz.de}}
+\maketitle
+
+% What is the abstract word limit for this conference?
+\begin{abstract}
+The performance gap between processing and I/O represents a serious scalability limitation for scientific applications running on high-end computing clusters. Parallel file systems often provide mechanisms that allow programmers to disclose their I/O pattern knowledge to the lower layers of the I/O stack through a hints API. This information can be used by the file system to boost the application performance, for example, through data prefetching. Unfortunately, programmers rarely make use of these features, missing the opportunity to exploit the full potential of the storage system. %Additionally, scientific applications frequently perform small non-contiguous accesses to files using the POSIX I/O interface. This makes it impossible for them to take advantage of automatic optimizations, such as collective I/O or data-sieving enabled by the MPI I/O middleware. As a result these applications perform poorly. 
+%More significantly they can negatively impact the whole storage system's efficiency. 
+\\
+In this paper we propose MERCURY, a transparent guided I/O framework able to optimize file I/O patterns in scientific applications, allowing users and administrators to directly control the I/O behavior of their applications without modifying them. This is done by exploiting the hints API provided by the back-end file system to guide data prefetching. The required prefetching information is annotated in a configuration file using a generic syntax and afterwards transparently translated into the corresponding file system subroutine calls. We demonstrate that MERCURY is effective in converting numerous small read requests into a few larger requests and that by doing so, it increases the I/O bandwidth, reduces the number of I/O requests reaching the back-end storage devices and ultimately the application running time. Moreover, we also propose a Linux kernel modification that allows network file systems, specifically Lustre, to work with our guided I/O framework through the posix\_fadvise interface.
+\end{abstract}
+
+\input{parts/introduction}
+\input{parts/background}
+\input{parts/concept}
+\input{parts/evaluation}
+\input{parts/related_work}
+\input{parts/conclusion}
+
+\section*{Acknowledgment}
+%We would like to thank Markus Tacke and Christoph Martin for their invaluable help in setting up the test cluster.
+%We also would like to thank Dean Hildebrand and Vasily Tarasov from IBM which were able to provide answers to our questions about GPFS.
+This work has been supported by the Marie Curie Initial Training Networks (MCITN) of the European Commission (contract no. 238808), by the Exascale1O (E10) initiative and by the DFG TRR 146: Multiscale Simulation Methods for Soft Matter Systems.
+
+\bibliographystyle{IEEEtran}
+\bibliography{bibliography}
+
+
+\end{document}
+

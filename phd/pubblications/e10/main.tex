@@ -1,0 +1,89 @@
+\documentclass[10pt, conference, compsocconf]{IEEEtran}
+\ifCLASSINFOpdf
+  \usepackage[pdftex]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../pdf/}{../jpeg/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+\else
+  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+  % will default to the driver specified in the system graphics.cfg if no
+  % driver is specified.
+  \usepackage[dvips]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../eps/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.eps}
+\fi
+
+\usepackage{listings}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[cmex10]{amsmath}
+\usepackage{courier}
+\usepackage[T1]{fontenc}
+\usepackage{url}
+\usepackage{array, booktabs}
+\usepackage{todonotes}
+\hyphenation{guided-io}
+\newcommand{\codeword}{\texttt}
+\newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
+\renewcommand\IEEEkeywordsname{keywords}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+\begin{document}
+
+\title{Improving Collective I/O Performance Using Non-Volatile Memory Devices}
+\author{
+%\IEEEauthorblockN{Giuseppe Congiu}
+%\IEEEauthorblockA{Emerging Technology Group\\
+%Seagate Systems UK Ltd\\
+%Havant, United Kingdom\\
+%Email: giuseppe.congiu@seagate.com}
+%\and
+%\IEEEauthorblockN{Sai Narasimhamurthy}
+%\IEEEauthorblockA{Emerging Technology Group\\
+%Seagate Systems UK Ltd\\
+%Havant, United Kingdom\\
+%Email: sai.narasimhamurthy@seagate.com}
+%\and
+%\IEEEauthorblockN{Andr\'{e} Brinkmann}
+%\IEEEauthorblockA{Zentrum f\"ur Datenverarbeitung\\
+%Johannes Gutenberg-Universit\"{a}t\\
+%Mainz, Germany\\
+%Email: brinkman@uni-mainz.de}}
+
+\IEEEauthorblockN{Giuseppe Congiu\IEEEauthorrefmark{1}, Sai Narasimhamurthy\IEEEauthorrefmark{1}, Tim S\"u\ss{}\IEEEauthorrefmark{2}, Andr\'e Brinkmann\IEEEauthorrefmark{2}}
+\IEEEauthorblockA{\IEEEauthorrefmark{1}Emerging Technology Group Seagate Systems Ltd Havant, United Kingdom\\
+Email: \{giuseppe.congiu, sai.narasimhamurthy\}@seagate.com}
+\IEEEauthorblockA{\IEEEauthorrefmark{2}Zentrum f\"ur Datenverarbeitung Johannes Gutenberg-Universit\"{a}t Mainz, Germany\\
+Email: \{t.suess, brinkman\}@uni-mainz.de}}
+
+\maketitle
+
+% What is the abstract word limit for this conference?
+\begin{abstract}
+Collective I/O is a parallel I/O technique designed to deliver high performance data access to scientific applications running on high-end computing clusters. In collective I/O, write performance is highly dependent upon the storage system response time and limited by the slowest writer. The storage system response time in conjunction with the need for global synchronisation, required during every round of data exchange and write, severely impacts collective I/O performance. Future Exascale systems will have an increasing number of processor cores, while the number of storage servers will remain relatively small. Therefore, the storage system concurrency level will further increase, worsening the global synchronisation problem. Nowadays high performance computing nodes also have access to locally attached solid state drives, effectively providing an additional tier in the storage hierarchy. Unfortunately, this tier is not always fully integrated. In this paper we propose a set of MPI-IO hints extensions that enable users to take advantage of fast, locally attached storage devices to boost collective I/O performance by increasing parallelism and reducing global synchronisation impact in the ROMIO implementation. We demonstrate that by using local storage resources, collective write performance can be greatly improved compared to the case in which only the global parallel file system is used, but can also decrease if the ratio between aggregators and compute nodes is too small.
+\end{abstract}
+\begin{IEEEkeywords}
+MPI-IO; Collective I/O; Non-Volatile Memory; HPC;
+\end{IEEEkeywords}
+\vspace{-1mm}
+\input{parts/introduction}
+\input{parts/background}
+\input{parts/concept}
+\input{parts/evaluation_}
+%\input{parts/evaluation}
+\input{parts/related_work}
+\input{parts/conclusion}
+
+\section*{Acknowledgment}
+This work has been funded by the FP7 program of the European Commission through the DEEP-ER project (Grant Agreement no. 610476) and supported by the Exascale1O (E10) initiative.
+
+\bibliographystyle{IEEEtran}
+\bibliography{bibliography}
+
+\end{document}
