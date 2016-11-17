@@ -38,13 +38,13 @@ Our target real world application is written using `ROOT', an object-oriented fr
   \centering
   \begin{subfigure}[t]{\columnwidth}
     \centering
-    \includegraphics[width=\columnwidth]{advice_paper/figures/iopat_profile}
+    \includegraphics[width=\columnwidth]{figures/iopat_profile}
     \caption{\textit{}}
     \label{figure: iopat_profile}
   \end{subfigure}
   \begin{subfigure}[t]{\columnwidth}
     \centering
-    \includegraphics[width=\columnwidth]{advice_paper/figures/00050_zoom}
+    \includegraphics[width=\columnwidth]{figures/00050_zoom}
     \caption{\textit{}}
     \label{figure: iopat_zoom}
   \end{subfigure}
@@ -69,7 +69,7 @@ Even though the general I/O pattern of the application for different files looks
 
 \begin{figure}[!htb]
   \centering
-  \includegraphics[width=\columnwidth]{advice_paper/figures/SC2015/ROOT/separate_plots/test_cluster/test_fadvise_no_border}
+  \includegraphics[width=\columnwidth]{figures/SC2015/ROOT/separate_plots/test_cluster/test_fadvise_no_border}
   \caption{Comparison between different usage stategies of posix\_fadvise for an input file of 55GB residing in an ext4 file system. The first bar represents the case in which no advice is used, the second bar represents the case in which a POSIX\_FADV\_WILLNEED is issued for the whole file at the beginning of the application and the third bar represents the case in which POSIX\_FADV\_WILLNEED is issued using MERCURY.}
   \label{figure: fadvise_comparison}
 \end{figure} 
@@ -85,37 +85,37 @@ To measure the performance improvements that our prototype can deliver to the ap
   \centering
   \begin{subfigure}[t]{0.32\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{advice_paper/figures/SC2015/ROOT/separate_plots/test_cluster/ext4/runtime}
+    \includegraphics[width=\textwidth]{figures/SC2015/ROOT/separate_plots/test_cluster/ext4/runtime}
     \caption{\textit{}}
     \label{figure: ext4_1}
   \end{subfigure}
   \begin{subfigure}[t]{0.32\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{advice_paper/figures/SC2015/ROOT/separate_plots/test_cluster/gpfs/runtime}
+    \includegraphics[width=\textwidth]{figures/SC2015/ROOT/separate_plots/test_cluster/gpfs/runtime}
     \caption{\textit{}}
     \label{figure: gpfs_1}
   \end{subfigure}
   \begin{subfigure}[t]{0.32\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{advice_paper/figures/SC2015/ROOT/separate_plots/test_cluster/Lustre/runtime}
+    \includegraphics[width=\textwidth]{figures/SC2015/ROOT/separate_plots/test_cluster/Lustre/runtime}
     \caption{\textit{}}
     \label{figure: lustre_1}
   \end{subfigure}
   \begin{subfigure}[b]{0.32\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{advice_paper/figures/SC2015/ROOT/cluster/multiple_instances/simult_instance_ext4_test_cluster}
+    \includegraphics[width=\textwidth]{figures/SC2015/ROOT/cluster/multiple_instances/simult_instance_ext4_test_cluster}
     \caption{\textit{}}
     \label{figure: ext4_2}
   \end{subfigure}
   \begin{subfigure}[b]{0.32\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{advice_paper/figures/SC2015/ROOT/cluster/multiple_instances/simult_instance_gpfs_test_cluster}
+    \includegraphics[width=\textwidth]{figures/SC2015/ROOT/cluster/multiple_instances/simult_instance_gpfs_test_cluster}
     \caption{\textit{}}
     \label{figure: gpfs_2}
   \end{subfigure}
   \begin{subfigure}[b]{0.32\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{advice_paper/figures/SC2015/ROOT/cluster/multiple_instances/multiple_simult_procs_Lustre_testcluster}
+    \includegraphics[width=\textwidth]{figures/SC2015/ROOT/cluster/multiple_instances/multiple_simult_procs_Lustre_testcluster}
     \caption{\textit{}}
     \label{figure: lustre_2}
   \end{subfigure}
@@ -126,37 +126,37 @@ To measure the performance improvements that our prototype can deliver to the ap
   \centering
   \begin{subfigure}[t]{0.32\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{advice_paper/figures/SC2015/ROOT/separate_plots/test_cluster/ext4/reads}
+    \includegraphics[width=\textwidth]{figures/SC2015/ROOT/separate_plots/test_cluster/ext4/reads}
     \caption{\textit{}}
     \label{figure: ext4_3}
   \end{subfigure}
   \begin{subfigure}[t]{0.32\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{advice_paper/figures/SC2015/ROOT/separate_plots/test_cluster/gpfs/server_reads}
+    \includegraphics[width=\textwidth]{figures/SC2015/ROOT/separate_plots/test_cluster/gpfs/server_reads}
     \caption{\textit{}}
     \label{figure: gpfs_3}
   \end{subfigure}
   \begin{subfigure}[t]{0.32\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{advice_paper/figures/SC2015/ROOT/separate_plots/test_cluster/Lustre/server_reads}
+    \includegraphics[width=\textwidth]{figures/SC2015/ROOT/separate_plots/test_cluster/Lustre/server_reads}
     \caption{\textit{}}
     \label{figure: lustre_3}
   \end{subfigure}
   \begin{subfigure}[b]{0.32\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{advice_paper/figures/SC2015/ROOT/cluster/multiple_instances/reads_simult_instance_ext4_test_cluster}
+    \includegraphics[width=\textwidth]{figures/SC2015/ROOT/cluster/multiple_instances/reads_simult_instance_ext4_test_cluster}
     \caption{\textit{}}
     \label{figure: ext4_4}
   \end{subfigure}
   \begin{subfigure}[b]{0.32\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{advice_paper/figures/SC2015/ROOT/cluster/multiple_instances/reads_simult_instance_gpfs_test_cluster}
+    \includegraphics[width=\textwidth]{figures/SC2015/ROOT/cluster/multiple_instances/reads_simult_instance_gpfs_test_cluster}
     \caption{\textit{}}
     \label{figure: gpfs_4}
   \end{subfigure}
   \begin{subfigure}[b]{0.32\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{advice_paper/figures/SC2015/ROOT/cluster/multiple_instances/reads_multiple_simult_procs_Lustre_testcluster}
+    \includegraphics[width=\textwidth]{figures/SC2015/ROOT/cluster/multiple_instances/reads_multiple_simult_procs_Lustre_testcluster}
     \caption{\textit{}}
     \label{figure: lustre_4}
   \end{subfigure}

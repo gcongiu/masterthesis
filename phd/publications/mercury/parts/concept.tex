@@ -7,7 +7,7 @@ The I/O software stack of MERCURY is depicted in Figure~\ref{figure: softwaresta
 
 \begin{figure}[!htb]
   \centering
-  \includegraphics[width=\columnwidth]{advice_paper/figures/softwarestack}
+  \includegraphics[width=\columnwidth]{figures/softwarestack}
   \caption{MERCURY I/O software stack. \textit{Assisted I/O library} and \textit{Advice Manager} communicate through UNIX domain sockets. %The AM binds its socket to the local file system pathname \texttt{/tmp/channel}, while the IL connects its socket to the same pathname; exactly in the same way they would bind and connect to an IP address if they were located on different nodes in the network. Unix domain sockets are used to pass ancillary data as well as custom messages between the two software entities. 
   Data can reside in a local Linux file system, in Lustre or in GPFS.}
   \label{figure: softwarestack}
@@ -25,7 +25,7 @@ In order to enable asynchronous prefetching we delegate the task of sending sync
 
 \begin{figure}[!htb]
   \centering
-  \includegraphics[width=\columnwidth]{advice_paper/figures/architecture}
+  \includegraphics[width=\columnwidth]{figures/architecture}
   \caption{Detailed architecture for the \textit{Advice Manager} (AM) component. This can be further divided into three blocks: \textit{Request Manager} (RM), \textit{Register Log} (RL), and \textit{Advisor Thread} (AT).}
   \label{figure: architecture}
 \end{figure}
@@ -113,7 +113,7 @@ We can notice that Lustre extends the kernel code with additional file and page 
 
 \begin{figure}[!htb]
   \centering
-  \includegraphics[width=\columnwidth]{advice_paper/figures/kernel}
+  \includegraphics[width=\columnwidth]{figures/kernel}
   \caption{Simplified function call graph for the read operation in Lustre. For page operations in the Linux kernel the picture also shows the call graph typically followed by local reads as well as the call graph for the \texttt{POSIX\_FADV\_WILLNEED} advice in the \texttt{posix\_fadvise()} implementation (dashed line).}
   \label{figure: kernel}
 \end{figure}
