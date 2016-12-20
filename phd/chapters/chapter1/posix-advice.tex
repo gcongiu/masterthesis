@@ -1,0 +1,31 @@
+%!TEX root = ../../main.tex
+\section{The POSIX Advice API}
+\label{sec: posix_advice_api}
+The Linux kernel allows users to control page cache functionalities through the \texttt{posix\_fadvise()} system call: $$\textit{\textbf{int} posix\_fadvise(\textbf{int} fd, \textbf{off\_t} offset, \textbf{off\_t} len, \textbf{int} advice)}$$ This system call takes four input parameters: a valid file descriptor representing an open file, starting offset and length of the file region the advice will apply to, and finally the type of advice. The implementation provides five different types of advice, that reflect different aspects of caching. 
+
+\begin{table}[!htb]
+\centering
+\ra{1.5}
+\caption{Values for \textit{advice} in the \textit{posix\_fadvise()} system call}
+\newcolumntype{K}{>{\centering\arraybackslash} m{4cm}}
+\newcolumntype{V}{>{\centering\arraybackslash} m{5cm}}
+\begin{tabular}{KV}
+\toprule
+\bf \small Advice & \bf \small Description \\
+\midrule
+\small \ttfamily POSIX\_FADV\_SEQUENTIAL & \small file I/O pattern is sequential \\
+\small \ttfamily POSIX\_FADV\_RANDOM & \small file I/O pattern is random \\
+\small \ttfamily POSIX\_FADV\_NORMAL & \small reset file I/O pattern to normal \\
+\small \ttfamily POSIX\_FADV\_WILLNEED & \small file range will be needed \\
+\small \ttfamily POSIX\_FADV\_DONTNEED & \small file range won't be needed \\
+\small \ttfamily POSIX\_FADV\_NOREUSE & \small file is read once (not implemented) \\
+\bottomrule
+\end{tabular}
+\label{table: advice_table}
+\end{table}
+
+The first two advice in Table~\ref{table: advice_table} have an impact on spatial locality of elements of the cache. \texttt{POSIX\_FADV\_SEQUENTIAL} can be used to advise the kernel that a file will be accessed sequentially. As result the kernel will double the maximum read-ahead window size in order to have a greedier read-ahead algorithm. \texttt{POSIX\_FADV\_RANDOM}, on the other hand, can be used when a file is accessed randomly and has the effect of completely disabling read-ahead, therefore only ever reading the requested data. Finally, \texttt{POSIX\_FADV\_NORMAL} can be used to cancel the previous two advice-messages and reset the read-ahead algorithm to its defaults. These three advice types apply to the whole file, the offset and length parameters are ignored for these `modes'.
+
+Two of the remaining three advice types have an impact on the temporal locality of cache elements. \texttt{POSIX\_FADV\_WILLNEED} can be used to advise the kernel that the defined file region will be accessed soon, and therefore the kernel should prefetch the data and make it available in the page cache. \texttt{POSIX\_FADV\_DONTNEED} has the opposite effect, making the kernel release the specified file region from the cache, on the condition that the corresponding pages are clean (dirty pages are not released). Finally, the implementation for \texttt{POSIX\_FADV\_NOREUSE} is not provided in the kernel. %Table~\ref{table: advice_table} summarizes all the advice types just described.
+
+One important aspect of \texttt{posix\_fadvise()} is that it is a synchronous system call. This means that every time an application invokes it, it blocks and returns only after the triggered read-ahead operations have completed. This represents a big limitation especially if we consider \texttt{POSIX\_FADV\_WILLNEED} that may need to prefetch an arbitrarily large chunk of data. In this scenario the application may be idle for a long period of time while the data is being retrieved by the file system.

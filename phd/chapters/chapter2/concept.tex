@@ -38,7 +38,7 @@ POSIX advice and GPFS hints are issued using the \textit{Advisor Thread} created
 The \textit{Advisor Thread} uses \texttt{posix\_fadvise()} and \texttt{gpfs\_fcntl()} to generate prefetch requests for the underlying file systems (Figure~\ref{figure: architecture}). For files residing in local file systems and Lustre, the \texttt{POSIX\_FADV\_WILLNEED} advice from Table~\ref{table: advice_table} is used to bring the data into the kernel page cache. For files residing in GPFS the \texttt{accRangeArray} in the \texttt{gpfsMultipleAccessRange\_t} data structure in Listing~\ref{mar} is used to define which blocks of the file should be brought into the GPFS internal cache (page pool). 
 The size of the file regions to prefetch is defined in a Json\footnote{Open standard format that uses human-readable text to transmit data objects consisting of attribute-value pairs (http://www.rfc-editor.org/rfc/rfc7159.txt).} configuration file, loaded at startup by both the \textit{Advice Manager} and the \textit{Assisted I/O library}. This is the only point of configuration for the user and it contains, besides other information, a list of files and directories that the \textit{Assisted I/O library} should monitor. An example configuration file is shown below. 
 
-\begin{lstlisting}[language=python, caption=Example of Json Configuration File]
+\begin{lstlisting}[language=python, caption=Example of Json Configuration File, label={config}]
 {
     "File": {
         "Path": "/path/to/target/file",

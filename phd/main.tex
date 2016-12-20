@@ -27,6 +27,9 @@
 \usepackage{array, booktabs}
 \usepackage{microtype}
 \usepackage[htt]{hyphenat}
+%\usepackage[natbib=true, style=numeric-comp, backend=bibtex8,defernumbers, maxnames=99]{biblatex}
+%\usepackage{natbib}
+%\usepackage{bibunits}
 %\newcommand{\codeword}{\texttt}
 \newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
 \newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
@@ -135,6 +138,15 @@
 \tableofcontents
 \mainmatter
 
+%\begin{bibunit}
+% The \nocite{*} command simply lists all of the references found in the 
+% bibliography file, without a corresponding reference number in the text.
+%\nocite{*}
+% Here publications refers to our "publications.bib" file containing our 
+% publications list. Change it to the path to your publications list file
+%\putbib[publications]
+%\end{bibunit}
+
 %*******************************************************************************************
 % CHAPTERS
 %*******************************************************************************************
@@ -143,27 +155,9 @@
 \pagenumbering{arabic}\setcounter{page}{8}
 \input{chapters/introduction}
 \input{chapters/chapter1/main}
-%\part{}
 \input{chapters/chapter2/main}
-%\part{}
 \input{chapters/chapter3/main}
 \cleardoublepage
-
-%%%%%%%%%%%% advice paper %%%%%%%%%%%%
-%\input{advice_paper/parts/introduction}
-%\input{advice_paper/parts/background}
-%\input{advice_paper/parts/concept}
-%\input{advice_paper/parts/evaluation}
-%\input{advice_paper/parts/related_work}
-%\input{advice_paper/parts/conclusion}
-
-%%%%%%%%%%%% romio paper %%%%%%%%%%%%
-%\input{romio_paper/parts/introduction}
-%\input{romio_paper/parts/background}
-%\input{romio_paper/parts/concept}
-%\input{romio_paper/parts/evaluation_}
-%\input{romio_paper/parts/related_work}
-%\input{romio_paper/parts/conclusion}
 %*******************************************************************************************
 % END OF CHAPTERS
 %*******************************************************************************************

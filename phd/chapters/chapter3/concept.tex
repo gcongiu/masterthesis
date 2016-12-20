@@ -136,7 +136,7 @@ Every synchronisation request has a \codeword{MPI\_Request} handle used to start
 
 \subsubsection{Cache Synchronisation Thread}
 \label{subsubsec: cache-sync-thread}
-The \codeword{ADIOI\_Sync\_thread\_t} object provides the infrastructure to initialise/finalise threads and to enqueue, flush and wait for synchronisation requests. A pool of synchronisation thread is created when the file is opened and destroyed when the file is closed. Listing~\ref{list: sync-thread} shows the object API.
+The \codeword{ADIOI\_Sync\_thread\_t} object provides the infrastructure to initialise/finalise threads and to enqueue, flush and wait for synchronisation requests. A pool of synchronisation threads is created when the file is opened and destroyed when the file is closed. Listing~\ref{list: sync-thread} shows the object API.
 
 \begin{lstlisting}[language=C, caption=Synchronisation Thread API, label={list: sync-thread}]
 enum {
@@ -239,7 +239,7 @@ void ADIOI_GEN_Opencoll(...) {
 }
 \end{lstlisting}
 
-In order for the implementation to exploit local NVM caching both local file creation and thread initialisation have to succeed. The MPI file handle for the cache file is stored in \textit{cache\_fd} inside the file handle of the global file. When collective I/O is enabled only the aggregators will initialise the synchronisation thread pool. In any other case every process will do independent I/O and will thus initialise its own pool.
+In order for the implementation to exploit local NVM caching both local file creation and thread initialisation must succeed. The MPI file handle for the cache file is stored in \textit{cache\_fd} inside the file handle of the global file. When collective I/O is enabled only the aggregators will initialise the synchronisation thread pool. In any other case every process will do independent I/O and will thus initialise its own pool.
 
 \subsubsection{Synchronisation Request Submission}
 \label{subsubsec: sync-req-sub}
@@ -367,6 +367,15 @@ void ADIO_Close(...) {
 
 When invoked, the close routine will trigger the flushing of the cache (\codeword{(*(fd->fns->ADIOI\_xxx\_Flush))()}), close the cache file (\codeword{(*(fd->fns->ADIOI\_xxx\_Close))()}) and finalise the thread pool (\codeword{ADIOI\_Sync\_thread\_pool\_fini()}).
 
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=\textwidth]{chapters/chapter3/figures/ext2ph+e10}
+  \caption{New Collective I/O flow diagram.}
+  \label{figure: new_coll_io_impl}
+\end{figure}
+
+Figure~\ref{figure: new_coll_io_impl} graphically shows the modified flow diagram for the new collective I/O implementation just described. Compared to Figure~\ref{figure: coll_io_impl}, there is now an additional component representing the synchronisation thread. When data is written to the cache file, a synchronisation request for the written data is initialised and submitted to the \codeword{ADIOI\_Sync\_thread\_t} object. The object's pthread continuously search in the submission queue (\textit{sub\_}) for new synchronisation requests to satisfy.
+
 \subsection{Cache Consistency Semantics}
 \label{subsec: consistency}
 As far as write consistency is concerned, the MPI-IO interface does not make any assumption regarding the underlying storage system or its semantics. ROMIO specifically supports file systems that are both POSIX compliant, like Lustre, and non-POSIX compliant, like NFS or PVFS. In MPI-IO, written data becomes globally visible only after either \codeword{MPI\_File\_sync()} or \codeword{MPI\_File\_close()} are invoked on the MPI file handle and by default there is no write atomicity. The motivation is that data can be cached at some level locally in the compute nodes. The ROMIO implementation can overcome the risk of data inconsistency, e.g. related to false sharing of file system blocks, using persistent file realms~\cite{ColomaCWWRP04}, and can even enforce atomicity using \codeword{MPI\_File\_set\_atomicity()}.
@@ -416,4 +425,3 @@ Therefore, the total average bandwidth perceived by the application is:
 \end{equation}
 
 From Equation~\ref{formula: bw} (in which we have considered the open time neglectable) it is clear that the maximum performance can be obtained when $C(k+1) \geq T_s(k)$, that is, when we can completely hide cache synchronisation by the computation phase. On the other hand when $C(k+1) < T_s(k)$ we might have a minima in the bandwidth since \codeword{MPI\_File\_close()} needs to wait for cache synchronisation completion (Figure~\ref{figure: workflow3}). 
-
