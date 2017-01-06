@@ -110,13 +110,13 @@ enum {
 };
 
 struct ADIOI_Sync_req {
-  int type_;
-  ADIO_Offset off_;
-  MPI_Datatype datatype_;
-  int count_;
+  int           type_;
+  int           count_;
+  int           error_code_;
+  int           fflags_;
+  ADIO_Offset   off_;
+  MPI_Datatype  datatype_;
   ADIO_Request *req_;
-  int error_code_;
-  int fflags_;
 };
 
 /* Synchronisation Request Interfaces */
@@ -145,9 +145,9 @@ enum {
 };
 
 struct ADIOI_Sync_thread {
-  ADIO_File fd_;
-  pthread_t tid_;
-  pthread_attr_t attr_;
+  ADIO_File            fd_;
+  pthread_t            tid_;
+  pthread_attr_t       attr_;
   ADIOI_Atomic_queue_t sub_;
   ADIOI_Atomic_queue_t pen_;
   ADIOI_Atomic_queue_t wait_;
@@ -155,8 +155,8 @@ struct ADIOI_Sync_thread {
 
 typedef struct ADIOI_Sync_thread *ADIOI_Sync_thread_t;
 
-int ADIOI_Sync_thread_init(ADIOI_Sync_thread_t *, ...);
-int ADIOI_Sync_thread_fini(ADIOI_Sync_thread_t *);
+int  ADIOI_Sync_thread_init(ADIOI_Sync_thread_t *, ...);
+int  ADIOI_Sync_thread_fini(ADIOI_Sync_thread_t *);
 void ADIOI_Sync_thread_enqueue(ADIOI_Sync_thread_t, 
   ADIOI_Sync_req_t);
 void ADIOI_Sync_thread_flush(ADIOI_Sync_thread_t);
@@ -417,7 +417,7 @@ Since the workflow modification just presented might not be feasible for legacy 
 According to the new I/O workflow, described in this section, we have that being $S(k)$ the amount of data written during phase `k', $T_c(k)$ the time needed to write $S(k)$ collectively to the cache using \codeword{MPI\_File\_write\_all()}, $T_s(k)$ the time needed to synchronise the cached data in every aggregator to the global file system (through \codeword{ADIOI\_Sync\_thread\_start()}), and $C(k+1)$ the computation time of phase `k+1', the resulting I/O bandwidth for `k' is expressed by Equation~\ref{formula: bw}:
 
 \begin{equation}\label{formula: bw}
-        bw(k) = \frac{S(k)}{T_c(k) + max(0,\ T_s(k) - C(k+1))} \\
+        bw(k) = \frac{S(k)}{T_c(k) + max(0,\ T_s(k) - C(k+1))}
 \end{equation}
 Therefore, the total average bandwidth perceived by the application is:
 \begin{equation}\label{formula: abw}
