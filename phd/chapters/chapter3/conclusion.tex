@@ -1,0 +1,7 @@
+%!TEX root = ../main.tex
+\section{Conclusions \& Future Work}
+\label{sec: conclusion}
+
+In this chapter we have presented a new approach in using multi-tier storage systems to improve collective I/O performance in ROMIO. We have demonstrated that the usage of SSDs attached to compute nodes can improve collective I/O by increasing the aggregated I/O bandwidth, reducing the global synchronisation overhead, and finally the memory requirements. This can be done provided there is enough computation to hide background cache synchronisation costs.
+
+At the moment locally attached SSDs are not fully integrated in the storage hierarchy and researchers will have to figure out how to best exploit them. Burst buffers provide a possible solution but these require expensive dedicated kit, whereas we can use inexpensive commodity flash/solid state devices in computing nodes. In the short term we plan to test our SSD based approach with real applications from the DEEP-ER project, further validating the introduced benefits in real world workloads. In the longer term we plan to support cache reading operations and in general more complex and better integrated caching support and policies. In this direction, the Exascale10 initiative plans to build an Exascale ready I/O middleware that will be able to efficiently support multiple integrated storage tiers in the I/O stack.

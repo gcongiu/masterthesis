@@ -54,542 +54,629 @@
 @STRING{vhpc = { Virtualization in High-Performance Cloud Computing (VHPC)}}
 @STRING{scc = { High Performance Computing, Networking, Storage and Analytics (SCC) }}
 
-
-@inproceedings{CarnsHABLLR11, 
-        author={Carns, P. and Harms, K. and Allcock, W. and Bacon, C. and Lang, S. and Latham, R. and Ross, R.}, 
-        booktitle = proc # " 27th " # msst,
-        title={Understanding and improving computational science storage access through continuous characterization}, 
-        year={2011}, 
-        pages={1-14}, 
-        keywords={storage management;I/O behavior;computational science storage access;powerful storage systems;production system;static file system analysis;storage device instrumentation;Aggregates;Benchmark testing;Instruments;Lead;Measurement;Production;Scientific computing}, 
-        doi={10.1109/MSST.2011.5937212}, 
-        ISSN={2160-195X},
+@ARTICLE{Mack11, 
+    author={C. A. Mack}, 
+    journal={IEEE Transactions on Semiconductor Manufacturing}, 
+    title={Fifty Years of Moore's Law}, 
+    year={2011}, 
+    volume={24}, 
+    number={2}, 
+    pages={202-207}, 
+    keywords={elemental semiconductors;history;integrated circuits;silicon;transistors;IC complexity;Moore law history;Si;integrated circuit;planar silicon transistor;Driver circuits;Economics;Industries;Manufacturing;Random access memory;Silicon;Transistors;History;Moore's Law;learning curve}, 
+    doi={10.1109/TSM.2010.2096437}, 
+    ISSN={0894-6507}, 
+    month={May},
 }
 
-@inproceedings{ThakurGL96,
-        author = {Rajeev Thakur and William Gropp and Ewing Lusk},
-        title = {An Abstract-Device Interface for Implementing Portable Parallel-I/O Interfaces },
-        booktitle = proc # " $6^{th}$ " # mpc,
-        year = {1996},
-        pages = {180--187},
-        publisher = {IEEE Computer Society Press}
-}       
-
-@inproceedings{ThakurGL99,
-        author = {Thakur, Rajeev and Gropp, William and Lusk, Ewing},
-        title = {Data Sieving and Collective I/O in ROMIO},
-        booktitle = proc # " 7th " # mpc,
-        year = {1999},
-        pages = {182},
-        howpublished = "\url{http://dl.acm.org/citation.cfm?id=795668.796733}",
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% I/O libraries %%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+@inproceedings{carlosmalt:folk:sc99,
+    address = {Portland, OR},
+    author = {Folk, M. and Cheng, A. and Yates, K.},
+    booktitle = {Proceedings of SC'99},
+    citeulike-article-id = {6765250},
+    local-url = {/Users/carlosmalt/Documents/Papers/folk-sc99.pdf},
+    month = nov,
+    posted-at = {2010-03-04 22:42:46},
+    priority = {2},
+    title = {{HDF5}: A file format and {I/O} library for high performance computing applications},
+    year = {1999}
 }
 
-@article{ThakurC96,
-  author    = {Rajeev Thakur and Alok N. Choudhary},
-  title     = {An Extended Two-Phase Method for Accessing Sections of Out-of-Core Arrays},
-  journal   = {Scientific Programming},
-  volume    = {5},
-  number    = {4},
-  pages     = {301--317},
-  year      = {1996},
+@inproceedings{1592942, 
+    author={Jianwei Li and Wei-keng Liao and A. Choudhary and R. Ross and R. Thakur and W. Gropp and R. Latham and A. Siegel and B. Gallagher and M. Zingale}, 
+    booktitle={Supercomputing, 2003 ACM/IEEE Conference}, 
+    title={Parallel netCDF: A High-Performance Scientific I/O Interface}, 
+    year={2003}, 
+    pages={39-39}, 
+    keywords={Computer interfaces;Concurrent computing;Government;Laboratories;Memory;Observatories;Parallel programming;Performance gain;Testing;Writing}, 
+    doi={10.1109/SC.2003.10053}, 
+    month={Nov},
 }
 
-@inproceedings{ChingCLP06, 
-	author={Avery Ching and Alok N. Choudhary and Wei{-}keng Liao and Lee Ward and Neil Pundit}, 
-	booktitle=proc # " $20^{th}$ " # ipdps, 
-	title={Evaluating I/O characteristics and methods for storing structured scientific data}, 
-	year={2006}, 
-	month= apr, 
-	address = {Rhodes Island, Greece},
+@online{netcdf,
+    title={{netCDF Library}},
+    howpublished = "\url{http://www.unidata.ucar.edu/software/netcdf}",
 }
 
-@inproceedings{LiaoA08,
-  author    = {Wei{-}keng Liao and Alok N. Choudhary},
-  title     = {Dynamically adapting file domain partitioning methods for collective {I/O} based on underlying parallel file system locking protocols},
-  booktitle=proc # " 2008 " # super, 
-  month = nov,
-  address = {Austin, Texas, {USA}},
-  year      = {2008},
+@online{hdf5,
+    title={{HDF5 Library}},
+    howpublished = "\url{https://www.hdfgroup.org/HDF5}",
 }
 
-@inproceedings{YinYTY12,
-  author    = {Yin Lu and Yong Chen and Rajeev Thakur and Yu Zhuang},
-  title     = {Abstract: Memory-Conscious Collective {I/O} for Extreme-Scale {HPC} Systems},
-  booktitle = proc # " 2012 " # scc,
-  pages     = {1360--1361},
-  year      = {2012},
-  month = nov, 
-  address = {Salt Lake City, UT, USA},
-}
-
-@inproceedings{WeikuanV08, 
-	author={Weikuan Yu and Vetter, J.}, 
-	booktitle=proc # " $37^{th}$ " # icpp, 
-	title={ParColl: Partitioned Collective I/O on the Cray XT}, 
-	year={2008}, 
-	month=sep, 
-	pages={562-569}, 
-	keywords={file organisation;parallel processing;synchronisation;Cray XT;I-O aggregator distribution;ParColl;file area partitioning;file consistency;global process synchronization;intermediate file views;parallel processes;partitioned collective I-O;Bandwidth;Computer science;Costs;Laboratories;Large-scale systems;Mathematics;Parallel processing;Protocols;Scalability;Throughput;Collective Wall;Cray XT;Partitioned Collective I/O}, 
-	doi={10.1109/ICPP.2008.76}, 
-	ISSN={0190-3918},
-}
-
-@inproceedings{YongXTRG11, 
-	author={Yong Chen and Xian-He Sun and Thakur, R. and Roth, P.C. and Gropp, W.D.}, 
-	booktitle=proc # " $25^{th}$ " # ipdps, 
-	title={LACIO: A New Collective I/O Strategy for Parallel I/O Systems}, 
-	year={2011}, 
-	month={May}, 
-	address = {Anchorage, Alaska, USA},
-	pages={794-804}, 
-}
-
-
-@inproceedings{HeSSYT11,
-	author = {He, Jun and Song, Huaiming and Sun, Xian-He and Yin, Yanlong and Thakur, Rajeev},
-	title = {Pattern-aware File Reorganization in MPI-IO},
-	booktitle = proc # " $6^{th}$ " # pdsw,
-	year = {2011},
-	address = {Seattle, Washington, USA},
-	pages = {43--48},
-} 
-
-@inproceedings{XuechenJD09, 
-	author={Xuechen Zhang and Jiang, S. and Davis, K.}, 
-	booktitle=proc # " 2009 " # ipdps, 
-	title={Making resonance a common case: A high-performance implementation of collective I/O on parallel file systems}, 
-	year={2009}, 
-	month={May}, 
-	pages={1-12}, 
-	keywords={client-server systems;data handling;input-output programs;parallel programming;pattern recognition;software portability;storage management;MPIIO software;client-based scheme;collective I/O;data striping pattern;high-performance implementation;parallel computing;parallel file systems;portability;request pattern;server-based scheme;storage system configuration;Concurrent computing;Degradation;File servers;File systems;High performance computing;Laboratories;Parallel processing;Pattern matching;Resonance;Throughput}, 
-	doi={10.1109/IPDPS.2009.5161070}, 
-	ISSN={1530-2075},
-}
-
-@inproceedings{JilianYY13,
-  author    = {Jialin Liu and Yong Chen and Yi Zhuang},
-  title     = {Hierarchical {I/O} Scheduling for Collective {I/O}},
-  booktitle = proc # { $13^{th}$ {IEEE/ACM} International Symposium on Cluster, Cloud, and Grid Computing (CCGrid)},
-  address = {Delft, Netherlands},
-  month = may,
-  pages     = {211--218},
-  year      = {2013},
-}
-
-@article{Liao11,
-  author    = {Wei{-}keng Liao},
-  title     = {Design and Evaluation of {MPI} File Domain Partitioning Methods under Extent-Based File Locking Protocol},
-  journal   = {{IEEE} Transactions on Parallel and Distributed Systems},
-  volume    = {22},
-  number    = {2},
-  pages     = {260--272},
-  year      = {2011},
-}
-
-@ONLINE{Comer14,
-        title = {{Lustre file system acceleration using server or storage-side caching: basic approaches and application use cases}},
-        howpublished = "\url{http://opensfs.org/wp-content/uploads/2014/04/D2_S27_LustreFileSystemAccelerationUsingServerorStorageSideCaching.pdf}",
-}
-@ONLINE{AdviseAPI,
-        title = {{posix\_fadvise}},
-        howpublished = "\url{http://linux.die.net/man/2/posix_fadvise}",
-}
-
-@ONLINE{mmpmon,
-        title ={{GPFS monitoring tool}},
-        howpublished = "\url{https://publib.boulder.ibm.com/infocenter/clresctr/vxrx/index.jsp?topic=%2Fcom.ibm.cluster.gpfs.v3r5.gpfs200.doc%2Fbl1adv_mmpmonch.htm}",
-}
-
-@ONLINE{root,
-        title ={{ROOT, A Data Analysis Framework}},
-        howpublished = "\url{http://root.cern.ch/drupal}",
-}
-
-@ONLINE{GPFSHINTS,
-        title = {{gpfs\_fcntl subroutine}},
-        howpublished = "\url{https://publib.boulder.ibm.com/infocenter/clresctr/vxrx/index.jsp?topic=%2Fcom.ibm.cluster.gpfs.v3r5.gpfs100.doc%2Fbl1adm_fcntl.htm}",
-}
-
-@ONLINE{UnixSock,
-        title = {{UNIX Domain Sockets}},
-        howpublished = "\url{http://linux.die.net/man/7/unix}",
-}
-
-@ONLINE{iozone,
-        title = {{iozone benchmark}},
-        howpublished = "\url{http://www.iozone.org/}",
-}
-
-@ONLINE{ioapps,
-        title = {{ioapps I/O profiling tools}},
-        howpublished = "\url{https://code.google.com/p/ioapps}",
-}
-
-@ONLINE{collectl,
-        title = {{Lustre collectl monitoring tool}},
-        howpublished = "\url{http://collectl.sourceforge.net/index.html}",
-}
-
-@ONLINE{deep,
-	title = {{DEEP, Dynamic Exascale Entry Platform}},
-	howpublished = "\url{http://www.deep-project.eu}",
-}
-
-@ONLINE{deep-er,
-	title = {{DEEP-ER, Dynamic Exascale Entry Platform - Extended Reach}},
-	howpublished = "\url{http://www.deep-er.eu}",
-}
-
-@ONLINE{e10,
-	title = {{Exascale10 (E10) initiative}},
-	howpublished = "\url{http://www.exascale10.com}",
-}
-
-@ONLINE{E10-DEEPER,
-        title = {{Exascale10 (E10) Code Base}},
-        howpublished = "\url{http://www.github.com/gcongiu/E10.git}",
-}
-
-@ONLINE{fhgfs,
-	title = {{Fraunhofer File System}},
-	howpublished = "\url{http://www.beegfs.com/cms}",
-}
-
-@ONLINE{mpe,
-	title = {{MPI Parallel Environment}},
-	howpublished = "\url{http://www.mcs.anl.gov/research/projects/perfvis/software/MPE}",
-}
-
-@ONLINE{fastforward,
-	title = {{Fast Forward I/O project}},
-	howpublished = "\url{https://users.soe.ucsc.edu/~ivo/blog/2013/04/07/the-ff-stack}",
-}
-
-@ONLINE{parastation,
-	title = {{Parastation MPI}},
-	howpublished = "\url{http://www.par-tec.com/products/parastation-mpi.html}",
-}
-
-@ONLINE{DDN,
-        title = {{DDN Infinite Memory Engine}},
-        howpublished = "\url{http://www.ddn.com/products/infinite-memory-engine-ime14k/}",
-}
-
-@ONLINE{SCR,
-        title = {{Scalable Checkpoint Restart library}},
-        howpublished = "\url{http://computation.llnl.gov/projects/scalable-checkpoint-restart-for-mpi}",
-}
-
-@ONLINE{mercury,
-	title={{MERCURY guided I/O framework}},
-	howpublished = "\url{https://github.com/gcongiu/mercury.git}",
-}
-
-@ONLINE{hdf5,
-        title={{HDF5 Library}},
-        howpublished = "\url{https://www.hdfgroup.org/HDF5}",
-}
-
-@ONLINE{netcdf,
-        title={{netCDF Library}},
-        howpublished = "\url{http://www.unidata.ucar.edu/software/netcdf}",
-}
-
-@article{TranR04,
-        author = {Tran, Nancy and Reed, Daniel A.},
-        title = {Automatic ARIMA Time Series Modeling for Adaptive I/O Prefetching},
-        journal = {IEEE Trans. Parallel Distrib. Syst.},
-        issue_date = {April 2004},
-        volume = {15},
-        number = {4},
-        month = apr,
-        year = {2004},
-        issn = {1045-9219},
-        pages = {362--377},
-        numpages = {16},
-        howpublished = "\url{http://dx.doi.org/10.1109/TPDS.2004.1271185}",
-        doi = {10.1109/TPDS.2004.1271185},
-        acmid = {972266},
-        publisher = {IEEE Press},
-        address = {Piscataway, NJ, USA},
-        keywords = {Input/output, adaptive prefetching, access patterns, performance modeling and prediction, time series analysis, pattern analysis, least squares methods, wavelets.},
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% I/O middlewares %%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+@article {CPE:CPE3125,
+    author = {Liu, Qing and Logan, Jeremy and Tian, Yuan and Abbasi, Hasan and Podhorszki, Norbert and Choi, Jong Youl and Klasky, Scott and Tchoua, Roselyne and Lofstead, Jay and Oldfield, Ron and Parashar, Manish and Samatova, Nagiza and Schwan, Karsten and Shoshani, Arie and Wolf, Matthew and Wu, Kesheng and Yu, Weikuan},
+    title = {Hello ADIOS: the challenges and lessons of developing leadership class I/O frameworks},
+    journal = {Concurrency and Computation: Practice and Experience},
+    volume = {26},
+    number = {7},
+    issn = {1532-0634},
+    url = {http://dx.doi.org/10.1002/cpe.3125},
+    doi = {10.1002/cpe.3125},
+    pages = {1453--1473},
+    keywords = {high performance computing, high performance I/O, I/O middleware},
+    year = {2014},
 }
 
 @inproceedings{DorierACSO12,
-        author={Dorier, M. and Antoniu, G. and Cappello, F. and Snir, M. and Orf, L.}, 
-        booktitle={Cluster Computing (CLUSTER), 2012 IEEE International Conference on}, 
-        title={Damaris: How to Efficiently Leverage Multicore Parallelism to Achieve Scalable, Jitter-free I/O}, 
-        year={2012}, 
-        pages={155-163}, 
-        keywords={multiprocessing systems;parallel machines;performance evaluation;synchronisation;CM1 atmospheric model;Damaris;HPC applications;IO bursts;IO cores;IO systems;Kraken Cray XT5 supercomputer;achieve scalable jitter-free IO;blue waters postpetascale supercomputer project;exascale computing;multicore SMP node;multicore parallelism;performance variability;synchronization;Atmospheric modeling;Computational modeling;Jitter;Multicore processing;Servers;Synchronization;Throughput;Dedicated Cores;Exascale Computing;I/O;Multicore Architectures;Variability}, 
-        doi={10.1109/CLUSTER.2012.26}, 
-        month={Sept},
+    author={Dorier, M. and Antoniu, G. and Cappello, F. and Snir, M. and Orf, L.}, 
+    booktitle={Cluster Computing (CLUSTER), 2012 IEEE International Conference on}, 
+    title={Damaris: How to Efficiently Leverage Multicore Parallelism to Achieve Scalable, Jitter-free I/O}, 
+    year={2012}, 
+    pages={155-163}, 
+    keywords={multiprocessing systems;parallel machines;performance evaluation;synchronisation;CM1 atmospheric model;Damaris;HPC applications;IO bursts;IO cores;IO systems;Kraken Cray XT5 supercomputer;achieve scalable jitter-free IO;blue waters postpetascale supercomputer project;exascale computing;multicore SMP node;multicore parallelism;performance variability;synchronization;Atmospheric modeling;Computational modeling;Jitter;Multicore processing;Servers;Synchronization;Throughput;Dedicated Cores;Exascale Computing;I/O;Multicore Architectures;Variability}, 
+    doi={10.1109/CLUSTER.2012.26}, 
+    month={Sept},
 }
 
-@inproceedings{ChangG99,
-        author = {Chang, Fay and Gibson, Garth A.},
-        title = {Automatic I/O hint generation through speculative execution},
-        booktitle = proc # " 3rd " # osdi,
-        series = {OSDI '99},
-        year = {1999},
-        isbn = {1-880446-39-1},
-        location = {New Orleans, Louisiana, USA},
-        pages = {1--14},
-        numpages = {14},
-        howpublished = "\url{http://dl.acm.org/citation.cfm?id=296806.296807}",
-        acmid = {296807},
-        publisher = {USENIX Association},
-        address = {Berkeley, CA, USA},
-} 
-
-@inproceedings{ChenR10, 
-        author={Yong Chen and Roth, P.C.}, 
-        booktitle= proc # " 5th " # pdsw, 
-        title={Collective prefetching for parallel I/O systems}, 
-        year={2010}, 
-        pages={1-5}, 
-        keywords={input-output programs;parallel processing;storage management;I/O access;collective prefetching;concurrent process;data prefetching;parallel I/O system;parallel application;Bandwidth;Correlation;File systems;Optimization;Prediction algorithms;Prefetching;Protocols;MPI-IO;collective prefetching;exascale computing;high-performance computing;middleware;parallel I/O;parallel file systems;performance;prefetching;storage},
-        doi={10.1109/PDSW.2010.5668089}, 
-        ISSN={2157-7242},
-}
-
-@inproceedings{HeBTAGGMCS13,
-        author = {He, Jun and Bent, John and Torres, Aaron and Grider, Gary and Gibson, Garth and Maltzahn, Carlos and Sun, Xian-He},
-        title = {I/O acceleration with pattern detection},
-        booktitle = proc # " 22nd " # hpdc,
-        series = {HPDC '13},
-        year = {2013},
-        isbn = {978-1-4503-1910-2},
-        location = {New York, New York, USA},
-        pages = {25--36},
-        numpages = {12},
-        howpublished = "\url{http://doi.acm.org/10.1145/2462902.2462909}",
-        doi = {10.1145/2462902.2462909},
-        acmid = {2462909},
-        publisher = {ACM},
-        address = {New York, NY, USA},
-        keywords = {I/O, PLFs, high performance computing, large-scale storage systems, pattern, prefetching},
-}
-
-@inproceedings{HeST12, 
-        author={Jun He and Xian-He Sun and Thakur, R.}, 
-        booktitle=proc # " " # cluster, 
-        title={KNOWAC: I/O Prefetch via Accumulated Knowledge}, 
-        year={2012}, 
-        pages={429-437}, 
-        keywords={microprocessor chips;optimisation;storage management;workstation clusters;I/O information;I/O optimizations;I/O prefetch;KNOWAC;PnetCDF framework;accumulated knowledge;cluster computing;data access behaviors;data access delay reduction;data access patterns;data usage patterns;effective data access optimizations;hardware data prefetchers;high-level I/O characteristics;high-level I/O libraries;lasting memory-wall problem;modern microprocessors;newly emerged big-data problem;performance optimizations;prefetch data;Computational modeling;Data models;Libraries;Optimization;Prefetching;Semantics}, 
-        doi={10.1109/CLUSTER.2012.83},
-}
-
-@inproceedings{VanDeBogartFK09,
-        author = {VanDeBogart, Steve and Frost, Christopher and Kohler, Eddie},
-        title = {Reducing seek overhead with application-directed prefetching},
-        booktitle = {Proceedings of the 2009 conference on USENIX Annual technical conference},
-        series = {USENIX'09},
-        year = {2009},
-        location = {San Diego, California},
-        pages = {24--24},
-        numpages = {1},
-        howpublished = "\url{http://dl.acm.org/citation.cfm?id=1855807.1855831}",
-        acmid = {1855831},
-        publisher = {USENIX Association},
-        address = {Berkeley, CA, USA},
-} 
-
-@inproceedings{ChenBSTG08,
-        author = {Chen, Yong and Byna, Surendra and Sun, Xian-He and Thakur, Rajeev and Gropp, William},
-        title = {Hiding I/O latency with pre-execution prefetching for parallel applications},
-        booktitle = proc # " " # super,
-        series = {SC '08},
-        year = {2008},
-        isbn = {978-1-4244-2835-9},
-        location = {Austin, Texas},
-        pages = {40:1--40:10},
-        articleno = {40},
-        numpages = {10},
-        howpublished = "\url{http://dl.acm.org/citation.cfm?id=1413370.1413411}",
-        acmid = {1413411},
-        publisher = {IEEE Press},
-        address = {Piscataway, NJ, USA},
-} 
-
-@MISC{BynaCST08,
-        author = {Surendra Byna and Yong Chen and Xian-he Sun and Rajeev Thakur},
-        title = {Parallel I/O Prefetching Using MPI File Caching and I/O Signatures},
-        year = {}
-}
-
-@inproceedings{CarnsLRT,
-        author = {Philip H. Carns and Walter B. Ligon and III and Robert B. Ross and Rajeev Thakur},
-        title = {PVFS: A Parallel File System for Linux Clusters},
-        booktitle = proc # " 4th " # als,
-        year = {2000},
-        month = oct,
-        pages = {317--327},
-        address = {Atlanta, Georgia, USA},
-        publisher = {USENIX Association}
-}
-
-@inproceedings{SchmuckH02,
-        author = {Frank Schmuck and Roger Haskin},
-        title = {GPFS: A Shared-Disk File System for Large Computing Clusters},
-        booktitle = proc # " 2002 " # fast,
-        year = {2002},
-        pages = {231--244}
-}
-
-@inproceedings{ProstTHJK01,
-        author = {Prost, Jean-Pierre and Treumann, Richard and Hedges, Richard and Jia, Bin and Koniges, Alice},
-        title = {MPI-IO/GPFS, an Optimized Implementation of MPI-IO on Top of GPFS},
-        booktitle = {Proceedings of the 2001 ACM/IEEE Conference on Supercomputing},
-        series = {SC '01},
-        year = {2001},
-        isbn = {1-58113-293-X},
-        location = {Denver, Colorado},
-        pages = {17--17},
-        numpages = {1},
-        url = {http://doi.acm.org/10.1145/582034.582051},
-        doi = {10.1145/582034.582051},
-        acmid = {582051},
-        publisher = {ACM},
-        address = {New York, NY, USA},
-        keywords = {GPFS, MPI-IO, SMP node, benchmark, data shipping, double buffering, file hints, optimization, performance, prefetching},
-} 
-
-@inproceedings{ColomaCWWRP04, 
-        author={Coloma, Kenin and Choudhary, A. and Wei-Keng Liao and Ward, L. and Russell, E. and Pundit, N.}, 
-        booktitle={Parallel and Distributed Processing Symposium, 2004. Proceedings. 18th International}, 
-        title={Scalable high-level caching for parallel I/O}, 
-        year={2004}, 
-        pages={96-}, 
-        keywords={cache storage;client-server systems;message passing;parallel processing;I/O system;MPl;abstraction;client-side file caching;file locking;keep caching;parallel I/O;scalable high-level caching;Bandwidth;Concurrent computing;Costs;Delay;Distributed computing;Environmental management;File systems;High performance computing;Laboratories;Throughput}, 
-doi={10.1109/IPDPS.2004.1303043}, 
-        month={April},
+@inproceedings{ThakurGL99,
+    author = {Thakur, Rajeev and Gropp, William and Lusk, Ewing},
+    title = {Data Sieving and Collective I/O in ROMIO},
+    booktitle = proc # " 7th " # mpc,
+    year = {1999},
+    pages = {182},
+    howpublished = "\url{http://dl.acm.org/citation.cfm?id=795668.796733}",
 }
 
 @inproceedings{LeeRTXW04, 
-        author={Lee, J. and Ross, R. and Thakur, R. and Xiaosong Ma and Winslett, M.}, 
-        booktitle={Cluster Computing, 2004 IEEE International Conference on}, 
-        title={RFS: efficient and flexible remote file access for MPI-IO}, 
-        year={2004}, 
-        pages={71-81}, 
-        keywords={application program interfaces;computer communications software;input-output programs;message passing;I/O facility;MPI-10;MPI-IO;ROMIO;active buffering with threads;local I/O performance;remote I/O;remote file access;remote file systems;Analytical models;Application software;Computational modeling;Computer science;Concurrent computing;Data visualization;File systems;Laboratories;Mathematics;Yarn}, 
-        doi={10.1109/CLUSTR.2004.1392604}, 
-        ISSN={1552-5244}, 
-        month={Sept},
+    author={Lee, J. and Ross, R. and Thakur, R. and Xiaosong Ma and Winslett, M.}, 
+    booktitle={Cluster Computing, 2004 IEEE International Conference on}, 
+    title={RFS: efficient and flexible remote file access for MPI-IO}, 
+    year={2004}, 
+    pages={71-81}, 
+    keywords={application program interfaces;computer communications software;input-output programs;message passing;I/O facility;MPI-10;MPI-IO;ROMIO;active buffering with threads;local I/O performance;remote I/O;remote file access;remote file systems;Analytical models;Application software;Computational modeling;Computer science;Concurrent computing;Data visualization;File systems;Laboratories;Mathematics;Yarn}, 
+    doi={10.1109/CLUSTR.2004.1392604}, 
+    ISSN={1552-5244}, 
+    month={Sept},
 }
 
 @inproceedings{XiaosongWLS03, 
-        author={Xiaosong Ma and Winslett, M. and Lee, J. and Shengke Yu}, 
-        booktitle={Parallel and Distributed Processing Symposium, 2003. Proceedings. International}, 
-        title={Improving MPI-IO output performance with active buffering plus threads}, 
-        year={2003}, 
-        pages={10 pp.-}, 
-        keywords={application program interfaces;message passing;multi-threading;software performance evaluation;MPI-IO output performance;ROMIO;active buffering with threads;application-visible cost;asynchronous I/O;collective output;collective write calls;collective write operations;compute processors;implicit synchronization overhead;parallel I/O library;processing tasks;scientific simulations;secondary storage;Bandwidth;Computational modeling;Computer science;Concurrent computing;Costs;Distributed computing;File systems;Libraries;Writing;Yarn}, 
-        doi={10.1109/IPDPS.2003.1213165}, 
-        ISSN={1530-2075}, 
-        month={April},
+    author={Xiaosong Ma and Winslett, M. and Lee, J. and Shengke Yu}, 
+    booktitle={Parallel and Distributed Processing Symposium, 2003. Proceedings. International}, 
+    title={Improving MPI-IO output performance with active buffering plus threads}, 
+    year={2003}, 
+    pages={10 pp.-}, 
+    keywords={application program interfaces;message passing;multi-threading;software performance evaluation;MPI-IO output performance;ROMIO;active buffering with threads;application-visible cost;asynchronous I/O;collective output;collective write calls;collective write operations;compute processors;implicit synchronization overhead;parallel I/O library;processing tasks;scientific simulations;secondary storage;Bandwidth;Computational modeling;Computer science;Concurrent computing;Costs;Distributed computing;File systems;Libraries;Writing;Yarn}, 
+    doi={10.1109/IPDPS.2003.1213165}, 
+    ISSN={1530-2075}, 
+    month={April},
 }
 
-@inproceedings{AliCIKLLRWS09,
-  added-at = {2015-11-05T00:00:00.000+0100},
-  author = {Ali, Nawab and Carns, Philip H. and Iskra, Kamil and Kimpe, Dries and Lang, Samuel and Latham, Robert and Ross, Robert B. and Ward, Lee and Sadayappan, P.},
-  biburl = {http://www.bibsonomy.org/bibtex/29980d038c2eef3e1e59669d4cd47ca9c/dblp},
-  booktitle = {CLUSTER},
-  ee = {http://doi.ieeecomputersociety.org/10.1109/CLUSTR.2009.5289188},
-  interhash = {271f2285538e94edced285739d1c5652},
-  intrahash = {9980d038c2eef3e1e59669d4cd47ca9c},
-  isbn = {978-1-4244-5012-1},
-  keywords = {dblp},
-  pages = {1-10},
-  publisher = {IEEE Computer Society},
-  timestamp = {2015-11-06T11:41:41.000+0100},
-  title = {Scalable I/O forwarding framework for high-performance computing systems.},
-  url = {http://dblp.uni-trier.de/db/conf/cluster/cluster2009.html#AliCIKLLRWS09},
-  year = 2009
+@online{sionlib,
+    title = {SIONlib: A Scalable I/O library for parallel access to task-local files},
+    howpublished = "\url{http://www.fz-juelich.de/ias/jsc/EN/Expertise/Support/Software/SIONlib/_node.html}",
 }
 
-@article {CPE:CPE3125,
-        author = {Liu, Qing and Logan, Jeremy and Tian, Yuan and Abbasi, Hasan and Podhorszki, Norbert and Choi, Jong Youl and Klasky, Scott and Tchoua, Roselyne and Lofstead, Jay and Oldfield, Ron and Parashar, Manish and Samatova, Nagiza and Schwan, Karsten and Shoshani, Arie and Wolf, Matthew and Wu, Kesheng and Yu, Weikuan},
-        title = {Hello ADIOS: the challenges and lessons of developing leadership class I/O frameworks},
-        journal = {Concurrency and Computation: Practice and Experience},
-        volume = {26},
-        number = {7},
-        issn = {1532-0634},
-        url = {http://dx.doi.org/10.1002/cpe.3125},
-        doi = {10.1002/cpe.3125},
-        pages = {1453--1473},
-        keywords = {high performance computing, high performance I/O, I/O middleware},
-        year = {2014},
-}
-
-@misc{Braam02,
-	Author = {Peter J. Braam},
-	Howpublished = {White Paper},
-	Month = {November},
-	Title = {{Lustre: a scalable high-performance file system}},
-	Year = {2002},
-}
-
-@misc{Ying08,
-        Author = {Liu Ying},
-        Howpublished = {White Paper},
-        Month = {October},
-        Title = {{Lustre ADIO collective write driver}},
-        Year = {2008},
-}
-
-@misc{mpispecs,
-        Author = {},
-        Howpublished = {Report},
-        Month = {},
-        Title = {{MPI: a message-passing interface standard}},
-        url = {http://www.mpi-forum.org/docs/mpi-3.0/mpi30-report.pdf},
-        pages = {473--482},
-        Year = {2012},
-}
-
-@inbook{StevensR13,
-        Author = {W. Richard Stevens and Stephen A. Rago},
-        HowPublished = {Book},
-        Month = {May},
-        Chapter = {{Advanced IPC}},
-        Pages = {642--652},
-        Title = {{Advanced programming in the UNIX environment}},
-        Booktitle = {{Advanced programming in the UNIX environment}},
-        Publisher = {Addison-Wesley professional computing series},
-        Year = {2013},
-}
-
-@incollection{ProstTHKW00,
-  author    = {Jean{-}Pierre Prost and Richard Treumann and Richard Hedges and Alice E. Koniges and Alison White},
-  title     = {Towards a High-Performance Implementation of {MPI-IO} on Top of {GPFS}},
-  booktitle = proc # " $6^{th}$ International Euro-Par Conference (Euro-Par)",
-  address = {Munich, Germany},
-  month = aug,
-  pages     = {1253--1262},
-  year      = {2000},
+@online{mercury,
+    title={{MERCURY guided I/O framework}},
+    howpublished = "\url{https://github.com/gcongiu/mercury.git}",
 }
 
 @inproceedings{CongiuGPMSB, 
-  author={G. Congiu and M. Grawinkel and F. Padua and J. Morse and T. S\"u\ss{} and A. Brinkmann}, 
-  booktitle={2014 IEEE International Conference on Cluster Computing (CLUSTER)}, 
-  title={POSTER: Optimizing scientific file I/O patterns using advice based knowledge}, 
-  year={2014}, 
-  pages={282-283}, 
-  keywords={cache storage;data structures;storage management;advice based knowledge;data prefetching;file pattern optimization;file system interfaces;storage system utilization;Kernel;Sockets;Sun}, 
-  doi={10.1109/CLUSTER.2014.6968763}, 
-  ISSN={1552-5244}, 
-  month={Sept},
+    author={G. Congiu and M. Grawinkel and F. Padua and J. Morse and T. S\"u\ss{} and A. Brinkmann}, 
+    booktitle={2014 IEEE International Conference on Cluster Computing (CLUSTER)}, 
+    title={POSTER: Optimizing scientific file I/O patterns using advice based knowledge}, 
+    year={2014}, 
+    pages={282-283}, 
+    keywords={cache storage;data structures;storage management;advice based knowledge;data prefetching;file pattern optimization;file system interfaces;storage system utilization;Kernel;Sockets;Sun}, 
+    doi={10.1109/CLUSTER.2014.6968763}, 
+    ISSN={1552-5244}, 
+    month={Sept},
+}
+
+@inproceedings{ThakurGL96,
+    author = {Rajeev Thakur and William Gropp and Ewing Lusk},
+    title = {An Abstract-Device Interface for Implementing Portable Parallel-I/O Interfaces },
+    booktitle = proc # " $6^{th}$ " # mpc,
+    year = {1996},
+    pages = {180--187},
+    publisher = {IEEE Computer Society Press}
+}
+
+@article{ThakurC96,
+    author    = {Rajeev Thakur and Alok N. Choudhary},
+    title     = {An Extended Two-Phase Method for Accessing Sections of Out-of-Core Arrays},
+    journal   = {Scientific Programming},
+    volume    = {5},
+    number    = {4},
+    pages     = {301--317},
+    year      = {1996},
+}
+
+@inproceedings{LiaoA08,
+    author  = {Wei{-}keng Liao and Alok N. Choudhary},
+    title   = {Dynamically adapting file domain partitioning methods for collective {I/O} based on underlying parallel file system locking protocols},
+    booktitle=proc # " 2008 " # super, 
+    month   = nov,
+    address = {Austin, Texas, {USA}},
+    year    = {2008},
+}
+
+@inproceedings{YinYTY12,
+    author    = {Yin Lu and Yong Chen and Rajeev Thakur and Yu Zhuang},
+    title     = {Abstract: Memory-Conscious Collective {I/O} for Extreme-Scale {HPC} Systems},
+    booktitle = proc # " 2012 " # scc,
+    pages     = {1360--1361},
+    year      = {2012},
+    month = nov, 
+    address = {Salt Lake City, UT, USA},
+}
+
+@inproceedings{WeikuanV08, 
+    author={Weikuan Yu and Vetter, J.}, 
+    booktitle=proc # " $37^{th}$ " # icpp, 
+    title={ParColl: Partitioned Collective I/O on the Cray XT}, 
+    year={2008}, 
+    month=sep, 
+    pages={562-569}, 
+    keywords={file organisation;parallel processing;synchronisation;Cray XT;I-O aggregator distribution;ParColl;file area partitioning;file consistency;global process synchronization;intermediate file views;parallel processes;partitioned collective I-O;Bandwidth;Computer science;Costs;Laboratories;Large-scale systems;Mathematics;Parallel processing;Protocols;Scalability;Throughput;Collective Wall;Cray XT;Partitioned Collective I/O}, 
+    doi={10.1109/ICPP.2008.76}, 
+    ISSN={0190-3918},
+}
+
+@inproceedings{YongXTRG11, 
+    author={Yong Chen and Xian-He Sun and Thakur, R. and Roth, P.C. and Gropp, W.D.}, 
+    booktitle=proc # " $25^{th}$ " # ipdps, 
+    title={LACIO: A New Collective I/O Strategy for Parallel I/O Systems}, 
+    year={2011}, 
+    month={May}, 
+    address = {Anchorage, Alaska, USA},
+    pages={794-804}, 
+}
+
+@inproceedings{HeSSYT11,
+    author = {He, Jun and Song, Huaiming and Sun, Xian-He and Yin, Yanlong and Thakur, Rajeev},
+    title = {Pattern-aware File Reorganization in MPI-IO},
+    booktitle = proc # " $6^{th}$ " # pdsw,
+    year = {2011},
+    address = {Seattle, Washington, USA},
+    pages = {43--48},
+}
+
+@inproceedings{XuechenJD09, 
+    author={Xuechen Zhang and Jiang, S. and Davis, K.}, 
+    booktitle=proc # " 2009 " # ipdps, 
+    title={Making resonance a common case: A high-performance implementation of collective I/O on parallel file systems}, 
+    year={2009}, 
+    month={May}, 
+    pages={1-12}, 
+    keywords={client-server systems;data handling;input-output programs;parallel programming;pattern recognition;software portability;storage management;MPIIO software;client-based scheme;collective I/O;data striping pattern;high-performance implementation;parallel computing;parallel file systems;portability;request pattern;server-based scheme;storage system configuration;Concurrent computing;Degradation;File servers;File systems;High performance computing;Laboratories;Parallel processing;Pattern matching;Resonance;Throughput}, 
+    doi={10.1109/IPDPS.2009.5161070}, 
+    ISSN={1530-2075},
+}
+
+@inproceedings{JilianYY13,
+    author    = {Jialin Liu and Yong Chen and Yi Zhuang},
+    title     = {Hierarchical {I/O} Scheduling for Collective {I/O}},
+    booktitle = proc # { $13^{th}$ {IEEE/ACM} International Symposium on Cluster, Cloud, and Grid Computing (CCGrid)},
+    address = {Delft, Netherlands},
+    month = may,
+    pages     = {211--218},
+    year      = {2013},
+}
+
+@article{Liao11,
+    author    = {Wei{-}keng Liao},
+    title     = {Design and Evaluation of {MPI} File Domain Partitioning Methods under Extent-Based File Locking Protocol},
+    journal   = {{IEEE} Transactions on Parallel and Distributed Systems},
+    volume    = {22},
+    number    = {2},
+    pages     = {260--272},
+    year      = {2011},
+}
+
+@inproceedings{ProstTHJK01,
+    author = {Prost, Jean-Pierre and Treumann, Richard and Hedges, Richard and Jia, Bin and Koniges, Alice},
+    title = {MPI-IO/GPFS, an Optimized Implementation of MPI-IO on Top of GPFS},
+    booktitle = {Proceedings of the 2001 ACM/IEEE Conference on Supercomputing},
+    series = {SC '01},
+    year = {2001},
+    isbn = {1-58113-293-X},
+    location = {Denver, Colorado},
+    pages = {17--17},
+    numpages = {1},
+    url = {http://doi.acm.org/10.1145/582034.582051},
+    doi = {10.1145/582034.582051},
+    acmid = {582051},
+    publisher = {ACM},
+    address = {New York, NY, USA},
+    keywords = {GPFS, MPI-IO, SMP node, benchmark, data shipping, double buffering, file hints, optimization, performance, prefetching},
+}
+
+@inproceedings{AliCIKLLRWS09,
+    added-at = {2015-11-05T00:00:00.000+0100},
+    author = {Ali, Nawab and Carns, Philip H. and Iskra, Kamil and Kimpe, Dries and Lang, Samuel and Latham, Robert and Ross, Robert B. and Ward, Lee and Sadayappan, P.},
+    biburl = {http://www.bibsonomy.org/bibtex/29980d038c2eef3e1e59669d4cd47ca9c/dblp},
+    booktitle = {CLUSTER},
+    ee = {http://doi.ieeecomputersociety.org/10.1109/CLUSTR.2009.5289188},
+    interhash = {271f2285538e94edced285739d1c5652},
+    intrahash = {9980d038c2eef3e1e59669d4cd47ca9c},
+    isbn = {978-1-4244-5012-1},
+    keywords = {dblp},
+    pages = {1-10},
+    publisher = {IEEE Computer Society},
+    timestamp = {2015-11-06T11:41:41.000+0100},
+    title = {Scalable I/O forwarding framework for high-performance computing systems.},
+    url = {http://dblp.uni-trier.de/db/conf/cluster/cluster2009.html#AliCIKLLRWS09},
+    year = 2009
+}
+
+@misc{Ying08,
+    Author = {Liu Ying},
+    Howpublished = {White Paper},
+    Month = {October},
+    Title = {{Lustre ADIO collective write driver}},
+    Year = {2008},
+}
+
+@incollection{ProstTHKW00,
+    author    = {Jean{-}Pierre Prost and Richard Treumann and Richard Hedges and Alice E. Koniges and Alison White},
+    title     = {Towards a High-Performance Implementation of {MPI-IO} on Top of {GPFS}},
+    booktitle = proc # " $6^{th}$ International Euro-Par Conference (Euro-Par)",
+    address = {Munich, Germany},
+    month = aug,
+    pages     = {1253--1262},
+    year      = {2000},
 }
 
 @inproceedings{CongiuNSB, 
-  author={G. Congiu and S. Narasimhamurthy and T. S\"u\ss{} and A. Brinkmann}, 
-  booktitle={2016 IEEE International Conference on Cluster Computing (CLUSTER)}, 
-  title={Improving Collective I/O Performance Using Non-volatile Memory Devices}, 
-  year={2016}, 
-  pages={120-129}, 
-  keywords={Bandwidth;Layout;Memory management;Nonvolatile memory;Performance evaluation;Servers;Synchronization;Collective I/O;HPC;MPI-IO;Non-Volatile Memory}, 
-  doi={10.1109/CLUSTER.2016.37}, 
-  month={Sept},
+    author={G. Congiu and S. Narasimhamurthy and T. S\"u\ss{} and A. Brinkmann}, 
+    booktitle={2016 IEEE International Conference on Cluster Computing (CLUSTER)}, 
+    title={Improving Collective I/O Performance Using Non-volatile Memory Devices}, 
+    year={2016}, 
+    pages={120-129}, 
+    keywords={Bandwidth;Layout;Memory management;Nonvolatile memory;Performance evaluation;Servers;Synchronization;Collective I/O;HPC;MPI-IO;Non-Volatile Memory}, 
+    doi={10.1109/CLUSTER.2016.37}, 
+    month={Sept},
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% Parallel File Systems %%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+@inproceedings{CarnsLRT,
+    author = {Philip H. Carns and Walter B. Ligon and III and Robert B. Ross and Rajeev Thakur},
+    title = {PVFS: A Parallel File System for Linux Clusters},
+    booktitle = proc # " 4th " # als,
+    year = {2000},
+    month = oct,
+    pages = {317--327},
+    address = {Atlanta, Georgia, USA},
+    publisher = {USENIX Association}
+}
+
+@inproceedings{SchmuckH02,
+    author = {Frank Schmuck and Roger Haskin},
+    title = {GPFS: A Shared-Disk File System for Large Computing Clusters},
+    booktitle = proc # " 2002 " # fast,
+    year = {2002},
+    pages = {231--244}
+}
+
+@misc{Braam02,
+    Author = {Peter J. Braam},
+    Howpublished = {White Paper},
+    Month = {November},
+    Title = {{Lustre: a scalable high-performance file system}},
+    Year = {2002},
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% I/O pattern characterization %%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+@inproceedings{CarnsHABLLR11, 
+    author={Carns, P. and Harms, K. and Allcock, W. and Bacon, C. and Lang, S. and Latham, R. and Ross, R.}, 
+    booktitle = proc # " 27th " # msst,
+    title={Understanding and improving computational science storage access through continuous characterization}, 
+    year={2011}, 
+    pages={1-14}, 
+    keywords={storage management;I/O behavior;computational science storage access;powerful storage systems;production system;static file system analysis;storage device instrumentation;Aggregates;Benchmark testing;Instruments;Lead;Measurement;Production;Scientific computing}, 
+    doi={10.1109/MSST.2011.5937212}, 
+    ISSN={2160-195X},
+}
+
+@inproceedings{ChingCLP06, 
+    author={Avery Ching and Alok N. Choudhary and Wei{-}keng Liao and Lee Ward and Neil Pundit}, 
+    booktitle=proc # " $20^{th}$ " # ipdps, 
+    title={Evaluating I/O characteristics and methods for storing structured scientific data}, 
+    year={2006}, 
+    month= apr, 
+    address = {Rhodes Island, Greece},
+}
+
+@article{TranR04,
+    author = {Tran, Nancy and Reed, Daniel A.},
+    title = {Automatic ARIMA Time Series Modeling for Adaptive I/O Prefetching},
+    journal = {IEEE Trans. Parallel Distrib. Syst.},
+    issue_date = {April 2004},
+    volume = {15},
+    number = {4},
+    month = apr,
+    year = {2004},
+    issn = {1045-9219},
+    pages = {362--377},
+    numpages = {16},
+    howpublished = "\url{http://dx.doi.org/10.1109/TPDS.2004.1271185}",
+    doi = {10.1109/TPDS.2004.1271185},
+    acmid = {972266},
+    publisher = {IEEE Press},
+    address = {Piscataway, NJ, USA},
+    keywords = {Input/output, adaptive prefetching, access patterns, performance modeling and prediction, time series analysis, pattern analysis, least squares methods, wavelets.},
+}
+
+@inproceedings{ChangG99,
+    author = {Chang, Fay and Gibson, Garth A.},
+    title = {Automatic I/O hint generation through speculative execution},
+    booktitle = proc # " 3rd " # osdi,
+    series = {OSDI '99},
+    year = {1999},
+    isbn = {1-880446-39-1},
+    location = {New Orleans, Louisiana, USA},
+    pages = {1--14},
+    numpages = {14},
+    howpublished = "\url{http://dl.acm.org/citation.cfm?id=296806.296807}",
+    acmid = {296807},
+    publisher = {USENIX Association},
+    address = {Berkeley, CA, USA},
+}
+
+@inproceedings{ChenR10, 
+    author={Yong Chen and Roth, P.C.}, 
+    booktitle= proc # " 5th " # pdsw, 
+    title={Collective prefetching for parallel I/O systems}, 
+    year={2010}, 
+    pages={1-5}, 
+    keywords={input-output programs;parallel processing;storage management;I/O access;collective prefetching;concurrent process;data prefetching;parallel I/O system;parallel application;Bandwidth;Correlation;File systems;Optimization;Prediction algorithms;Prefetching;Protocols;MPI-IO;collective prefetching;exascale computing;high-performance computing;middleware;parallel I/O;parallel file systems;performance;prefetching;storage},
+    doi={10.1109/PDSW.2010.5668089}, 
+    ISSN={2157-7242},
+}
+
+@inproceedings{HeBTAGGMCS13,
+    author = {He, Jun and Bent, John and Torres, Aaron and Grider, Gary and Gibson, Garth and Maltzahn, Carlos and Sun, Xian-He},
+    title = {I/O acceleration with pattern detection},
+    booktitle = proc # " 22nd " # hpdc,
+    series = {HPDC '13},
+    year = {2013},
+    isbn = {978-1-4503-1910-2},
+    location = {New York, New York, USA},
+    pages = {25--36},
+    numpages = {12},
+    howpublished = "\url{http://doi.acm.org/10.1145/2462902.2462909}",
+    doi = {10.1145/2462902.2462909},
+    acmid = {2462909},
+    publisher = {ACM},
+    address = {New York, NY, USA},
+    keywords = {I/O, PLFs, high performance computing, large-scale storage systems, pattern, prefetching},
+}
+
+@inproceedings{HeST12, 
+    author={Jun He and Xian-He Sun and Thakur, R.}, 
+    booktitle=proc # " " # cluster, 
+    title={KNOWAC: I/O Prefetch via Accumulated Knowledge}, 
+    year={2012}, 
+    pages={429-437}, 
+    keywords={microprocessor chips;optimisation;storage management;workstation clusters;I/O information;I/O optimizations;I/O prefetch;KNOWAC;PnetCDF framework;accumulated knowledge;cluster computing;data access behaviors;data access delay reduction;data access patterns;data usage patterns;effective data access optimizations;hardware data prefetchers;high-level I/O characteristics;high-level I/O libraries;lasting memory-wall problem;modern microprocessors;newly emerged big-data problem;performance optimizations;prefetch data;Computational modeling;Data models;Libraries;Optimization;Prefetching;Semantics}, 
+    doi={10.1109/CLUSTER.2012.83},
+}
+
+@inproceedings{VanDeBogartFK09,
+    author = {VanDeBogart, Steve and Frost, Christopher and Kohler, Eddie},
+    title = {Reducing seek overhead with application-directed prefetching},
+    booktitle = {Proceedings of the 2009 conference on USENIX Annual technical conference},
+    series = {USENIX'09},
+    year = {2009},
+    location = {San Diego, California},
+    pages = {24--24},
+    numpages = {1},
+    howpublished = "\url{http://dl.acm.org/citation.cfm?id=1855807.1855831}",
+    acmid = {1855831},
+    publisher = {USENIX Association},
+    address = {Berkeley, CA, USA},
+} 
+
+@inproceedings{ChenBSTG08,
+    author = {Chen, Yong and Byna, Surendra and Sun, Xian-He and Thakur, Rajeev and Gropp, William},
+    title = {Hiding I/O latency with pre-execution prefetching for parallel applications},
+    booktitle = proc # " " # super,
+    series = {SC '08},
+    year = {2008},
+    isbn = {978-1-4244-2835-9},
+    location = {Austin, Texas},
+    pages = {40:1--40:10},
+    articleno = {40},
+    numpages = {10},
+    howpublished = "\url{http://dl.acm.org/citation.cfm?id=1413370.1413411}",
+    acmid = {1413411},
+    publisher = {IEEE Press},
+    address = {Piscataway, NJ, USA},
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% Other online resources %%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+@MISC{BynaCST08,
+    author = {Surendra Byna and Yong Chen and Xian-he Sun and Rajeev Thakur},
+    title = {Parallel I/O Prefetching Using MPI File Caching and I/O Signatures},
+    year = {}
+}
+
+
+@ONLINE{Comer14,
+    title = {{Lustre file system acceleration using server or storage-side caching: basic approaches and application use cases}},
+    howpublished = "\url{http://opensfs.org/wp-content/uploads/2014/04/D2_S27_LustreFileSystemAccelerationUsingServerorStorageSideCaching.pdf}",
+}
+
+@ONLINE{AdviseAPI,
+    title = {{posix\_fadvise}},
+    howpublished = "\url{http://linux.die.net/man/2/posix_fadvise}",
+}
+
+@ONLINE{mmpmon,
+    title ={{GPFS monitoring tool}},
+    howpublished = "\url{https://publib.boulder.ibm.com/infocenter/clresctr/vxrx/index.jsp?topic=%2Fcom.ibm.cluster.gpfs.v3r5.gpfs200.doc%2Fbl1adv_mmpmonch.htm}",
+}
+
+@ONLINE{root,
+    title ={{ROOT, A Data Analysis Framework}},
+    howpublished = "\url{http://root.cern.ch/drupal}",
+}
+
+@ONLINE{GPFSHINTS,
+    title = {{gpfs\_fcntl subroutine}},
+    howpublished = "\url{https://publib.boulder.ibm.com/infocenter/clresctr/vxrx/index.jsp?topic=%2Fcom.ibm.cluster.gpfs.v3r5.gpfs100.doc%2Fbl1adm_fcntl.htm}",
+}
+
+@ONLINE{UnixSock,
+    title = {{UNIX Domain Sockets}},
+    howpublished = "\url{http://linux.die.net/man/7/unix}",
+}
+
+@ONLINE{iozone,
+    title = {{iozone benchmark}},
+    howpublished = "\url{http://www.iozone.org/}",
+}
+
+@ONLINE{ioapps,
+    title = {{ioapps I/O profiling tools}},
+    howpublished = "\url{https://code.google.com/p/ioapps}",
+}
+
+@ONLINE{collectl,
+    title = {{Lustre collectl monitoring tool}},
+    howpublished = "\url{http://collectl.sourceforge.net/index.html}",
+}
+
+@ONLINE{deep,
+    title = {{DEEP, Dynamic Exascale Entry Platform}},
+    howpublished = "\url{http://www.deep-project.eu}",
+}
+
+@ONLINE{deep-er,
+    title = {{DEEP-ER, Dynamic Exascale Entry Platform - Extended Reach}},
+    howpublished = "\url{http://www.deep-er.eu}",
+}
+
+@ONLINE{e10,
+    title = {{Exascale10 (E10) initiative}},
+    howpublished = "\url{http://www.exascale10.com}",
+}
+
+@ONLINE{E10-DEEPER,
+    title = {{Exascale10 (E10) Code Base}},
+    howpublished = "\url{http://www.github.com/gcongiu/E10.git}",
+}
+
+@ONLINE{fhgfs,
+    title = {{Fraunhofer File System}},
+    howpublished = "\url{http://www.beegfs.com/cms}",
+}
+
+@ONLINE{mpe,
+    title = {{MPI Parallel Environment}},
+    howpublished = "\url{http://www.mcs.anl.gov/research/projects/perfvis/software/MPE}",
+}
+
+@ONLINE{fastforward,
+    title = {{Fast Forward I/O project}},
+    howpublished = "\url{https://users.soe.ucsc.edu/~ivo/blog/2013/04/07/the-ff-stack}",
+}
+
+@ONLINE{parastation,
+    title = {{Parastation MPI}},
+    howpublished = "\url{http://www.par-tec.com/products/parastation-mpi.html}",
+}
+
+@ONLINE{IME,
+    title = {{DDN Infinite Memory Engine}},
+    howpublished = "\url{http://www.ddn.com/products/infinite-memory-engine-ime14k/}",
+}
+
+@ONLINE{Nytro,
+    title = {Nytro: Flash Acceleration For High-performance Computing Applications},
+    howpublished = "\url{http://www.seagate.com/it/it/about-seagate/news/clusterstor-system-with-flash-acceleration-pr-master/}",
+}
+
+@ONLINE{SCR,
+    title = {{Scalable Checkpoint Restart library}},
+    howpublished = "\url{http://computation.llnl.gov/projects/scalable-checkpoint-restart-for-mpi}",
+}
+
+@MISC{POSIX,
+    author = {},
+    title = {Standard for Information Technology - Portable Operating System Interface (POSIX)},
+    howpublished = {},
+    url = {https://mirror.math.princeton.edu/pub/oldlinux/download/c953.pdf}
+}
+
+@inproceedings{ColomaCWWRP04, 
+    author={Coloma, Kenin and Choudhary, A. and Wei-Keng Liao and Ward, L. and Russell, E. and Pundit, N.}, 
+    booktitle={Parallel and Distributed Processing Symposium, 2004. Proceedings. 18th International}, 
+    title={Scalable high-level caching for parallel I/O}, 
+    year={2004}, 
+    pages={96-}, 
+    keywords={cache storage;client-server systems;message passing;parallel processing;I/O system;MPl;abstraction;client-side file caching;file locking;keep caching;parallel I/O;scalable high-level caching;Bandwidth;Concurrent computing;Costs;Delay;Distributed computing;Environmental management;File systems;High performance computing;Laboratories;Throughput}, 
+doi={10.1109/IPDPS.2004.1303043}, 
+    month={April},
+}
+
+@misc{mpispecs,
+    Author = {},
+    Howpublished = {Report},
+    Month = {},
+    Title = {{MPI: a message-passing interface standard}},
+    url = {http://www.mpi-forum.org/docs/mpi-3.0/mpi30-report.pdf},
+    pages = {473--482},
+    Year = {2012},
+}
+
+@misc{ASCAC2010,
+    author = {},
+    howpublished = {Report},
+    title = {The Opportunities and Challenges of Exascale Computing},
+    year = {2010},
+    url = {https://science.energy.gov/~/media/ascr/ascac/pdf/reports/Exascale_subcommittee_report.pdf},
+}
+
+@misc{NIST,
+    author = {},
+    howpublished = {Report},
+    title = {The Future of Data Storage Technologies},
+    pages = {13--17},
+    year = {1999},
+    url = {http://www.wtec.org/pdf/hdmem.pdf},
+}
+
+@inbook{StevensR13,
+    Author = {W. Richard Stevens and Stephen A. Rago},
+    HowPublished = {Book},
+    Month = {May},
+    Chapter = {{Advanced IPC}},
+    Pages = {642--652},
+    Title = {{Advanced programming in the UNIX environment}},
+    Booktitle = {{Advanced programming in the UNIX environment}},
+    Publisher = {Addison-Wesley professional computing series},
+    Year = {2013},
 }

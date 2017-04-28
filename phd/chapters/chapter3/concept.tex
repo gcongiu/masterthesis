@@ -376,6 +376,99 @@ When invoked, the close routine will trigger the flushing of the cache (\codewor
 
 Figure~\ref{figure: new_coll_io_impl} graphically shows the modified flow diagram for the new collective I/O implementation just described. Compared to Figure~\ref{figure: coll_io_impl}, there is now an additional component representing the synchronisation thread. When data is written to the cache file, a synchronisation request for the written data is initialised and submitted to the \codeword{ADIOI\_Sync\_thread\_t} object. The object's pthread continuously search in the submission queue (\textit{sub\_}) for new synchronisation requests to satisfy.
 
+\subsection{BeeGFS Cache Integration in ROMIO}
+The BeeGFS file system provides its own caching infrastructure, which includes a set of APIs to control the caching functionalities and a deamon process, running on the host machine, that takes care of moving data between the cache and the global file system. For this reason, some of the cache plugin features presented before for the universal file system module are redundant. In particular, we do not any longer need to manually open a cache file in the host and start a pool of synchronisation threads. When using the BeeGFS cache API the file system will take care of all these aspects for us. Nevertheless, we can still recycle some part of the cache plugin as described below.
+
+\subsubsection{Cache Opening}
+The BeeGFS collective open function is implemented in \codeword{ADIOI\_BEEGFS\_OpenColl()}. This will be automatically invoked when \codeword{MPI\_File\_open()} is called by the application. The implementation for the collective open is similar to the universal file system implementation and is reported in Listing~\ref{list: beegfs_opencoll}.
+
+\begin{lstlisting}[language=C, caption=BeeGFS Collective Open Implementation, label={list: beegfs_opencoll}]
+void ADIOI_BEEGFS_OpenColl(...) {
+
+  ...
+
+  /* workout parent directory for file */
+  dir = ADIOI_Dirname(fd->filename);
+
+fn_open:
+  if (access_mode & ADIO_CREATE) {
+    if (rank == fd->hints->ranklist[0]) {
+      /* remove delete on close flag if set */
+      if (access & ADIO_DELETE_ON_CLOSE)
+        fd->access_mode = access_mode ^ 
+                          ADIO_DELETE_ON_CLOSE;
+      else
+        fd->access_mode = access_mode;
+      
+      /* prefetch the parent dir into the cache */
+      if (fd->hints->e10_cache == ADIOI_HINT_ENABLE) {
+        ret = deeper_cache_prefetch(dir, 
+                DEEPER_PREFETCH_SUBDIR | 
+                DEEPER_PREFETCH_WAIT);
+
+        /* enforce synchronous flush 
+         * when closing the file */
+        fd->cache_oflags = DEEPER_OPEN_FLUSHONCLOSE | 
+                           DEEPER_OPEN_FLUSHWAIT;
+      } else {
+        ret = DEEPER_RETVAL_SUCCESS;
+      }
+
+      ...
+
+      /* only the rank 0 process creates the file 
+       * invoking deeper_cache_open() */
+      if (ret == DEEPER_RETVAL_SUCCESS || 
+           (ret == DEEPER_RETVAL_ERROR && errno == EEXIST)) 
+      {
+        (*(fd->fns->ADIOI_xxx_Open))(fd, error_code);
+      }
+
+      /* close the cache file forcing BeeGFS to flush it */
+      if (*error_code == MPI_SUCCESS)
+        (*(fd->fns->ADIOI_xxx_Close))(fd, error_code);
+
+      MPI_Bcast(error_code, 1, MPI_INT, 
+                fd->hints->ranklist[0], fd->comm);
+
+      /* restore the delete on close flag if it was set */
+      fd->access_mode = access_mode;
+    } else {
+      MPI_Bcast(error_code, 1, MPI_INT, 
+                fd->hints->ranklist[0], fd->comm);
+    }
+
+    /* check cache errors and if any revert 
+     * to standard I/O */
+  }
+
+  /* now every process opens the file */
+
+  if (fd->hints->e10_cache == ADIOI_HINT_ENABLE) {
+    deeper_cache_prefetch(dir, DEEPER_PREFETCH_SUBDIR |
+                               DEEPER_PREFETCH_WAIT);
+
+    /* default open flags */
+    fd->cache_oflags = DEEPER_OPEN_FLUSHONCLOSE | 
+                       DEEPER_OPEN_FLUSHWAIT;
+
+    if (fd->hints->e10_cache_discard_flag == 
+        ADIOI_HINT_ENABLE)
+      fd->cache_oflags |= DEEPER_OPEN_DISCARD;
+
+  }
+
+  (*(fd->fns->ADIOI_xxx_Open))(fd, error_code);
+
+  ...
+
+}
+\end{lstlisting}
+
+Similarly to before, the rank 0 process needs to setup the cache by prefetching the file parent directory into the cache, through \codeword{deeper\_cache\_prefetch()}. Afterwards, rank 0 opens the file inside the prefetched directory by invoking the local open (\codeword{ADIOI\_BEEGFS\_Open()}). The local open performs the real open operation using \codeword{deeper\_cache\_open()} instead of \codeword{open()}. If the open succeeds the cache file is closed, thus forcing BeeGFS to mirror it in the global file system. At this point all the other processes can prefetch the parent directory and the file created by rank 0 inside it.
+
+By default the cache open flags for the file, \codeword{fd->cache\_oflags}, are always set to DEEPER\_FLUSHONCLOSE and DEEPER\_FLUSHWAIT; this means that if there is any non-synchronised data in the cache, the close operation will force this data to be flushed to the global file system and will not return until all the data has been copied.
+
 \subsection{Cache Consistency Semantics}
 \label{subsec: consistency}
 As far as write consistency is concerned, the MPI-IO interface does not make any assumption regarding the underlying storage system or its semantics. ROMIO specifically supports file systems that are both POSIX compliant, like Lustre, and non-POSIX compliant, like NFS or PVFS. In MPI-IO, written data becomes globally visible only after either \codeword{MPI\_File\_sync()} or \codeword{MPI\_File\_close()} are invoked on the MPI file handle and by default there is no write atomicity. The motivation is that data can be cached at some level locally in the compute nodes. The ROMIO implementation can overcome the risk of data inconsistency, e.g. related to false sharing of file system blocks, using persistent file realms~\cite{ColomaCWWRP04}, and can even enforce atomicity using \codeword{MPI\_File\_set\_atomicity()}.

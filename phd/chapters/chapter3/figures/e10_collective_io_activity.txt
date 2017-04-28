@@ -1,0 +1,64 @@
+@startuml
+start
+partition ADIOI_GEN_WriteStridedColl {
+#LightGrey:if (Interleaved) then (yes)
+  #LightGrey:ADIOI_Calc_file_domains;
+  #LightGrey:ADIOI_Calc_my_req;
+  #LightGrey:ADIOI_Calc_others_req;
+  #LightGrey:ntimes=(end_loc-st_loc+\ncoll_bufsize)/coll_bufsize;
+  partition ADIOI_Exch_and_write {
+  #Tomato:m := 0;
+  #Tomato:while (m < ntimes?) is (yes)
+  partition ADIOI_W_Exchange_data {
+    #LightBlue:MPI_Alltoall;
+    note right 
+      Global Synchronisation
+      Contribution
+    end note
+    #LightBlue:MPI_Irecv;
+    #LightBlue:MPI_Isend;
+    #LightBlue:MPI_Waitall;
+    note right
+      Communication
+      Contribution
+    end note
+  }
+  partition ADIOI_GEN_WriteContig {
+  #Violet:pwrite(fd->cache_fd, ...);
+  note right
+    Write Contribution
+  end note
+  partition ADIOI_Sync_thread_t {
+    #LightGreen:ADIOI_Sync_thread_enqueue;
+    note right
+      Push Request to
+      Pending Queue
+    end note
+    #LightGreen:if (flush_immediate?) then (yes)
+      #LightGreen:ADIOI_Sync_thread_flush;
+      note right
+        Move Request from
+        Pending to Submit
+        Queue
+      end note
+    endif 
+  }
+  }
+  #Tomato:m := m + 1;
+  endwhile (no)
+  }
+  #LightGrey:MPI_Allreduce;
+  note right
+    Global Synchronisation
+    Contribution
+  end note
+else (no)
+  #LightGrey:if (Contiguous) then (yes)
+    #LightGrey:ADIOI_GEN_WriteContig(fd, ...);
+  else (no)
+    #LightGrey:ADIOI_GEN_WriteStrided(fd, ...);
+  endif
+endif
+}
+stop
+@enduml
