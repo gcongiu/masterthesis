@@ -1,4 +1,4 @@
-\documentclass[a4paper,titlepage,oneside,10pt]{book}
+\documentclass[a4paper,titlepage,oneside,11pt]{book}
 %*******************************************************************************************
 % USEPACKAGE
 %*******************************************************************************************
@@ -104,7 +104,7 @@
 
 \begin{center}
 	\vspace{2cm}{
-                \Huge \textsc{\textbf{Exploiting File Caching Infrastructures in HPC Using Guided I/O Interfaces}} \\
+                \Huge \textsc{\textbf{Exploiting File Caching Infrastructures in HPC Using Guided I/O Interfaces and Non-Volatile Memory Devices}} \\
 	        \vspace{0.45cm}
 	        \rule{\textwidth}{1.5mm}
         } \\
@@ -132,10 +132,10 @@
 \newpage
 \thispagestyle{empty}
 \newpage
-\begin{center}
-\textit{To my family.}\\
-\textit{Dedicato alla mia famiglia che mi \`e sempre stata vicino in questi anni.}
-\end{center}
+%\begin{center}
+%\textit{To my family.}\\
+%\textit{Dedicato alla mia famiglia che mi \`e sempre stata vicino in questi anni.}
+%\end{center}
 %\pagenumbering{roman}\setcounter{page}{1}
 \newpage
 \thispagestyle{empty}
@@ -158,55 +158,59 @@
 % CHAPTERS
 %*******************************************************************************************
 \pagenumbering{roman}\setcounter{page}{3}
+\chapter*{Acknowledgments}
+This work would have not been possible without the many people that I have worked with in these years at Xyratex and Seagate. First of all Malcolm Muggeridge that offered me the possibility to work with his team of professionals.
+Among the people in the team special thanks go to Dr. Sai Narasimhamurthy for his technical supervision and to Stuart Smithson for his helpful advice and encouragement. I would also like to thank my academic advisor Prof. Andr\'e 
+Brinkmann for his valuable help in overcoming difficulties with the progression of the Ph.D. and to all his team of Ph.D. students and Postdocs I had the pleasure to work with. Finally, I cannot forget my family and friends that 
+supported me morally during all these years. 
+
+\vspace{\fill}
+This work has been funded by the FP7 program of the European Commission through the Scalus and DEEP-ER (Grant Agreement no. 610476) projects and it has been supported by the Exascale1O (E10) initiative.
+
 \chapter*{\centering \small Abstract} \addcontentsline{toc}{chapter}{Abstract} 
 Large scale high performance computing clusters can be composed of thousands of compute nodes with hundreds of cores each, connected through a low-latency, high-bandwidth network fabric. These large systems typically 
-rely on a smaller dedicated cluster to persistently store and retrieve data. Storage clusters of this type can have thousands of hard disk drives, distributed across hundreads of I/O nodes connected through a storage 
-area network. All the available storage resources are managed by a parallel file system software. The performance gap between storage and compute components causes scientific applications running on high performance 
+rely on a smaller dedicated cluster to persistently store and retrieve data. Storage clusters of this type can have thousands of hard disk drives, distributed across hundreds of I/O nodes connected through a storage 
+area network. All the available storage resources are managed by a distributed parallel file system software. The performance gap between storage and compute components causes scientific applications running on high performance 
 computing clusters to spend a large amount of time waiting on I/O operations, thus wasting CPU cycles. This problem will be exacerbated as we enter the Exascale computing era, since technological advancements in storage
 and compute do not progress at the same pace. In this context file caching represents a viable mechanism to mitigate this technological gap. File caching exploits spatial and temporal locality of data to retain parts 
-of the file in main memory. In this way requests targeting cached data can be served in main memory, saving the application a network round trip to retrieve the data from the remote I/O nodes, and ultimately reducing I/O 
-latency. Spatial locality is normally exploited for sequential read patterns using the readahead mechanism. When using readahead, the cache manager reads into the cache more data than originally requested by the application 
-(prefetch), assuming that this will have a high probability of being requested in the future. Temporal locality, on the other hand, reflects on the cache replacement policy and is exploited by evicting from the cache the least recently accessed data 
-first, assuming that older data has a lower probability of being requested in the future. These policies are based on suboptimal heuristics. Unfortunately, scientific codes can generate complex I/O patterns and the use of simple heuristic 
-based caching policies might result in more harm than good for the application's performance. Fortunately, file systems often provide mechanisms allowing programmers to disclose I/O pattern knowledge to the lower layers of the 
-I/O software stack through a hints API. The file system can use the hints information to guide data prefetching into the cache or to disable readahead if the I/O pattern is random. The problem with hints APIs is that these are 
-rarely used in practice, missing the opportunity of taking advantage of the full potential of the storage system. 
+of the file in main memory, a dynamic random access memory. In this way requests targeting cached data can be served in main memory, saving the application a network round trip to retrieve the data from the remote I/O nodes,
+ultimately reducing I/O latency. Spatial locality is normally exploited for sequential file read patterns using the read-ahead mechanism. When using read-ahead, the file system reads into the cache more data than originally 
+requested by the application (prefetch), assuming that this will have a high probability of being requested in the future. Temporal locality, on the other hand, reflects on the cache replacement policy and is exploited by evicting 
+from the cache the least recently accessed data first, assuming that older data has a lower probability of being requested in the future. These policies are based on suboptimal heuristics. Unfortunately, scientific codes can generate 
+complex I/O patterns and the use of simple heuristics by the file system might result in more harm than good for the application's performance. Fortunately, file systems often provide mechanisms allowing programmers to disclose 
+I/O pattern knowledge to the lower layers of the I/O software stack through a hints API. The file system can use the hints information to guide data prefetching into the cache or to disable read-ahead if the I/O pattern is random. 
+The problem with hints APIs is that these are rarely used in practice, missing the opportunity of taking advantage of the full potential of the storage system. 
 In the first part of this thesis we present Mercury, a transparent guided I/O middleware that exploits the hints APIs provided by different file systems to optimize file I/O patterns in scientific codes, allowing programmers and 
 administrators to control the I/O behaviour of applications without the need of modifying them. Mercury provides users with a simple mechanism to describe I/O patterns. The I/O pattern description is decoupled from the specific
 hints API used underneath by the file system, making our solution portable. We demonstrate that Mercury is especially helpful in converting a large number of small non-contiguous requests into a smaller number of large sequential 
 requests using a mechanism called data sieving.
-File caching is also useful in improving performance of write operations using a writeback approach. In this case the cache temporarily stores written data on behalf of the file system, allowing control to be returned to the 
-application which can progress doing useful work. Concurrently the cache manager moves (or flushes) the data to the file when a certain condition is met or when the application issues either a `fsync()' or a `close()' operation.
-Writeback caching can drastically improve write performance. However, the amount of memory per core as we move to Exascale is expected to reduce also reducing the amount of memory that can be dedicated to caching large datasets.
+
+\vspace{5mm}
+File caching is also useful in improving performance of write operations using a write-back approach. In this case the cache temporarily stores data updates on behalf of the file system, allowing control to be returned to the 
+application which can progress doing useful work. Concurrently the file system moves (or flushes) updates from the cache to the file after a certain interval of time has elapsed. The length of this interval depends on a number of factors 
+such as memory utilization, frequency of updates and so on. Alternatively the user can enforce data to be flushed to the file by issuing either a `fsync()' or a `close()' operation to the file system.
+Write-back caching can drastically improve write performance. However, the amount of available memory per core as we move to Exascale is expected to reduce, thus reducing the memory capacity that can be dedicated to the caching of large datasets.
 Nowadays, compute nodes in high performance computing clusters frequently have access to locally attached solid state drives, which effectively provide an additional tier in the storage hierarchy. Nevertheless, local storage resources 
 are not always fully integrated in the I/O stack. In the second part of this thesis we present a solution to make locally attached, block based, non-volatile memory devices directly available to applications through the MPI-IO interface, 
 a widely adopted parallel I/O API. We demonstrate that local storage resources can be used as persistent file cache layer to boost performance of parallel write operations, and more specifically of collective write operations to 
 a shared file.
 \newpage
 
-%The gap between compute and I/O performance will be exacerbated with the advent of the Exascale computing era. The Advanced Scientific Computing Advisory Commettee (ASCA) predicted an increase in 
-%stored in HDDs on I/O nodes, the latency of I/O operations is considerably higher than the CPUs cycle time, making I/O very expensive for applications.
-%This performance gap is further exacerbated by the fact that many scientific applications perform small non-contiguous accesses to the parallel file system, which result in a large number of Remote Procedure 
-%Calls (RPCs) generated by file system clients sent over the network to the I/O nodes, and a corresponding increase in the number of seek operations on the target disks. 
-%In this context, file caching is a well known and widely exploited technique that can reduce or even cancel the performance impact of data access from disk based media. File cache implementations
-%normally rely on sub-optimal heuristics to manage data fetching and eviction. For example, speculative fetching of file data, known as prefetching, is performed by inspecting the application I/O pattern and 
-%fetching data ahead of the current request if the pattern is sequential. This approach exploits the spatial locality of data in the file and allows following I/O requests to be served by the main memory, hiding the 
-%cost of a remote access. Similarly, when the cache is full oldest data is evicted to make room for new data, based on the assumption that most recent data has a higher chance to be requested again in the near
-%future. Nevertheless, scientific applications have complex I/O pattern that cannot be predicted by using simple heuristics. As a result standard caching policies can cause more harm than good to the application.
-%File systems often provide mechanisms that allow programmers to disclose their I/O pattern knowledge to the lower layers of the I/O stack through a hints API. This information can be used by the file system
-%to boost the application performance, for example, through data prefetching. Unfortunately, programmers rarely make use of these features, missing the opportunity to exploit the full potential of the storage system.
-%In the first part of this thesis we present an I/O middleware that can transparently feed hints generated by users to the underlying file system. These hints can be used to improve the read performance by 
-%driving data prefetching using application knowledge instead of relying on read ahead heuristics.
-%Caching can be also used to stage writes using a technique called write back. In this case completed writes do not become immediately persistent in the file and are instead kept in the cache. The content of the 
-%cache can be synchronized to the file when the user invokes the fsync() system call.
-
 \pagenumbering{arabic}\setcounter{page}{5}
 \input{chapters/introduction}
-\input{chapters/chapter1/main}
-\input{chapters/chapter2/main}
-\input{chapters/chapter3/main}
-\input{chapters/chapter4/main}
+\part{Read Patterns Optimization Using I/O Hints}
+\input{chapters/kernel}
+\input{chapters/mercury}
+%\input{chapters/chapter1/main}
+%\input{chapters/chapter2/main}
+\part{Write Patterns Optimization Using NVM Devices}
+\input{chapters/mpio}
+\input{chapters/deeper}
+\input{chapters/conclusions}
+%\input{chapters/chapter3/main}
+%\input{chapters/chapter4/main}
 \cleardoublepage
+
 %*******************************************************************************************
 % END OF CHAPTERS
 %*******************************************************************************************
@@ -217,7 +221,7 @@ a shared file.
 \cleardoublepage
 \addcontentsline{toc}{chapter}{Bibliography}
 
-\bibliographystyle{plain}
+\bibliographystyle{alpha}
 \bibliography{bibliography}
 
 %*******************************************************************************************

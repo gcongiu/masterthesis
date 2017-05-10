@@ -1,0 +1,13 @@
+\chapter{Technical Background} \label{chapter: mpio}
+In this chapter we review the technical background required to understand the material presented in the second part of the thesis. We start with an overview on parallel file systems expanding some of the
+information already mentioned; afterwards we define parallel I/O in HPC outlining the differences between the two
+
+\section{Introduction to Parallel I/O}
+In this thesis we consider Single Program Multiple Data (SPMD) applications. Applications of this type are composed by many independent processes running on different nodes of the cluster. Each process
+performs the same operations but on different parts of the input domain. The input domain is represented by a large multidimensional data set, typically stored into one or multiple files. If the data
+resides in a single file, and the application accesses it with N processes we say that the file is shared and we indicate this as a N-1 I/O pattern (read as N to 1). If the data resides in multiple files,
+typically one file per process, we indicate this as a N-N I/O pattern (read as N to N).
+
+With parallel I/O we refer to the I/O activity carried out by a parallel program running in a distributed environment. Most HPC codes fall in the category of Single Program Multiple Data (SPMD), that is, 
+every process of the program performs the same task on a different portion of the problem domain in parallel. Contrarily, ensembles of multiple codes that work in collaboration are defined as Multiple Program 
+Multiple Data (MPMD) and typically include all the manipulations that the data goes through its all life cycle including pre-processing, simulation, post-processing and visualization.

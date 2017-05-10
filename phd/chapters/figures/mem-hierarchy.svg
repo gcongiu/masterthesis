@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 744.09448819 1052.3622047"
+   id="svg4993"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="mem-hierarchy.svg">
+  <defs
+     id="defs4995">
+    <linearGradient
+       id="linearGradient5594"
+       osb:paint="solid">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop5596" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient5556"
+       osb:paint="solid">
+      <stop
+         style="stop-color:#cccccc;stop-opacity:1;"
+         offset="0"
+         id="stop5558" />
+    </linearGradient>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="340.24573"
+     inkscape:cy="474.67495"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1088"
+     inkscape:window-x="0"
+     inkscape:window-y="1"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata4998">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:#ececec;fill-opacity:1;stroke:#4d4d4d;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 383.83024,409.10475 -78.79029,79.87853 159.77244,0 -80.98215,-79.87853 z m -84.80206,85.97402 -45.67514,46.30552 264.583,0 -46.94446,-46.30552 -171.9634,0 z m -51.68691,52.40101 -45.67514,46.30552 369.39527,0 -46.94446,-46.30552 -276.77567,0 z m -51.68691,52.40101 -45.67514,46.30552 474.20754,0 -46.94445,-46.30552 -381.58795,0 z m -51.68691,52.40101 -54.931121,55.68963 595.758491,0.2221 1.11215,-1.12753 -55.54101,-54.7842 -486.39851,0 z"
+       id="rect5554"
+       inkscape:connector-curvature="0"
+       inkscape:export-xdpi="723.26001"
+       inkscape:export-ydpi="723.26001" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:34.98753738px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       x="384.25919"
+       y="455.13495"
+       id="text5570"
+       sodipodi:linespacing="125%"
+       inkscape:export-xdpi="723.26001"
+       inkscape:export-ydpi="723.26001"><tspan
+         sodipodi:role="line"
+         id="tspan5572"
+         x="386.56122"
+         y="455.13495"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.30704784px;font-family:'Trebuchet MS';-inkscape-font-specification:'Trebuchet MS';text-align:center;text-anchor:middle;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none">CPU </tspan><tspan
+         sodipodi:role="line"
+         x="384.25919"
+         y="474.26877"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.30704784px;font-family:'Trebuchet MS';-inkscape-font-specification:'Trebuchet MS';text-align:center;text-anchor:middle;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none"
+         id="tspan5588">Registers</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text5584"
+       y="525.10999"
+       x="347.68073"
+       style="font-style:normal;font-weight:normal;font-size:34.98753738px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       xml:space="preserve"
+       inkscape:export-xdpi="723.26001"
+       inkscape:export-ydpi="723.26001"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.30704784px;font-family:'Trebuchet MS';-inkscape-font-specification:'Trebuchet MS';stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="525.10999"
+         x="347.68073"
+         id="tspan5586"
+         sodipodi:role="line">CPU Cache</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:34.98753738px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       x="280.92914"
+       y="577.59131"
+       id="text5617"
+       sodipodi:linespacing="125%"
+       inkscape:export-xdpi="723.26001"
+       inkscape:export-ydpi="723.26001"><tspan
+         sodipodi:role="line"
+         id="tspan5619"
+         x="280.92914"
+         y="577.59131"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.30704784px;font-family:'Trebuchet MS';-inkscape-font-specification:'Trebuchet MS';stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none">Random Access Memory (RAM)</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text5621"
+       y="630.07257"
+       x="247.8112"
+       style="font-style:normal;font-weight:normal;font-size:34.98753738px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       xml:space="preserve"
+       inkscape:export-xdpi="723.26001"
+       inkscape:export-ydpi="723.26001"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.30704784px;font-family:'Trebuchet MS';-inkscape-font-specification:'Trebuchet MS';stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none"
+         y="630.07257"
+         x="247.8112"
+         id="tspan5623"
+         sodipodi:role="line">Non-Volatile Flash Based Memory (SSDs)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:34.98753738px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       x="203.33258"
+       y="682.55389"
+       id="text5625"
+       sodipodi:linespacing="125%"
+       inkscape:export-xdpi="723.26001"
+       inkscape:export-ydpi="723.26001"><tspan
+         sodipodi:role="line"
+         id="tspan5627"
+         x="203.33258"
+         y="682.55389"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.30704784px;font-family:'Trebuchet MS';-inkscape-font-specification:'Trebuchet MS';stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none">Mechanical Medium Based Memory (Hard Disk Drives)</tspan></text>
+  </g>
+</svg>
