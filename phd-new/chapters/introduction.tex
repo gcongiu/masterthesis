@@ -1,0 +1,69 @@
+\chapter{Introduction} \label{chapt: introduction}
+Today \textit{high performance computing} (HPC) has penetrated both industry and science domains and is effectively employed in the design and development of new products~\cite{Isaac2013} as well as the study of 
+complex natural phenomena ranging from high-energy physics~\cite{Chatrchyan2011} to space weather~\cite{Markidis2010}~\cite{Deca2013} and earth science~\cite{Sobhaninejad2011}. Codes running on HPC clusters need 
+to process large amounts of data that frequently do not fit into the available system memory and thus need to be stored out-of-core into an external storage system. These codes have large demand for storage capacity 
+that, due to their low cost, is frequently satisfied by means of \textit{hard disk drives} (HDDs). 
+
+Although HDDs can offer high capacity at low cost, their access performance is limited by the mechanical parts used to store and retrieve information on the magnetic media. The gap between hard disk access time and 
+CPU compute capabilities imposes a performance gap on applications that have to spend a large portion of their run-time waiting on data transfers between out-of-core storage (HDDs) to in-core \textit{dynamic random
+access memory} (DRAM)~\cite{CarnsHABLLR11}~\cite{ChenR10}. 
+
+In order to alleviate this performance gap, designers have built distributed storage systems in which many hard disks can be accessed concurrently through a high-performance network and corresponding parallel file system 
+softwares~\cite{Braam02}~\cite{SchmuckH02}~\cite{CarnsLRT}~\cite{Mcpeek2002} to efficiently manage them; such systems are optimized for large sequential I/O transfers that exploit the characteristics of the underlying storage media. 
+To further reduce the I/O latency file systems use a DRAM cache to buffer frequently accessed data that, in this way, can be served faster from memory instead of fetching it from remote disks.
+
+Prefetching is a well known technique that allows to anticipate I/O needs by preemptively fetching data from disks into the cache before it is referenced by the application. In order to effectively hide disk 
+access time to applications, prefetching has to be performed at the right moment and for the right amount of data. Because the amount of memory dedicated to caching is limited, prefetching too much data or
+prefetching it too early might cause more urgently needed data to be removed from the cache, forcing the application to fetch it again from disk. Similarly, prefetching too little data or prefetching it too late 
+might only partially hide disk latency or add no benefit if requested data is already in the cache; even worse, delayed prefetching might cause data to be re-fetched from disk although no longer needed. If performed 
+appropriately prefetching can boost application performance completely hiding I/O latency. %however, many scientific codes are write intensive and do only little reading.
+
+Jobs running on HPC cluster also have to be protected from the failure of hardware components and soft-errors by periodically writing their computational context to stable storage (process commonly known as checkpointing)
+~\cite{Schroeder2006}~\cite{Schroeder2007}; 
+while reads are limited to the loading of initial configuration parameters at the beginning of the simulation or to restore the computational context after a system crash and restart. The computational context is 
+represented by large multi-dimensional variables which value is determined by the collaboration of the application's processes running concurrently on different nodes of the cluster. When transferring program 
+variables from memory to disk the layout of data is changed to adapt the multi-dimensional domain to the single-dimensional representation on the device (i.e., sequence of blocks). This conversion causes a mismatch 
+between memory and storage representations that results into a large number of small non-contiguous disk requests which degrades the overall I/O performance~\cite{Nieuwejaar1996}~\cite{Simitci1998}. 
+
+To address the mismatch between memory and storage layout additional software components, called I/O middlewares, have been added to the I/O stack. I/O middlewares can transparently adapt the I/O behaviour of the 
+application to the storage system by converting the original access pattern into an intermediate representation that is presented to the parallel file system. The intermediate representation is built keeping into 
+consideration the characteristics of the storage hardware and extract maximum performance from it~\cite{ThakurC96}~\cite{Bent2009}~\cite{Moody2010_2}~\cite{Frings2009}~\cite{Lofstead2008}.
+
+Storage devices like \textit{solid state drives} (SSDs) offer another opportunity for reducing the I/O gap. SSDs based on \textit{flash} technology are block based and provide better I/O throughput at higher cost
+tag compared to HDDs. Solutions using SSDs in combination with I/O middlewares can be adopted to implement an additional, faster, storage tier between DRAM and disks that buffer bursts of writes generated by
+checkpointing activity~\cite{Liu2012}. These block based buffers can effectively absorb the intense I/O activity of applications, hiding to them the latency of slower disk based tiers. Buffered data is kept in the SSD until
+it is full or when the user explicitly requests to flush it to its final location on disk; however, control is returned to the application as soon as data is persisted into the SSD buffer, allowing it to proceed 
+with its tasks. 
+
+More recently, the emergence of new storage and memory devices like \textit{storage class memories} (SCMs)~\cite{Wang2013}~\cite{Zhang2015}, providing access times comparable to DRAM, opens up a new range of possibilities 
+to implement storage systems in memory. \textit{Non volatile main memory} (NVMM) implemented using SCM devices can be exploited as persistent storage media to implement a new class of file systems. These file systems will be 
+based on totally different assumptions compared to current disk based implementations. For example, classical file systems use a buffer cache to consolidate writes in memory before transferring data to the storage device; this 
+design choice is forced by the geometry of hard disks in which accesses are more efficient for large contiguous blocks of data instead of small non-contiguous requests. With the new devices the buffer cache only adds an extra 
+memory copy that does not bring any benefit to access performance. In this case, file systems can bypass the buffer cache and write directly to the NVMM.
+
+\section{Contributions}
+In the depicted scenario the contribution of this work is two fold. First, we present Mercury~\cite{Congiu2017}, a transparent guided I/O framework able to optimize file read patterns in scientific applications, 
+allowing users and administrators to control the I/O behavior of their applications without modifying them. Mercury is especially helpful for converting numerous small read requests into a few larger requests using 
+a technique called data sieving. The immediate effect of this optimization is the increase of the application perceived I/O bandwidth, the reduction of the number of I/O requests reaching the remote back-end storage 
+devices and, ultimately, the reduction of the running time of the application. Additionally, we also present a \textit{virtual file system} (VFS) modification of the Linux kernel that allows Mercury to forward prefetching 
+hints to the Lustre file system. Second, we present an optimization for parallel write operations that exploits SSDs in HPC compute nodes~\cite{Congiu2016}; we demonstrate that the use of SSDs as additional persistent 
+cache layer on file system clients can speed up parallel write performance to a shared file in MPI-IO. We have integrated SSDs support into the ROMIO middleware using additional MPI-IO hints and service routines, and 
+implemented a ROMIO driver for the BeeGFS file system, which can autonomously handle the local SSDs.
+
+\section{Remainder}
+The remainder of this thesis is organized as follows: Chapter~\ref{chapt: background} reviews the technical background on high performance storage systems, current and emerging storage technologies, caching and
+prefetching, and I/O middleware solutions employed to improve checkpointing patterns; Chapter~\ref{chapt: prefetching} presents the Mercury middleware design and implementation, outlining the modifications required to
+the Linux kernel to enable forwarding of prefetch calls to the Lustre parallel file system; Chapter~\ref{chapt: checkpointing} presents our solution to integrate SSDs into MPI-IO using ROMIO; Chapter~\ref{chapt: evaluation}
+presents experimental results for read and write intensive I/O patterns using, respectively, Mercury and our extended ROMIO implementation; and finally Chapter~\ref{chapt: conclusion} presents conclusions.
+
+%\section{Introduction to HPC I/O}
+
+%\section{Memory Technologies}
+
+%\section{Caching}
+
+%\section{Middlewares}
+
+%\section{Contributions}
+
+%\section{Remainder}

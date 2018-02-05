@@ -1,0 +1,34 @@
+\chapter{Conclusions and Future Work} \label{chapt: conclusion}
+In this work we have proposed two I/O optimizations for improving performance of applications running on HPC clusters. The first optimization focuses on read patterns that are 
+adopted by analytics codes but also simulation and visualization tools; the second optimization focuses on checkpointing patterns using the collective I/O strategy. For both the 
+optimizations we have implemented a working prototype and demonstrated the effectiveness of the approach in a real setup. In the case of Mercury our solution is simple but effective 
+at the same time and can transparently communicate prefetching information to the operating system without any intervention from the program. 
+
+In Mercury we do not focus on the modelling of the application's I/O behaviour but instead show how existing file systems' hints interfaces can be used to guide data prefetching. 
+Our prefetching strategy relies on a configuration file that can adapt to different scenarios; however, it lacks a tighter integration with the operating system that would allow 
+more accurate prefetching. In this direction one future optimization will include a page cache communication function like in ~\cite{VanDeBogartFK09}. 
+With a better integrated virtual memory management the choice of having a centralized \textit{advice manager}, responsible for all the prefetches, can be even more effective since all 
+the information is concentrated in one place and can be exploited for a more holistic memory management strategy that takes into account many applications. Moreover, because 
+the \textit{resource manager} receives access information from several applications, access pattern correlations among these can be better captured and analyzed.
+
+In the case of checkpoint patterns, on the other hand, we have taken advantage of fast solid state drives installed on compute nodes to boost collective I/O performance. Our solution
+provides better scalability (by increasing linearly the number of drives with the number of nodes used for I/O), better I/O stability (because the parallel file system is no
+longer involved into global MPI synchronization operations), and better memory utilization (because solid state drives do not require extremely large writes to work efficiently).
+Moreover, our solution is simple and can be used by adding a few lines of extra code to the program to select the appropriate MPI-IO hints. 
+
+In our study we have focused on the improvement of collective writes from the application to local SSDs in compute nodes while we have ignored the independent writes from local 
+storage to global file system. Although independent writes are not as sensitive as collective writes, they can be served better if we coordinate them in order to present to the file system 
+requests that are arranged by increasing offset. In this case a solution similar to ~\cite{Zhang2009} in which aggregators writes are performed in sequence can be a good option. 
+Moreover, we also plan to extend our implementation with collective read operations because, as said, during restart simulation codes also need to retrieve their checkpoint data.
+A possibility in this case is to provide a collective prefetching interface that can be used by the run-time system to preload data in the cache upon application restart.
+
+One problem with our presented caching strategy is that it is designed to work in write behind mode, which means that data is committed to permanent global storage as soon as it is available
+in the cache. This implies that although data can be retained in the cache locally to be used in following application's restarts, this is not possible at the moment. The reason is that data
+placement information (which data is located in which cache) is not persisted to global storage and therefore, following application's runs have no means to locate it in the different caches.
+For this reason one important improvement to our design would be the addition of additional logging information to track data placement in the system, in a way similar to~\cite{Freche2009}.
+
+The advent of new non-volatile memory technologies will provide an ever faster storage tier between DRAM and disks and will thus make the parallel file system a second level storage
+tier; in this case most of the intense I/O activity will be shifted to the file system clients and our prefetching and write-behind approaches go exactly in this direction, leveraging 
+the speed of the first tier for performance and the parallel file system for persistence. Our prefetching approach can exploit high capacity memories to fetch large contiguous
+portions of the file, filtering non-contiguous requests from clients in NVMM. For write patterns, our MPI-IO collective I/O solution can absorb bursts of write activity in the first storage 
+tier on the clients and move data to the file system only at a second time to make it globally accessible to other applications or workflows.

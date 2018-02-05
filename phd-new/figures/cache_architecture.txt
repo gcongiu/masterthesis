@@ -1,0 +1,72 @@
+@startuml
+skinparam monochrome true
+
+skinparam class {
+    BackgroundColor White
+    ArrowColor Black
+    BorderColor Black
+}
+
+skinparam stereotypeCBackgroundColor Grey
+
+package "cache plugin" {
+  class ADIOI_Sync_thread_t {
+    -ADIO_File fd_
+    -pthread_t tid_
+    -pthread_attr_t attr_
+    -ADIOI_Atomic_queue_t pen_
+    -ADIOI_Atomic_queue_t sub_
+    -ADIOI_Atomic_queue_t wait_
+    -ADIOI_Sync_thread_start()
+    -ADIOI_Sync_req_query()
+    -ADIOI_Sync_req_free()
+    -ADIOI_Sync_req_cancel()
+    +ADIOI_Sync_thread_init()
+    +ADIOI_Sync_thread_enqueue()
+    +ADIOI_Sync_thread_flush()
+    +ADIOI_Sync_thread_fini()
+  }
+
+  class ADIOI_Sync_req_t {
+    -int type_
+    -ADIO_Offset off_
+    -MPI_Datatype datatype_
+    -int count_
+    -ADIO_Request *req_
+    -int error_code_
+    -int fflags_
+    +ADIOI_Sync_req_init()
+    ''+ADIOI_Sync_req_init_from()
+    +ADIOI_Sync_req_get_key()
+    +ADIOI_Sync_req_set_key()
+    +ADIOI_Sync_req_fini()
+  }
+
+  class ADIOI_Atomic_queue_t {
+    -struct list_head head_
+    -int size_
+    -pthread_mutex_t lock_
+    -pthread_cond_t ready_
+    +ADIOI_Atomic_queue_init()
+    +ADIOI_Atomic_queue_empty()
+    +ADIOI_Atomic_queue_size()
+    +ADIOI_Atomic_queue_push()
+    +ADIOI_Atomic_queue_pop()
+    +ADIOI_Atomic_queue_front()
+    +ADIOI_Atomic_queue_back()
+    +ADIOI_Atomic_queue_fini()
+  }
+
+  ADIOI_Sync_thread_t -- ADIOI_Sync_req_t : processes
+  ADIOI_Sync_thread_t *-- "3" ADIOI_Atomic_queue_t
+}
+
+class ADIO_File {
+  -ADIO_File cache_fd
+  -ADIOI_Sync_thread_t *thread_pool
+  +ADIOI_Sync_thread_pool_init()
+  +ADIOI_Sync_thread_pool_fini()
+}
+  
+  ADIO_File "1" *-- "0..*" ADIOI_Sync_thread_t
+@enduml

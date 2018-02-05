@@ -1,0 +1,846 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{MBMdS10}
+
+\bibitem[AAC09]{Ansel2009}
+Jason Ansel, Kapil Arya, and Gene Cooperman.
+\newblock Dmtcp: Transparent checkpointing for cluster computations and the
+  desktop.
+\newblock In {\em Proceedings of the 2009 IEEE International Symposium on
+  Parallel\&Distributed Processing}, IPDPS '09, pages 1--12, Washington, DC,
+  USA, 2009. IEEE Computer Society.
+
+\bibitem[AGPC16]{Arya2016}
+K.~Arya, R.~Garg, A.~Y. Polyakov, and G.~Cooperman.
+\newblock Design and implementation for checkpointing of distributed resources
+  using process-level virtualization.
+\newblock In {\em 2016 IEEE International Conference on Cluster Computing
+  (CLUSTER)}, pages 402--412, Sept 2016.
+
+\bibitem[AJM{\etalchar{+}}11]{Adam2011}
+C~Adam, M~John, Adam Manzanares, John Bent, Milo Polte, and Meghan Wingate.
+\newblock {LA-UR-11-10426.pdf}.
+\newblock 2011.
+
+\bibitem[And15]{Andrews2015}
+C.~Andrews.
+\newblock The future of weather forecasting [communications met office
+  supercomputer].
+\newblock {\em Engineering Technology}, 10(2):65--67, March 2015.
+
+\bibitem[ASC10]{ASCAC2010}
+The opportunities and challenges of exascale computing.
+\newblock Report, 2010.
+
+\bibitem[BBLS91]{Bailey1991}
+D~Bailey, J~Barton, T~Lasinski, and H~Simon.
+\newblock {The NAS Parallel Benchmarks}.
+\newblock Technical report, NASA, 1991.
+
+\bibitem[BC08]{Bovet2008}
+Daniel Bovet and Marco Cesati.
+\newblock {\em Understanding the linux kernel 3rd edition}.
+\newblock O'Reilly, 2008.
+
+\bibitem[BCS{\etalchar{+}}08]{Byna2008}
+Surendra Byna, Yong Chen, Xian-He Sun, Rajeev Thakur, and William Gropp.
+\newblock Parallel i/o prefetching using mpi file caching and i/o signatures.
+\newblock In {\em Proceedings of the 2008 ACM/IEEE Conference on
+  Supercomputing}, SC '08, pages 44:1--44:12, Piscataway, NJ, USA, 2008. IEEE
+  Press.
+
+\bibitem[BdRC93]{Bordawekar1993}
+Rajesh Bordawekar, Juan~Miguel del Rosario, and Alok Choudhayr.
+\newblock {Design and evaluation of primitives for parallel I/O}.
+\newblock {\em Proceedings of the Supercomputing Conference}, pages 452--461,
+  1993.
+
+\bibitem[BGG{\etalchar{+}}09]{Bent2009}
+J.~Bent, G.~Gibson, G.~Grider, B.~McClelland, P.~Nowoczynski, J.~Nunez,
+  M.~Polte, and M.~Wingate.
+\newblock Plfs: a checkpoint filesystem for parallel applications.
+\newblock In {\em Proceedings of the Conference on High Performance Computing
+  Networking, Storage and Analysis}, pages 1--12, Nov 2009.
+
+\bibitem[BM00]{Brown2000}
+Angela~Demke Brown and Todd~C. Mowry.
+\newblock Taming the memory hogs: Using compiler-inserted releases to manage
+  physical memory intelligently.
+\newblock In {\em Proceedings of the 4th Conference on Symposium on Operating
+  System Design \& Implementation - Volume 4}, OSDI'00, Berkeley, CA, USA,
+  2000. USENIX Association.
+
+\bibitem[BMK01]{Brown2001}
+Angela~Demke Brown, Todd~C. Mowry, and Orran Krieger.
+\newblock Compiler-based i/o prefetching for out-of-core applications.
+\newblock {\em ACM Trans. Comput. Syst.}, 19(2):111--170, May 2001.
+
+\bibitem[Bra02]{Braam02}
+Peter~J. Braam.
+\newblock {Lustre: a scalable high-performance file system}.
+\newblock White Paper, November 2002.
+
+\bibitem[Bre08]{Breitwisch2008}
+M.~J. Breitwisch.
+\newblock Phase change memory.
+\newblock In {\em 2008 International Interconnect Technology Conference}, pages
+  219--221, June 2008.
+
+\bibitem[CBS{\etalchar{+}}08]{ChenBSTG08}
+Yong Chen, Surendra Byna, Xian-He Sun, Rajeev Thakur, and William Gropp.
+\newblock Hiding i/o latency with pre-execution prefetching for parallel
+  applications.
+\newblock In {\em Proceedings of the ACM/IEEE Conference on Supercomputing
+  (SC)}, SC '08, pages 40:1--40:10, Piscataway, NJ, USA, 2008. IEEE Press.
+
+\bibitem[CCC{\etalchar{+}}03]{Ching2003}
+A.~Ching, A.~Choudhary, K.~Coloma, Wei keng Liao, R.~Ross, and W.~Gropp.
+\newblock Noncontiguous i/o accesses through mpi-io.
+\newblock In {\em CCGrid 2003. 3rd IEEE/ACM International Symposium on Cluster
+  Computing and the Grid, 2003. Proceedings.}, pages 104--111, May 2003.
+
+\bibitem[CCkL{\etalchar{+}}02]{Ching2002}
+Avery Ching, A.~Choudhary, Wei keng Liao, R.~Ross, and W.~Gropp.
+\newblock Noncontiguous i/o through pvfs.
+\newblock In {\em Proceedings. IEEE International Conference on Cluster
+  Computing}, pages 405--414, 2002.
+
+\bibitem[CCL{\etalchar{+}}04]{ColomaCWWRP04}
+Kenin Coloma, A.~Choudhary, Wei-Keng Liao, L.~Ward, E.~Russell, and N.~Pundit.
+\newblock Scalable high-level caching for parallel i/o.
+\newblock In {\em Parallel and Distributed Processing Symposium, 2004.
+  Proceedings. 18th International}, pages 96--, April 2004.
+
+\bibitem[CCL{\etalchar{+}}06]{ChingCLP06}
+Avery Ching, Alok~N. Choudhary, Wei{-}keng Liao, Lee Ward, and Neil Pundit.
+\newblock Evaluating i/o characteristics and methods for storing structured
+  scientific data.
+\newblock In {\em Proceedings of the $20^{th}$ IEEE International Parallel and
+  Distributed Processing Symposium (IPDPS)}, Rhodes Island, Greece, April 2006.
+
+\bibitem[CG99]{ChangG99}
+Fay Chang and Garth~A. Gibson.
+\newblock Automatic i/o hint generation through speculative execution.
+\newblock In {\em Proceedings of the 3rd Conference on Operating Systems Design
+  and Implementation (OSDI)}, OSDI '99, pages 1--14, Berkeley, CA, USA, 1999.
+  USENIX Association.
+
+\bibitem[CGML01]{Chang2001}
+Fay~W Chang, Garth~A Gibson, Todd~C Mowry, and James~R Larus.
+\newblock {\em {Using speculative execution to automatically hide I / O
+  latency}}.
+\newblock PhD thesis, 2001.
+
+\bibitem[CGNB12]{Congiu2012}
+G.~Congiu, M.~Grawinkel, S.~Narasimhamurthy, and A.~Brinkmann.
+\newblock One phase commit: A low overhead atomic commitment protocol for
+  scalable metadata services.
+\newblock In {\em 2012 IEEE International Conference on Cluster Computing
+  Workshops}, pages 16--24, Sept 2012.
+
+\bibitem[CGP{\etalchar{+}}14]{Congiu2014}
+G.~Congiu, M.~Grawinkel, F.~Padua, J.~Morse, T.~S\"u\ss{}, and A.~Brinkmann.
+\newblock Poster: Optimizing scientific file i/o patterns using advice based
+  knowledge.
+\newblock In {\em 2014 IEEE International Conference on Cluster Computing
+  (CLUSTER)}, pages 282--283, Sept 2014.
+
+\bibitem[CGP{\etalchar{+}}17]{Congiu2017}
+G.~Congiu, M.~Grawinkel, F.~Padua, J.~Morse, T.~S\"u\ss{}, and A.~Brinkmann.
+\newblock Mercury: A transparent guided i/o framework for high performance i/o
+  stacks.
+\newblock In {\em 2017 25th Euromicro International Conference on Parallel,
+  Distributed and Network-based Processing (PDP)}, pages 46--53, March 2017.
+
+\bibitem[Cha11a]{Chatrchyan2011}
+Measurement of w+w- production and search for the higgs boson in pp collisions
+  at $\sqrt{s} = 7$ tev.
+\newblock {\em Physics Letters B}, 699(1-2):25 -- 47, 2011.
+
+\bibitem[CHA{\etalchar{+}}11b]{CarnsHABLLR11}
+P.~Carns, K.~Harms, W.~Allcock, C.~Bacon, S.~Lang, R.~Latham, and R.~Ross.
+\newblock Understanding and improving computational science storage access
+  through continuous characterization.
+\newblock In {\em Proceedings of the 27th IEEE Conference on Mass Storage
+  Systems and Technologies (MSST)}, pages 1--14, 2011.
+
+\bibitem[CLI{\etalchar{+}}00]{CarnsLRT}
+Philip~H. Carns, Walter~B. Ligon, III, Robert~B. Ross, and Rajeev Thakur.
+\newblock Pvfs: A parallel file system for linux clusters.
+\newblock In {\em Proceedings of the 4th Annual Linux Showcase and Conference},
+  pages 317--327, Atlanta, Georgia, USA, October 2000. USENIX Association.
+
+\bibitem[CNSB16]{Congiu2016}
+G.~Congiu, S.~Narasimhamurthy, T.~S\"u\ss{}, and A.~Brinkmann.
+\newblock Improving collective i/o performance using non-volatile memory
+  devices.
+\newblock In {\em 2016 IEEE International Conference on Cluster Computing
+  (CLUSTER)}, pages 120--129, Sept 2016.
+
+\bibitem[CR10]{ChenR10}
+Yong Chen and P.C. Roth.
+\newblock Collective prefetching for parallel i/o systems.
+\newblock In {\em Proceedings of the 5th Parallel Data Storage Workshop
+  (PDSW)}, pages 1--5, 2010.
+
+\bibitem[CST{\etalchar{+}}11]{Chen2011}
+Yong Chen, Xian-He Sun, R.~Thakur, P.C. Roth, and W.D. Gropp.
+\newblock Lacio: A new collective i/o strategy for parallel i/o systems.
+\newblock In {\em Proceedings of the $25^{th}$ IEEE International Parallel and
+  Distributed Processing Symposium (IPDPS)}, pages 794--804, Anchorage, Alaska,
+  USA, May 2011.
+
+\bibitem[DAC{\etalchar{+}}12]{DorierACSO12}
+M.~Dorier, G.~Antoniu, F.~Cappello, M.~Snir, and L.~Orf.
+\newblock Damaris: How to efficiently leverage multicore parallelism to achieve
+  scalable, jitter-free i/o.
+\newblock In {\em Cluster Computing (CLUSTER), 2012 IEEE International
+  Conference on}, pages 155--163, Sept 2012.
+
+\bibitem[Dal06]{Daly2006}
+J.~T. Daly.
+\newblock A higher order estimate of the optimum checkpoint interval for
+  restart dumps.
+\newblock {\em Future Gener. Comput. Syst.}, 22(3):303--312, February 2006.
+
+\bibitem[DLMM13]{Deca2013}
+Jan Deca, Giovanni Lapenta, Richard Marchand, and S~Markidis.
+\newblock Spacecraft charging analysis with the implicit particle-in-cell code
+  ipic3d.
+\newblock 20:2902--, 10 2013.
+
+\bibitem[dRBC93]{delRosario1993}
+Juan~Miguel del Rosario, Rajesh Bordawekar, and Alok Choudhary.
+\newblock Improved parallel i/o via a two-phase run-time access strategy.
+\newblock {\em SIGARCH Comput. Archit. News}, 21(5):31--38, December 1993.
+
+\bibitem[ELMS13]{Eicker2013}
+N.~Eicker, T.~Lippert, T.~Moschny, and E.~Suarez.
+\newblock The deep project - pursuing cluster-computing in the many-core era.
+\newblock In {\em 2013 42nd International Conference on Parallel Processing},
+  pages 885--892, Oct 2013.
+
+\bibitem[Ene15]{BES2015}
+Basic Energy.
+\newblock {Basic Energy Sciences Exascale Requirements Review}.
+\newblock 2015.
+
+\bibitem[ERA16]{BER2016}
+D~O~E Exascale, Requirements Review, and B~E~R Ascr.
+\newblock {Biological and Environmental Research Exascale requirements review}.
+\newblock 2016.
+
+\bibitem[FCY99]{Folk99}
+M.~Folk, A.~Cheng, and K.~Yates.
+\newblock {HDF5}: A file format and {I/O} library for high performance
+  computing applications.
+\newblock In {\em Proceedings of SC'99}, Portland, OR, November 1999.
+
+\bibitem[FFS09]{Freche2009}
+Jens Freche, Wolfgang Frings, and Godehard Sutmann.
+\newblock High-throughput parallel-i/o using sionlib for mesoscopic particle
+  dynamics simulations on massively parallel computers.
+\newblock In {\em PARCO}, pages 371--378, 2009.
+
+\bibitem[FOR{\etalchar{+}}00]{Fryxell2000}
+B.~Fryxell, K.~Olson, P.~Ricker, F.~X. Timmes, M.~Zingale, D.~Q. Lamb,
+  P.~MacNeice, R.~Rosner, J.~W. Truran, and H.~Tufo.
+\newblock Flash: An adaptive mesh hydrodynamics code for modeling astrophysical
+  thermonuclear flashes.
+\newblock {\em Astrophysical Journal, Supplement}, 131:273--334, 2000.
+
+\bibitem[FSP{\etalchar{+}}08]{Filgueira2008}
+Rosa Filgueira, David~E. Singh, Juan~C. Pichel, Florin Isaila, and Jes{\'{u}}s
+  Carretero.
+\newblock {Data Locality Aware Strategy for Two-Phase Collective I/O}.
+\newblock {\em High Performance Computing for Computational Science - VECPAR
+  2008}, 5336:137--149, 2008.
+
+\bibitem[FWP09]{Frings2009}
+Wolfgang Frings, Felix Wolf, and Ventsislav Petkov.
+\newblock Scalable massively parallel i/o to task-local files.
+\newblock In {\em Proceedings of the Conference on High Performance Computing
+  Networking, Storage and Analysis}, SC '09, pages 17:1--17:11, New York, NY,
+  USA, 2009. ACM.
+
+\bibitem[FXM04]{Fan2004}
+Zhihua Fan, Jin Xiong, and Jie Ma.
+\newblock A failure recovery mechanism for distributed metadata servers in
+  dcfs2.
+\newblock In {\em Proceedings. Seventh International Conference on High
+  Performance Computing and Grid in Asia Pacific Region, 2004.}, pages 2--8,
+  July 2004.
+
+\bibitem[GH96]{Grochowski1996}
+E.~Grochowski and R.~F. Hoyt.
+\newblock Future trends in hard disk drives.
+\newblock {\em IEEE Transactions on Magnetics}, 32(3):1850--1854, May 1996.
+
+\bibitem[GL06]{Gray2006}
+Jim Gray and Leslie Lamport.
+\newblock Consensus on transaction commit.
+\newblock {\em ACM Trans. Database Syst.}, 31(1):133--160, March 2006.
+
+\bibitem[GLS14]{Gropp2014}
+William Gropp, Ewing Lusk, and Anthony Skjellum.
+\newblock {\em The MPE Multiprocessing Environment}, pages 336--.
+\newblock MIT Press, 2014.
+
+\bibitem[Gra81]{Gray1981}
+Jim Gray.
+\newblock The transaction concept: Virtues and limitations (invited paper).
+\newblock In {\em Proceedings of the Seventh International Conference on Very
+  Large Data Bases - Volume 7}, VLDB '81, pages 144--154. VLDB Endowment, 1981.
+
+\bibitem[HBT{\etalchar{+}}13]{HeBTAGGMCS13}
+Jun He, John Bent, Aaron Torres, Gary Grider, Garth Gibson, Carlos Maltzahn,
+  and Xian-He Sun.
+\newblock I/o acceleration with pattern detection.
+\newblock In {\em Proceedings of the 22nd}, HPDC '13, pages 25--36, New York,
+  NY, USA, 2013. ACM.
+
+\bibitem[HSS{\etalchar{+}}11]{HeSSYT11}
+Jun He, Huaiming Song, Xian-He Sun, Yanlong Yin, and Rajeev Thakur.
+\newblock Pattern-aware file reorganization in mpi-io.
+\newblock In {\em Proceedings of the $6^{th}$ Parallel Data Storage Workshop
+  (PDSW)}, pages 43--48, Seattle, Washington, USA, 2011.
+
+\bibitem[HST12]{HEST12}
+Jun He, Xian-He Sun, and R.~Thakur.
+\newblock Knowac: I/o prefetch via accumulated knowledge.
+\newblock In {\em Proceedings of the IEEE International Conference on Cluster
+  Computing (Cluster)}, pages 429--437, 2012.
+
+\bibitem[ID01]{Iyer2001}
+Sitaram Iyer and Peter Druschel.
+\newblock Anticipatory scheduling: A disk scheduling framework to overcome
+  deceptive idleness in synchronous i/o.
+\newblock In {\em Proceedings of the Eighteenth ACM Symposium on Operating
+  Systems Principles}, SOSP '01, pages 117--130, New York, NY, USA, 2001. ACM.
+
+\bibitem[IRYB08]{Iskra2008}
+Kamil Iskra, John~W. Romein, Kazutomo Yoshii, and Pete Beckman.
+\newblock Zoid: I/o-forwarding infrastructure for petascale architectures.
+\newblock In {\em Proceedings of the 13th ACM SIGPLAN Symposium on Principles
+  and Practice of Parallel Programming}, PPoPP '08, pages 153--162, New York,
+  NY, USA, 2008. ACM.
+
+\bibitem[Isa13]{Isaac2013}
+John Isaac.
+\newblock {CFD in the Aerospace and Aeronautics Industries}.
+\newblock {\em Journal of Aeronautics {\&} Aerospace Engineering}, 02(03):2--5,
+  2013.
+
+\bibitem[JW91]{jacobson1991}
+David~M Jacobson and John Wilkes.
+\newblock {\em Disk scheduling algorithms based on rotational position}.
+\newblock Hewlett-Packard Laboratories Palo Alto, CA, 1991.
+
+\bibitem[KGS{\etalchar{+}}10]{Kim2010}
+Y.~Kim, R.~Gunasekaran, G.~M. Shipman, D.~A. Dillow, Zhe Zhang, and B.~W.
+  Settlemyer.
+\newblock Workload characterization of a leadership class storage cluster.
+\newblock In {\em Petascale Data Storage Workshop (PDSW), 2010 5th}, pages
+  1--5, Nov 2010.
+
+\bibitem[KGS{\etalchar{+}}16]{Kaiser2016}
+J.~Kaiser, R.~Gad, T.~S\"u\ss{}, F.~Padua, L.~Nagel, and A.~Brinkmann.
+\newblock Deduplication potential of hpc applications' checkpoints.
+\newblock In {\em 2016 IEEE International Conference on Cluster Computing
+  (CLUSTER)}, pages 413--422, Sept 2016.
+
+\bibitem[KGW16]{Katzburg2016}
+N.~Katzburg, A.~Golander, and S.~Weiss.
+\newblock Storage becomes first class memory.
+\newblock In {\em 2016 IEEE International Conference on the Science of
+  Electrical Engineering (ICSEE)}, pages 1--5, Nov 2016.
+
+\bibitem[kL11]{Liao11}
+W.~k.~Liao.
+\newblock Design and evaluation of mpi file domain partitioning methods under
+  extent-based file locking protocol.
+\newblock {\em IEEE Transactions on Parallel and Distributed Systems},
+  22(2):260--272, Feb 2011.
+
+\bibitem[kLCC{\etalchar{+}}05]{Liao2005}
+Wei keng Liao, K.~Coloma, A.~Choudhary, L.~Ward, E.~Russell, and S.~Tideman.
+\newblock Collective caching: application-aware client-side file caching.
+\newblock In {\em HPDC-14. Proceedings. 14th IEEE International Symposium on
+  High Performance Distributed Computing, 2005.}, pages 81--90, July 2005.
+
+\bibitem[Kot94]{kotz1994}
+David Kotz.
+\newblock Disk-directed i/o for mimd multiprocessors.
+\newblock In {\em Proceedings of the 1st USENIX Conference on Operating Systems
+  Design and Implementation}, OSDI '94, Berkeley, CA, USA, 1994. USENIX
+  Association.
+
+\bibitem[Lam78]{Lamport1978}
+Leslie Lamport.
+\newblock Time, clocks, and the ordering of events in a distributed system.
+\newblock {\em Commun. ACM}, 21(7):558--565, July 1978.
+
+\bibitem[LC08]{LiaoA08}
+Wei{-}keng Liao and Alok~N. Choudhary.
+\newblock Dynamically adapting file domain partitioning methods for collective
+  {I/O} based on underlying parallel file system locking protocols.
+\newblock In {\em Proceedings of the 2008 ACM/IEEE Conference on Supercomputing
+  (SC)}, Austin, Texas, {USA}, November 2008.
+
+\bibitem[LCC{\etalchar{+}}12]{Liu2012}
+N.~Liu, J.~Cope, P.~Carns, C.~Carothers, R.~Ross, G.~Grider, A.~Crume, and
+  C.~Maltzahn.
+\newblock On the role of burst buffers in leadership-class storage systems.
+\newblock In {\em 012 IEEE 28th Symposium on Mass Storage Systems and
+  Technologies (MSST)}, pages 1--11, April 2012.
+
+\bibitem[LCTZ12]{Lu2012}
+Y.~Lu, Y.~Chen, R.~Thakur, and Y.~Zhuang.
+\newblock Poster: Memory-conscious collective i/o for extreme-scale hpc
+  systems.
+\newblock In {\em 2012 SC Companion: High Performance Computing, Networking
+  Storage and Analysis}, pages 1362--1362, Nov 2012.
+
+\bibitem[LCZ13]{Liu2013}
+Jialin Liu, Yong Chen, and Yi~Zhuang.
+\newblock Hierarchical {I/O} scheduling for collective {I/O}.
+\newblock In {\em Proceedings of the $13^{th}$ {IEEE/ACM} International
+  Symposium on Cluster, Cloud, and Grid Computing (CCGrid)}, pages 211--218,
+  Delft, Netherlands, May 2013.
+
+\bibitem[LCZT13]{Lu2013}
+Yin Lu, Yong Chen, Yu~Zhuang, and Rajeev Thakur.
+\newblock Memory-conscious collective i/o for extreme scale hpc systems.
+\newblock In {\em Proceedings of the 3rd International Workshop on Runtime and
+  Operating Systems for Supercomputers}, ROSS '13, pages 5:1--5:8, New York,
+  NY, USA, 2013. ACM.
+
+\bibitem[LIMB09]{Lee2009}
+Benjamin~C. Lee, Engin Ipek, Onur Mutlu, and Doug Burger.
+\newblock Architecting phase change memory as a scalable dram alternative.
+\newblock In {\em Proceedings of the 36th Annual International Symposium on
+  Computer Architecture}, ISCA '09, pages 2--13, New York, NY, USA, 2009. ACM.
+
+\bibitem[LJM{\etalchar{+}}16]{Lofstead2016}
+J.~Lofstead, I.~Jimenez, C.~Maltzahn, Q.~Koziol, J.~Bent, and E.~Barton.
+\newblock Daos and friends: A proposal for an exascale storage system.
+\newblock In {\em SC16: International Conference for High Performance
+  Computing, Networking, Storage and Analysis}, pages 585--596, Nov 2016.
+
+\bibitem[LkLC{\etalchar{+}}03]{li2003}
+Jianwei Li, Wei keng Liao, A.~Choudhary, R.~Ross, R.~Thakur, W.~Gropp,
+  R.~Latham, A.~Siegel, B.~Gallagher, and M.~Zingale.
+\newblock Parallel netcdf: A high-performance scientific i/o interface.
+\newblock In {\em Supercomputing, 2003 ACM/IEEE Conference}, pages 39--39, Nov
+  2003.
+
+\bibitem[LKS{\etalchar{+}}08]{Lofstead2008}
+Jay~F. Lofstead, Scott Klasky, Karsten Schwan, Norbert Podhorszki, and Chen
+  Jin.
+\newblock Flexible io and integration for scientific codes through the
+  adaptable io system (adios).
+\newblock In {\em Proceedings of the 6th International Workshop on Challenges
+  of Large Applications in Distributed Environments}, CLADE '08, pages 15--24,
+  New York, NY, USA, 2008. ACM.
+
+\bibitem[LLT{\etalchar{+}}14]{Liu2014}
+Qing Liu, Jeremy Logan, Yuan Tian, Hasan Abbasi, Norbert Podhorszki, Jong~Youl
+  Choi, Scott Klasky, Roselyne Tchoua, Jay Lofstead, Ron Oldfield, Manish
+  Parashar, Nagiza Samatova, Karsten Schwan, Arie Shoshani, Matthew Wolf,
+  Kesheng Wu, and Weikuan Yu.
+\newblock Hello adios: the challenges and lessons of developing leadership
+  class i/o frameworks.
+\newblock {\em Concurrency and Computation: Practice and Experience},
+  26(7):1453--1473, 2014.
+
+\bibitem[LRT{\etalchar{+}}04]{LeeRTXW04}
+J.~Lee, R.~Ross, R.~Thakur, Xiaosong Ma, and M.~Winslett.
+\newblock Rfs: efficient and flexible remote file access for mpi-io.
+\newblock In {\em Cluster Computing, 2004 IEEE International Conference on},
+  pages 71--81, Sept 2004.
+
+\bibitem[Mac11]{Mack11}
+C.~A. Mack.
+\newblock Fifty years of moore's law.
+\newblock {\em IEEE Transactions on Semiconductor Manufacturing},
+  24(2):202--207, May 2011.
+
+\bibitem[MAI{\etalchar{+}}84]{Masuoka1984}
+F.~Masuoka, M.~Asano, H.~Iwahashi, T.~Komuro, and S.~Tanaka.
+\newblock A new flash e2prom cell using triple polysilicon technology.
+\newblock In {\em 1984 International Electron Devices Meeting}, volume~30,
+  pages 464--467, 1984.
+
+\bibitem[MB15]{Margaglia2015}
+F.~Margaglia and A.~Brinkmann.
+\newblock Improving mlc flash performance and endurance with extended p/e
+  cycles.
+\newblock In {\em 2015 31st Symposium on Mass Storage Systems and Technologies
+  (MSST)}, pages 1--12, May 2015.
+
+\bibitem[MBMdS10]{Moody2010}
+Adam Moody, Greg Bronevetsky, Kathryn Mohror, and Bronis~R. de~Supinski.
+\newblock {Design, Modeling, and Evaluation of a Scalable Multi-level
+  Checkpointing System}.
+\newblock (November):1--11, 2010.
+
+\bibitem[MBMS10]{Moody2010_2}
+Adam Moody, Greg Bronevetsky, Kathryn Mohror, and Bronis R.~de Supinski.
+\newblock Design, modeling, and evaluation of a scalable multi-level
+  checkpointing system.
+\newblock In {\em Proceedings of the 2010 ACM/IEEE International Conference for
+  High Performance Computing, Networking, Storage and Analysis}, SC '10, pages
+  1--11, Washington, DC, USA, 2010. IEEE Computer Society.
+
+\bibitem[Mcp02]{Mcpeek2002}
+Mary~Sara Mcpeek.
+\newblock {An introduction to BeeGFS}.
+\newblock (November):1--11, 2002.
+
+\bibitem[MDK96]{Mowry1996}
+Todd~C. Mowry, Angela~K. Demke, and Orran Krieger.
+\newblock Automatic compiler-inserted i/o prefetching for out-of-core
+  applications.
+\newblock In {\em Proceedings of the Second USENIX Symposium on Operating
+  Systems Design and Implementation}, OSDI '96, pages 3--17, New York, NY, USA,
+  1996. ACM.
+
+\bibitem[MHH{\etalchar{+}}05]{Michalak2005}
+S.~E. Michalak, K.~W. Harris, N.~W. Hengartner, B.~E. Takala, and S.~A. Wender.
+\newblock Predicting the number of fatal soft errors in los alamos national
+  laboratory's asc q supercomputer.
+\newblock {\em IEEE Transactions on Device and Materials Reliability},
+  5(3):329--335, Sept 2005.
+
+\bibitem[MHS15]{Masakatsu2015}
+By~Hattori Masakatsu, Suzuki Hiroshi, and Sugaya Seiichi.
+\newblock {Trends in Technologies for HDDs , ODDs , and SSDs , and Toshiba ' s
+  Approach}.
+\newblock {\em TOSHIBA Storage Product s for ICT Society}, pages 2--9, 2015.
+
+\bibitem[MLRu10]{Markidis2010}
+Stefano Markidis, Giovanni Lapenta, and Rizwan-uddin.
+\newblock Multi-scale simulations of plasma with ipic3d.
+\newblock {\em Math. Comput. Simul.}, 80(7):1509 -- 1519, March 2010.
+
+\bibitem[mpi12]{mpispecs}
+{MPI: a message-passing interface standard}.
+\newblock Report, 2012.
+
+\bibitem[MWLY03]{XiaosongWLS03}
+Xiaosong Ma, M.~Winslett, J.~Lee, and Shengke Yu.
+\newblock Improving mpi-io output performance with active buffering plus
+  threads.
+\newblock In {\em Parallel and Distributed Processing Symposium, 2003.
+  Proceedings. International}, pages 10 pp.--, April 2003.
+
+\bibitem[New83]{Newbold1983}
+Paul Newbold.
+\newblock Arima model building and the time series analysis approach to
+  forecasting.
+\newblock 2:23 -- 35, 01 1983.
+
+\bibitem[NIS99]{NIST}
+The future of data storage technologies.
+\newblock Report, 1999.
+
+\bibitem[NKP{\etalchar{+}}96]{Nieuwejaar1996}
+N.~Nieuwejaar, D.~Kotz, A.~Purakayastha, C.~Sclatter Ellis, and M.~L. Best.
+\newblock File-access characteristics of parallel scientific workloads.
+\newblock {\em IEEE Transactions on Parallel and Distributed Systems},
+  7(10):1075--1089, Oct 1996.
+
+\bibitem[PG11]{Patil2011}
+Swapnil Patil and Garth Gibson.
+\newblock Scale and concurrency of giga+: File system directories with millions
+  of files.
+\newblock In {\em Proceedings of the 9th USENIX Conference on File and Stroage
+  Technologies}, FAST'11, pages 13--13, Berkeley, CA, USA, 2011. USENIX
+  Association.
+
+\bibitem[PGG{\etalchar{+}}95]{Patterson1995}
+R.~H. Patterson, G.~A. Gibson, E.~Ginting, D.~Stodolsky, and J.~Zelenka.
+\newblock Informed prefetching and caching.
+\newblock In {\em Proceedings of the Fifteenth ACM Symposium on Operating
+  Systems Principles}, SOSP '95, pages 79--95, New York, NY, USA, 1995. ACM.
+
+\bibitem[PGK88]{Patterson1988}
+David~A. Patterson, Garth Gibson, and Randy~H. Katz.
+\newblock A case for redundant arrays of inexpensive disks (raid).
+\newblock In {\em Proceedings of the 1988 ACM SIGMOD International Conference
+  on Management of Data}, SIGMOD '88, pages 109--116, New York, NY, USA, 1988.
+  ACM.
+
+\bibitem[Phy15]{HEP2015}
+High~Energy Physics.
+\newblock {High Energy Physics Exascale requirements review}.
+\newblock 2015.
+
+\bibitem[POS]{POSIX}
+Standard for information technology - portable operating system interface
+  (posix).
+
+\bibitem[PTH{\etalchar{+}}00]{ProstTHKW00}
+Jean{-}Pierre Prost, Richard Treumann, Richard Hedges, Alice~E. Koniges, and
+  Alison White.
+\newblock Towards a high-performance implementation of {MPI-IO} on top of
+  {GPFS}.
+\newblock In {\em Proceedings of the $6^{th}$ International Euro-Par Conference
+  (Euro-Par)}, pages 1253--1262. Munich, Germany, August 2000.
+
+\bibitem[PTH{\etalchar{+}}01]{ProstTHJK01}
+Jean-Pierre Prost, Richard Treumann, Richard Hedges, Bin Jia, and Alice
+  Koniges.
+\newblock Mpi-io/gpfs, an optimized implementation of mpi-io on top of gpfs.
+\newblock In {\em Proceedings of the 2001 ACM/IEEE Conference on
+  Supercomputing}, SC '01, pages 17--17, New York, NY, USA, 2001. ACM.
+
+\bibitem[RCD{\etalchar{+}}00]{Rosner2000}
+R.~Rosner, A.~Calder, J.~Dursi, B.~Fryxell, D.~Q. Lamb, J.~C. Niemeyer,
+  K.~Olson, P.~Ricker, F.~X. Timmes, J.~W. Truran, H.~Tueo, Yuan-Nan Young,
+  M.~Zingale, E.~Lusk, and R.~Stevens.
+\newblock Flash code: studying astrophysical thermonuclear flashes.
+\newblock {\em Computing in Science Engineering}, 2(2):33--41, March 2000.
+
+\bibitem[RW94]{Ruemmler1994}
+Chris Ruemmler and John Wilkes.
+\newblock {Introduction to disk drive modeling}.
+\newblock {\em Computer}, 27(3):17--28, 1994.
+
+\bibitem[SC90]{Stamos1990}
+J.~W. Stamos and F.~Cristian.
+\newblock A low-cost atomic commit protocol.
+\newblock In {\em Proceedings Ninth Symposium on Reliable Distributed Systems},
+  pages 66--75, Oct 1990.
+
+\bibitem[Sci16a]{FES2016}
+Fusion~Energy Sciences.
+\newblock {Fusion energy Exascale requirements review}.
+\newblock 2016.
+
+\bibitem[Sci16b]{NP2016}
+Advanced Scientific.
+\newblock {Nuclear physics, Exascale requirements review}.
+\newblock 2016.
+
+\bibitem[SCJ{\etalchar{+}}95]{Panda1995}
+K.~E. Seamons, Y.~Chen, P.~Jones, J.~Jozwiak, and M.~Winslett.
+\newblock Server-directed collective i/o in panda.
+\newblock In {\em Proceedings of the IEEE/ACM SC95 Conference}, pages 57--57,
+  1995.
+
+\bibitem[SFT{\etalchar{+}}09]{Shiroishi2009}
+Y.~Shiroishi, K.~Fukuda, I.~Tagawa, H.~Iwasaki, S.~Takenoiri, H.~Tanaka,
+  H.~Mutoh, and N.~Yoshikawa.
+\newblock Future options for hdd storage.
+\newblock {\em IEEE Transactions on Magnetics}, 45(10):3816--3822, Oct 2009.
+
+\bibitem[SG06]{Schroeder2006}
+Bianca Schroeder and Garth~A. Gibson.
+\newblock A large-scale study of failures in high-performance computing
+  systems.
+\newblock In {\em Proceedings of the International Conference on Dependable
+  Systems and Networks}, DSN '06, pages 249--258, Washington, DC, USA, 2006.
+  IEEE Computer Society.
+
+\bibitem[SG07]{Schroeder2007}
+Bianca Schroeder and Garth~A Gibson.
+\newblock {Understanding failures in petascale computers}.
+\newblock {\em Journal of Physics: Conference Series}, 78:012022, 2007.
+
+\bibitem[SH02]{SchmuckH02}
+Frank Schmuck and Roger Haskin.
+\newblock Gpfs: A shared-disk file system for large computing clusters.
+\newblock In {\em Proceedings of the 2002 USENIX Conference on File and Storage
+  Technologies (FAST)}, pages 231--244, 2002.
+
+\bibitem[SHK11]{Sobhaninejad2011}
+G.~Sobhaninejad, M.~Hori, and T.~Kabeyasawa.
+\newblock Enhancing integrated earthquake simulation with high performance
+  computing.
+\newblock {\em Adv. Eng. Softw.}, 42(5):286--292, May 2011.
+
+\bibitem[Sho03]{shorter2003}
+Frank Shorter.
+\newblock {\em Design and analysis of a performance evaluation standard for
+  parallel file systems}.
+\newblock PhD thesis, Clemson University, 2003.
+
+\bibitem[SR98]{Simitci1998}
+Huseyin Simitci and Daniel~A. Reed.
+\newblock A comparison of logical and physical parallel i/o patterns.
+\newblock {\em International Journal of High Performance Computing
+  Applications}, 12:364--380, 1998.
+
+\bibitem[SR13]{StevensR13}
+W.~Richard Stevens and Stephen~A. Rago.
+\newblock {\em {Advanced programming in the UNIX environment}}, chapter
+  {Advanced IPC}, pages 642--652.
+\newblock Addison-Wesley professional computing series, May 2013.
+
+\bibitem[SRF{\etalchar{+}}99]{Simitci1999}
+Huseyin Simitci, Daniel~A. Reed, Ryan Fox, Mario Medina, James Oly, Nancy Tran,
+  and Guoyi Wang.
+\newblock A framework for adaptive storage input/output on computational grids.
+\newblock In {\em Proceedings of the 11 IPPS/SPDP'99 Workshops Held in
+  Conjunction with the 13th International Parallel Processing Symposium and
+  10th Symposium on Parallel and Distributed Processing}, pages 519--532,
+  London, UK, UK, 1999. Springer-Verlag.
+
+\bibitem[SSH{\etalchar{+}}10]{Sinnamohideen2010}
+Shafeeq Sinnamohideen, Raja~R. Sambasivan, James Hendricks, Likun Liu, and
+  Gregory~R. Ganger.
+\newblock A transparently-scalable metadata service for the ursa minor storage
+  system.
+\newblock In {\em Proceedings of the 2010 USENIX Conference on USENIX Annual
+  Technical Conference}, USENIXATC'10, pages 13--13, Berkeley, CA, USA, 2010.
+  USENIX Association.
+
+\bibitem[SSL{\etalchar{+}}13]{Sehrish2013}
+Saba Sehrish, Seung~Woo Son, Wei-keng Liao, Alok Choudhary, and Karen
+  Schuchardt.
+\newblock Improving collective i/o performance by pipelining request
+  aggregation and file access.
+\newblock In {\em Proceedings of the 20th European MPI Users' Group Meeting},
+  EuroMPI '13, pages 37--42, New York, NY, USA, 2013. ACM.
+
+\bibitem[TC96]{ThakurC96}
+Rajeev Thakur and Alok~N. Choudhary.
+\newblock An extended two-phase method for accessing sections of out-of-core
+  arrays.
+\newblock {\em Scientific Programming}, 5(4):301--317, 1996.
+
+\bibitem[TGL96]{ThakurGL96}
+Rajeev Thakur, William Gropp, and Ewing Lusk.
+\newblock An abstract-device interface for implementing portable parallel-i/o
+  interfaces.
+\newblock In {\em Proceedings of the $6^{th}$ IEEE International Symposium on
+  Frontiers of Massively Parallel Computation (FRONTIERS)}, pages 180--187.
+  IEEE Computer Society Press, 1996.
+
+\bibitem[TGL99]{ThakurGL99}
+Rajeev Thakur, William Gropp, and Ewing Lusk.
+\newblock Data sieving and collective i/o in romio.
+\newblock In {\em Proceedings of the 7th IEEE International Symposium on
+  Frontiers of Massively Parallel Computation (FRONTIERS)}, page 182, 1999.
+
+\bibitem[TR04]{TranR04}
+Nancy Tran and Daniel~A. Reed.
+\newblock Automatic arima time series modeling for adaptive i/o prefetching.
+\newblock {\em IEEE Trans. Parallel Distrib. Syst.}, 15(4):362--377, April
+  2004.
+
+\bibitem[Uni]{UnixSock}
+{UNIX Domain Sockets}.
+\newblock http://linux.die.net/man/7/unix.
+
+\bibitem[VFK09]{VanDeBogartFK09}
+Steve VanDeBogart, Christopher Frost, and Eddie Kohler.
+\newblock Reducing seek overhead with application-directed prefetching.
+\newblock In {\em Proceedings of the 2009 conference on USENIX Annual technical
+  conference}, USENIX'09, pages 24--24, Berkeley, CA, USA, 2009. USENIX
+  Association.
+
+\bibitem[VGL{\etalchar{+}}13]{Vital2013}
+Jean-Andr\'{e} Vital, Michael Gaurut, Romain Lardy, Nicolas Viovy,
+  Jean-Fran\c{c}ois Soussana, Gianni Bellocchi, and Raphael Martin.
+\newblock High-performance computing for climate change impact studies with the
+  pasture simulation model.
+\newblock 98:131--135, 10 2013.
+
+\bibitem[WAA13]{Wang2013}
+K~L Wang, J~G Alzate, and P~Khalili Amiri.
+\newblock Low-power non-volatile spintronic memory: Stt-ram and beyond.
+\newblock {\em Journal of Physics D: Applied Physics}, 46(7):074003, 2013.
+
+\bibitem[WGP94]{Worthington1994}
+Bruce~L. Worthington, Gregory~R. Ganger, and Yale~N. Patt.
+\newblock Scheduling algorithms for modern disk drives.
+\newblock In {\em Proceedings of the 1994 ACM SIGMETRICS Conference on
+  Measurement and Modeling of Computer Systems}, SIGMETRICS '94, pages
+  241--251, New York, NY, USA, 1994. ACM.
+
+\bibitem[WMES07]{Wang2007}
+C.~Wang, F.~Mueller, C.~Engelmann, and S.~L. Scott.
+\newblock A job pause service under lam/mpi+blcr for transparent fault
+  tolerance.
+\newblock In {\em 2007 IEEE International Parallel and Distributed Processing
+  Symposium}, pages 1--10, March 2007.
+
+\bibitem[WOW{\etalchar{+}}14]{Wang2014}
+T.~Wang, S.~Oral, Y.~Wang, B.~Settlemyer, S.~Atchley, and W.~Yu.
+\newblock Burstmem: A high-performance burst buffer system for scientific
+  applications.
+\newblock In {\em 2014 IEEE International Conference on Big Data (Big Data)},
+  pages 71--79, Oct 2014.
+
+\bibitem[WSSZ07]{Wright2007}
+Charles~P. Wright, Richard Spillane, Gopalan Sivathanu, and Erez Zadok.
+\newblock Extending acid semantics to the file system.
+\newblock {\em Trans. Storage}, 3(2), June 2007.
+
+\bibitem[WUA{\etalchar{+}}08]{Welch2008}
+Brent Welch, Marc Unangst, Zainul Abbasi, Garth Gibson, Brian Mueller, Jason
+  Small, Jim Zelenka, and Bin Zhou.
+\newblock Scalable performance of the panasas parallel file system.
+\newblock In {\em Proceedings of the 6th USENIX Conference on File and Storage
+  Technologies}, FAST'08, pages 2:1--2:17, Berkeley, CA, USA, 2008. USENIX
+  Association.
+
+\bibitem[WWG04]{Welch2004}
+Clusters~Brent Welch, Brent Welch, and Garth Gibson.
+\newblock Managing scalability in object storage systems for hpc linux.
+\newblock In {\em In Proceedings of the 21st IEEE / 12th NASA Goddard
+  Conference on Mass Storage Systems and Technologies}, pages 433--445, 2004.
+
+\bibitem[WXH{\etalchar{+}}04]{Wang2004}
+Feng Wang, Qin Xin, Bo~Hong, Scott~a Brandt, Ethan~L Miller, Darrell D~E Long,
+  and Tyce~T McLarty.
+\newblock {File System Workload Analysis for Large Scale Scientific Computing
+  Applications}.
+\newblock {\em 12th NASA Goddard Conference on Mass Storage Systems and
+  Technologies}, (April 2004):139--152, 2004.
+
+\bibitem[XS16]{Xu2016}
+Jian Xu and Steven Swanson.
+\newblock Nova: A log-structured file system for hybrid volatile/non-volatile
+  main memories.
+\newblock In {\em 14th USENIX Conference on File and Storage Technologies (FAST
+  16)}, pages 323--338, Santa Clara, CA, 2016. USENIX Association.
+
+\bibitem[Yin08]{Ying08}
+Liu Ying.
+\newblock {Lustre ADIO collective write driver}.
+\newblock White Paper, October 2008.
+
+\bibitem[YV08]{Yu08}
+Weikuan Yu and J.~Vetter.
+\newblock Parcoll: Partitioned collective i/o on the cray xt.
+\newblock In {\em Proceedings of the $37^{th}$ International Conference on
+  Parallel Processing (ICPP)}, pages 562--569, September 2008.
+
+\bibitem[YVCJ07]{Yu2007}
+W.~Yu, J.~Vetter, R.~S. Canon, and S.~Jiang.
+\newblock Exploiting lustre file joining for effective collective io.
+\newblock In {\em Seventh IEEE International Symposium on Cluster Computing and
+  the Grid (CCGrid '07)}, pages 267--274, May 2007.
+
+\bibitem[ZGF{\etalchar{+}}15]{Zhang2015}
+Z.~Zhang, B.~Gao, Z.~Fang, X.~Wang, Y.~Tang, J.~Sohn, H.~S.~P. Wong, S.~S.
+  Wong, and G.~Q. Lo.
+\newblock All-metal-nitride rram devices.
+\newblock {\em IEEE Electron Device Letters}, 36(1):29--31, Jan 2015.
+
+\bibitem[ZJD09]{Zhang2009}
+Xuechen Zhang, S.~Jiang, and K.~Davis.
+\newblock Making resonance a common case: A high-performance implementation of
+  collective i/o on parallel file systems.
+\newblock In {\em Proceedings of the 2009 IEEE International Parallel and
+  Distributed Processing Symposium (IPDPS)}, pages 1--12, May 2009.
+
+\bibitem[ZK01]{Zhang2001}
+Zheng Zhang and C.~Karamanolis.
+\newblock Designing a robust namespace for distributed file services.
+\newblock In {\em Proceedings 20th IEEE Symposium on Reliable Distributed
+  Systems}, pages 162--171, 2001.
+
+\end{thebibliography}

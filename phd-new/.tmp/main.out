@@ -1,0 +1,60 @@
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.1.1}{Contributions}{chapter.1}% 2
+\BOOKMARK [1][-]{section.1.2}{Remainder}{chapter.1}% 3
+\BOOKMARK [0][-]{chapter.2}{Background}{}% 4
+\BOOKMARK [1][-]{section.2.1}{Introduction to HPC I/O}{chapter.2}% 5
+\BOOKMARK [2][-]{subsection.2.1.1}{Parallel File Systems}{section.2.1}% 6
+\BOOKMARK [2][-]{subsection.2.1.2}{I/O Gap}{section.2.1}% 7
+\BOOKMARK [2][-]{subsection.2.1.3}{Small I/O}{section.2.1}% 8
+\BOOKMARK [2][-]{subsection.2.1.4}{Checkpointing}{section.2.1}% 9
+\BOOKMARK [1][-]{section.2.2}{Memory Technologies}{chapter.2}% 10
+\BOOKMARK [2][-]{subsection.2.2.1}{Magnetic Disks}{section.2.2}% 11
+\BOOKMARK [2][-]{subsection.2.2.2}{Solid State Drives}{section.2.2}% 12
+\BOOKMARK [2][-]{subsection.2.2.3}{Storage Class Memories}{section.2.2}% 13
+\BOOKMARK [1][-]{section.2.3}{Caching}{chapter.2}% 14
+\BOOKMARK [2][-]{subsection.2.3.1}{Readahead and LRU}{section.2.3}% 15
+\BOOKMARK [2][-]{subsection.2.3.2}{Prefetching}{section.2.3}% 16
+\BOOKMARK [2][-]{subsection.2.3.3}{Write Behind}{section.2.3}% 17
+\BOOKMARK [2][-]{subsection.2.3.4}{Burst Buffers}{section.2.3}% 18
+\BOOKMARK [1][-]{section.2.4}{I/O Middlewares}{chapter.2}% 19
+\BOOKMARK [2][-]{subsection.2.4.1}{MPI-IO}{section.2.4}% 20
+\BOOKMARK [2][-]{subsection.2.4.2}{Parallel Log structured File System}{section.2.4}% 21
+\BOOKMARK [2][-]{subsection.2.4.3}{Scalable Checkpoint Restart Library}{section.2.4}% 22
+\BOOKMARK [2][-]{subsection.2.4.4}{SIONlib}{section.2.4}% 23
+\BOOKMARK [2][-]{subsection.2.4.5}{Adaptable I/O System}{section.2.4}% 24
+\BOOKMARK [0][-]{chapter.3}{Guided Prefetching in Linux}{}% 25
+\BOOKMARK [1][-]{section.3.1}{File System Prefetching Intefaces}{chapter.3}% 26
+\BOOKMARK [2][-]{subsection.3.1.1}{POSIX Advice}{section.3.1}% 27
+\BOOKMARK [2][-]{subsection.3.1.2}{GPFS Hints}{section.3.1}% 28
+\BOOKMARK [1][-]{section.3.2}{The Mercury Middleware}{chapter.3}% 29
+\BOOKMARK [2][-]{subsection.3.2.1}{Interprocess Communication}{section.3.2}% 30
+\BOOKMARK [2][-]{subsection.3.2.2}{File Data Prefetching}{section.3.2}% 31
+\BOOKMARK [2][-]{subsection.3.2.3}{POSIX Advice integration with Lustre}{section.3.2}% 32
+\BOOKMARK [1][-]{section.3.3}{Contributions}{chapter.3}% 33
+\BOOKMARK [0][-]{chapter.4}{NVM Based Write-behind Caching}{}% 34
+\BOOKMARK [1][-]{section.4.1}{Extended Two Phase Algorithm}{chapter.4}% 35
+\BOOKMARK [1][-]{section.4.2}{Collective I/O Limitations}{chapter.4}% 36
+\BOOKMARK [2][-]{subsection.4.2.1}{File System Stripe Contention}{section.4.2}% 37
+\BOOKMARK [2][-]{subsection.4.2.2}{Logical to Physical Layout Mismatch}{section.4.2}% 38
+\BOOKMARK [2][-]{subsection.4.2.3}{Memory Pressure}{section.4.2}% 39
+\BOOKMARK [2][-]{subsection.4.2.4}{Network Concurrency}{section.4.2}% 40
+\BOOKMARK [2][-]{subsection.4.2.5}{Global Synchronization Overhead}{section.4.2}% 41
+\BOOKMARK [1][-]{section.4.3}{A Non-Volatile Memory Based Approach}{chapter.4}% 42
+\BOOKMARK [2][-]{subsection.4.3.1}{MPI-IO Hints Extensions}{section.4.3}% 43
+\BOOKMARK [2][-]{subsection.4.3.2}{Cache Hints Integration in ROMIO}{section.4.3}% 44
+\BOOKMARK [2][-]{subsection.4.3.3}{BeeGFS Cache Integration in ROMIO}{section.4.3}% 45
+\BOOKMARK [2][-]{subsection.4.3.4}{Consistency Semantics}{section.4.3}% 46
+\BOOKMARK [2][-]{subsection.4.3.5}{Changes to the Application's Workflow}{section.4.3}% 47
+\BOOKMARK [2][-]{subsection.4.3.6}{Write Bandwidth}{section.4.3}% 48
+\BOOKMARK [1][-]{section.4.4}{Contributions}{chapter.4}% 49
+\BOOKMARK [0][-]{chapter.5}{Evaluation}{}% 50
+\BOOKMARK [1][-]{section.5.1}{I/O Prefetching in ROOT}{chapter.5}% 51
+\BOOKMARK [2][-]{subsection.5.1.1}{Test Bed}{section.5.1}% 52
+\BOOKMARK [2][-]{subsection.5.1.2}{Performance Results}{section.5.1}% 53
+\BOOKMARK [2][-]{subsection.5.1.3}{Conclusions}{section.5.1}% 54
+\BOOKMARK [1][-]{section.5.2}{Write Behind in Collective I/O}{chapter.5}% 55
+\BOOKMARK [2][-]{subsection.5.2.1}{Testbed}{section.5.2}% 56
+\BOOKMARK [2][-]{subsection.5.2.2}{Performance Results}{section.5.2}% 57
+\BOOKMARK [2][-]{subsection.5.2.3}{Conclusions}{section.5.2}% 58
+\BOOKMARK [0][-]{chapter.6}{Conclusions and Future Work}{}% 59
+\BOOKMARK [0][-]{chapter.6}{Bibliography}{}% 60

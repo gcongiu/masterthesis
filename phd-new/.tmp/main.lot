@@ -1,0 +1,12 @@
+\select@language {english}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {2.1}{\ignorespaces Potential Exascale Computer Design for 2018 and its relationship to current HPC designs.\relax }}{17}{table.caption.11}
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {3.1}{\ignorespaces Values for \textit {advice} in the \textit {posix\_fadvise()} system call\relax }}{54}{table.caption.24}
+\contentsline {table}{\numberline {3.2}{\ignorespaces GPFS hint data structures\relax }}{55}{table.caption.25}
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {4.1}{\ignorespaces Collective I/O hints in ROMIO.\relax }}{70}{table.caption.30}
+\contentsline {table}{\numberline {4.2}{\ignorespaces Proposed MPI-IO hints extensions.\relax }}{82}{table.caption.37}
+\addvspace {10\p@ }
+\addvspace {10\p@ }

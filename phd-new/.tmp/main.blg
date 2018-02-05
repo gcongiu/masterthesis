@@ -1,0 +1,74 @@
+This is BibTeX, Version 0.99d (TeX Live 2017/MacPorts 2017_2)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: .tmp/main.aux
+The style file: alpha.bst
+Database file #1: bibliography.bib
+Warning--string name "hpdc" is undefined
+--line 1063 of file bibliography.bib
+Warning--entry type for "UnixSock" isn't style-file defined
+--line 1564 of file bibliography.bib
+Warning--to sort, need author or key in Chatrchyan2011
+Warning--to sort, need author or key in POSIX
+Warning--to sort, need author or key in NIST
+Warning--to sort, need author or key in ASCAC2010
+Warning--to sort, need author or key in mpispecs
+Warning--to sort, need author or key in UnixSock
+Warning--empty journal in Adam2011
+Warning--empty school in Chang2001
+Warning--empty author in Chatrchyan2011
+Warning--empty journal in Deca2013
+Warning--empty journal in BES2015
+Warning--empty journal in BER2016
+Warning--empty journal in Moody2010
+Warning--there's a number but no volume in Moody2010
+Warning--empty journal in Mcpeek2002
+Warning--there's a number but no volume in Mcpeek2002
+Warning--empty journal in Newbold1983
+Warning--empty journal in HEP2015
+Warning--empty publisher in ProstTHKW00
+Warning--empty journal in FES2016
+Warning--empty journal in NP2016
+Warning--empty journal in Vital2013
+Warning--there's a number but no volume in Wang2004
+You've used 133 entries,
+            2543 wiz_defined-function locations,
+            1532 strings with 35459 characters,
+and the built_in function-call counts, 67438 in all, are:
+= -- 6695
+> -- 3619
+< -- 96
++ -- 1331
+- -- 1311
+* -- 5073
+:= -- 10605
+add.period$ -- 423
+call.type$ -- 133
+change.case$ -- 1022
+chr.to.int$ -- 131
+cite$ -- 162
+duplicate$ -- 2675
+empty$ -- 4680
+format.name$ -- 1411
+if$ -- 14242
+int.to.chr$ -- 3
+int.to.str$ -- 0
+missing$ -- 127
+newline$ -- 662
+num.names$ -- 381
+pop$ -- 1078
+preamble$ -- 1
+purify$ -- 1160
+quote$ -- 0
+skip$ -- 2339
+stack$ -- 0
+substring$ -- 3614
+swap$ -- 763
+text.length$ -- 96
+text.prefix$ -- 17
+top$ -- 0
+type$ -- 1048
+warning$ -- 23
+while$ -- 602
+width$ -- 139
+write$ -- 1776
+(There were 25 warnings)
