@@ -26,8 +26,9 @@ multiple disk failures, depending on the RAID scheme. Similarly, disk enclosures
 \begin{figure}[!htb]
 \centering
 \includegraphics[width=0.8\textwidth]{figures/hpc-io-arch}
-\caption{High-level architecture of a HPC storage system. Compute nodes are connected to servers through a low-latency network. Each RAID volume protects data against single, or multiple, disk failures. RAID volumes are
-contained into disk enclosures, each of which is connected to two servers using a storage area network; in this way if one of the servers fails data is still reacheable through the failover node.}
+\caption{Example of HPC storage system high-level architecture. Compute nodes are connected to servers through a low-latency network. Each RAID volume protects data against single, or multiple,
+    disk failures. RAID volumes are contained into disk enclosures, each of which is connected to two servers using a storage area network; in this way if one of the servers fails data is still
+    reacheable through the failover node.}
 \label{figure: hpc-io-arch}
 \end{figure}
 
@@ -74,7 +75,7 @@ Files in Linux are accessed through an interface based on the POSIX-IO standard.
 file attributes like access permission, creation time, size, and so on. These operations access the file's \textit{inode} (i.e., the file system data structure representing the physical file) along with its attributes. 
 Data operations allow users to store and retrieve raw data to and from the file; such data is contained into \textit{data blocks}. Both inodes and data blocks are represented as contiguous byte ranges of size multiple 
 of the disk sector, simply called blocks. The block is also the elementary transfer unit in the file system\footnote{The typical sector size in a hard disk is 512~Bytes, while the most common block size is 4~KB (or 8 
-sectors).}. Data blocks belonging to the same file are referenced by its inode. Directories are special type of files that do not contain raw data but only key-value pairs. In each of these pairs the key is the name of 
+sectors) for local file systems.}. Data blocks belonging to the same file are referenced by its inode. Directories are special type of files that do not contain raw data but only key-value pairs. In each of these pairs the key is the name of 
 a file inside the directory, while the value is the inode number of the file in the file system. Figure~\ref{figure: inode} shows the relationship between inodes and data blocks in a Linux file system.
 
 \begin{figure}[!htb]
@@ -89,7 +90,7 @@ is a limitation to the number of data blocks that can be directly referenced by 
 bigger than 4~MB (1024 $\times$ 4~KB). For this reason inodes also reference data blocks indirectly through other blocks, the latter storing addresses instead of data. With a single level of indirection, for example, we 
 can have an additional 4~GB (1024 $\times$ 1024 $\times$ 4~KB) of space, 4~TB with a double level of indirection.
 
-Parallel file systems~\cite{Braam02}~\cite{SchmuckH02}~\cite{Welch2008}~\cite{CarnsLRT}~\cite{Mcpeek2002} differ from local file systems since instead of storing data into a single hard disk, they use several disks 
+Parallel file systems~\cite{Braam02}~\cite{SchmuckH02}~\cite{Welch2008}~\cite{CarnsLRT}~\cite{Heichler2014} differ from local file systems since instead of storing data into a single hard disk, they use several disks 
 connected to remote servers. In most parallel file system designs data is partitioned and spread across many \textit{I/O servers} (IOS), or \textit{data servers} (DS), while metadata, including file mapping information, 
 is stored in one or more \textit{metadata servers} (MDSs). The division between data and metadata allows for a specialization of the two services and a better efficiency of the system. The reason is that data and metadata 
 access patterns have different characteristics, which can be better addressed by dedicated hardware and software solutions. For example, MDSs are designed to perform a large number of small metadata queries and updates. 
@@ -178,7 +179,7 @@ new file, the journal will contain two entries, one for the allocation of the ne
 log to check whether the create operation has completed successfully (all the relevant data structures have been updated) or has completed only partially. If the operation has completed the corresponding entries can be removed 
 from the journal, while if the operation has completed partially the file system can decide whether to complete it or undo the partial changes. (In any case the file system is always recovered to a consistent state. While WAL 
 is used in many file systems, other solutions are also possible like, for example, \textit{copy-on-write}.) The advantage of using journaling is that in the eventuality of a crash, upon restart, the file system does not need 
-to scan the all disk to verify if any of its data structures has been left into an inconsistent state, which is a time consuming operation that in large disks can require up to several hours.
+to scan all the disk to verify if any of its data structures has been left into an inconsistent state, which is a time consuming operation that in large disks can require up to several hours.
 
 \subsection{I/O Gap}
 Moore's law has been driving technological advancements in integrated circuits for the past five decades, almost doubling density and speed of microprocessor every two years~\cite{Mack11}. Comparable technological advancements 
@@ -190,12 +191,12 @@ requests~\cite{jacobson1991}~\cite{Worthington1994}~\cite{Iyer2001}.
 \begin{figure}[!htb]
 \centering
 \includegraphics[width=0.8\textwidth]{figures/hdd-trend}
-\caption{Recording density has been improved thanks to technological advancements in different fields including magnetic sensors and recording mediai~\cite{Shiroishi2009}.}
+\caption{Recording density has been improved thanks to technological advancements in different fields including magnetic sensors and recording media~\cite{Shiroishi2009}.}
 \label{figure: hdd-trend}
 \end{figure}
 
 The technological gap between CPUs and hard disks, also known as \textit{I/O gap}, has caused performance of HDDs to fall far behind compute components, imposing time penalties of millions of CPU cycles on 
-applications performing I/O operations. This problem is particularly relevant in HPC environment because the performance of compute components increases much faster than storage, as shown in Table~\ref{table: hpc-trend}
+applications performing I/O operations. This problem is particularly relevant in HPC environments because the performance of compute components increases much faster than storage, as shown in Table~\ref{table: hpc-trend}
 ~\cite{ASCAC2010}. The table compares the characteristics of a typical 2010 supercomputer with the characteristics of future Exascale machines, which were predicted to be available in 2018. Exascale machines are not yet 
 available and will not be available by the 2018 time frame. More recently, the U.S. \textit{departmment of energy} (DOE) \textit{advanced scientific computing research} (ASCR) initiative has worked on updating the requirements 
 of HPC systems at Exascale for different areas of interest including \textit{high energy physics} (HEP)~\cite{HEP2015}, \textit{basic energy sciences} (BES)~\cite{BES2015}, \textit{fusion energy sciences} (FES)~\cite{FES2016}, 
@@ -363,8 +364,9 @@ Hard disks are the most used mechanical storage components for persistently stor
 of a magnetic disk (or platter). Hard disks can have many platters arranged into a stack, connected through a spindle powered by an electrical motor. Data in the disk is accessed through magnetic sensors, 
 or heads, that are moved over the disk surface to read and write data using a set of mechanically actuated arms. Sectors are further organized into tracks (i.e., concentric strips that can be accessed with 
 a single head positioning); the disk spins at high speed allowing the head to visit all the sectors in a track. Finally the set of tracks, from the different platters, that are located at the same distance 
-from the spindle is called cylinder~\cite{Ruemmler1994}. Since every platter is paired with a set of heads, one for the lower surface and one for the upper, data on the same cylinder can be accessed at the same time using the 
-available heads. Figure~\ref{figure: hdd} shows the described device geometry. Although hard disks could transfer data at the byte granularity, in order to achieve acceptable performance disks use sectors
+from the spindle is called cylinder~\cite{Ruemmler1994}. %Since every platter is paired with a set of heads, one for the lower surface and one for the upper, data on the same cylinder can be accessed at the same time using the 
+%available heads.
+Figure~\ref{figure: hdd} shows the described device geometry. Although hard disks could transfer data at the byte granularity, in order to achieve acceptable performance disks use sectors
 including multiple bytes (512 bytes most commonly); for this reason hard disks are also called block devices. Another feature of hard disks is that they allow data to be accessed in any order, making them 
 another type of random access memory like DRAM.
 
@@ -406,10 +408,10 @@ SLCs are more reliable and have better performance among all and thus are also m
 into \textit{erasure blocks}, using a NAND gate configuration. Data can be read and written from and to the flash chip at the page granularity. Nevertheless, a page cannot be re-written unless it is erased first. Unfortunately, 
 the flash chip cannot erase single pages but has instead to erase all the pages inside a block. %For this reason some of the pages in the block may need to be copied to DRAM or another set of pages in the chip before the block can be erased. 
 
-Normally read operations are quite fast because the value of the electrical charge in the cell can be retrieved easily (in the order of tens of microseconds). Write operations are typically more expensive because pages 
-have to be erased before they can be programmed (in the order of hundreds of microseconds). Additionally, erasing a block causes a wear out of the device that has a limited number of erase/programming cycles. These two 
-elements are important aspects that have to be considered when designing a solid state drive based on the flash technology. Figure~\ref{figure: flash-ssd} shows the high-level architecture of a flash based storage device 
-as we have just described it.
+Normally read operations are quite fast because the value of the electrical charge in the cell can be retrieved easily (in the order of tens of microseconds). Write operations, on the other hand, are typically more expensive
+because the programming of the cell take more time (in the order of hundreds of microseconds). Additionally, at some point, block need to be erased and this causes a wear out of the device that has a limited number of
+erase/programming cycles. These two elements are important aspects that have to be considered when designing a solid state drive based on the flash technology. Figure~\ref{figure: flash-ssd} shows the high-level architecture
+of a flash based storage device as we have just described it.
 
 \begin{figure}[!htb]
 \centering
@@ -456,7 +458,7 @@ batches, thus avoiding the extra copy operation. Direct access to the NVMM is pr
 
 A problem with implementing file systems in main memory comes from the consistency requirements that are normally imposed upon update operations and that guarantee correctness of applications performing I/O. In this case, CPUs 
 can rearrange the order of operations to improve performance, potentially breaking consistency in the case of a system failure. To avoid this, file systems in main memory have to explicitly enforce the flushing of CPU caches to 
-respect ordering but, at the same time, adding considerable overhead. In order to ensure atomicity, NVMM based file systems have to employee journaling mechanisms that perform efficiently on the new hardware. In fact, although 
+respect ordering but, at the same time, adding considerable overhead. In order to ensure atomicity, NVMM based file systems have to employ journaling mechanisms that perform efficiently on the new hardware. In fact, although 
 SCMs can effectively bridge the gap between storage and compute, they will just move the bottleneck from the device to the system software and applications, which performance will be no longer dominated by storage latency
 ~\cite{Katzburg2016}.
 
@@ -811,10 +813,10 @@ them.
 
 \subsection{Scalable Checkpoint Restart Library}
 SCR~\cite{Moody2010_2}~\cite{Moody2010} is a library for multi-level checkpoint restart developed at Lawrence Livermore National Laboratory and targeting N-N checkpointing patterns. It derives from two key 
-observations on applications running on HPC systems. The first observation is that jobs, only need the most recent checkpoint in order to restart. The second observation is that even in the case of failures, 
+observations on applications running on HPC systems. The first observation is that jobs only need the most recent checkpoint in order to restart. The second observation is that even in the case of failures, 
 the number of affected nodes is typically limited to one or two. Therefore, HPC jobs can overbook the system to have an additional small number of spare nodes that can takeover the crashed ones when needed.
 Because only a limited number of nodes fail, and because writing data to the parallel file system can be a very slow operation, SCR uses local storage resources in compute nodes to store data. These can be RAM 
-disks, hard disks or solid state drives. Local checkpoint are flushed to the parallel file system infrequently, thus reducing performance degradation and overload of storage system components that are more 
+disks, hard disks or solid state drives. Local checkpoints are flushed to the parallel file system infrequently, thus reducing performance degradation and overload of storage system components that are more 
 prone to failure when heavily stressed.
 
 SCR can replicate information on local nodes across the network using MPI. There are three different replication strategies supported: \textit{LOCAL}, \textit{PARTNER} and \textit{XOR}. The LOCAL strategy does not 

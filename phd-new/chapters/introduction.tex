@@ -9,7 +9,7 @@ CPU compute capabilities imposes a performance gap on applications that have to 
 access memory} (DRAM)~\cite{CarnsHABLLR11}~\cite{ChenR10}. 
 
 In order to alleviate this performance gap, designers have built distributed storage systems in which many hard disks can be accessed concurrently through a high-performance network and corresponding parallel file system 
-softwares~\cite{Braam02}~\cite{SchmuckH02}~\cite{CarnsLRT}~\cite{Mcpeek2002} to efficiently manage them; such systems are optimized for large sequential I/O transfers that exploit the characteristics of the underlying storage media. 
+softwares~\cite{Braam02}~\cite{SchmuckH02}~\cite{CarnsLRT}~\cite{Heichler2014} to efficiently manage them; such systems are optimized for large sequential I/O transfers that exploit the characteristics of the underlying storage media. 
 To further reduce the I/O latency file systems use a DRAM cache to buffer frequently accessed data that, in this way, can be served faster from memory instead of fetching it from remote disks.
 
 Prefetching is a well known technique that allows to anticipate I/O needs by preemptively fetching data from disks into the cache before it is referenced by the application. In order to effectively hide disk 

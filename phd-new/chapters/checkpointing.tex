@@ -13,7 +13,7 @@ knowledge is used to build an aggregated view of the accessed region in the file
 later issued to the parallel file system. 
 
 In this chapter we present our approach to improve collective I/O performance using non-volatile memory devices in HPC clusters' compute nodes. The fundamental observation that motivates our approach 
-is that collective I/O performance is limited by the slowest aggregator. Aggragators experience different run-times mainly for two reasons: the communication pattern required to build file domains might 
+is that collective I/O performance is limited by the slowest aggregator. Aggregators experience different run-times mainly for two reasons: the communication pattern required to build file domains might 
 differ among aggregators and the scheduling of requests in I/O servers might not happen simultaneously for all aggregators. These two factors, in conjunction with the need for global synchronization 
 between following rounds of two phase I/O, represent the main cause of suboptimal performance.
 
@@ -240,8 +240,8 @@ Consider Figure~\ref{figure: network-concur}, showing three applications with tw
 $IOS_1$, $Agg_{12}$ identifies the second aggregator of the first application reading data from $IOS_2$, and so on. Every application performs three rounds of two phase I/O. In the `ideal behaviour' every
 aggregator reads data from a different I/O server and takes the same time to shuffle data to other processes across the network; in this case all the requests can be ideally scheduled at the same time, giving
 the shortest running time for every application. In the `real behaviour' aggregators read data only from two I/O servers and take different time to shuffle data; in this case the shuffle time varies for every
-aggregator and is higher for those aggregators that need to exchange data with processes that are placed in a different node. \footnote{When aggregators are served by arrival order and the slowest aggregators always
-arrive last, the overall collective I/O time dilates.} In the `optimal scheduling behaviour' the slowest aggregator is always served first; in this case while aggregators are busy shuffling data to other
+aggregator and is higher for those aggregators that need to exchange data with processes that are placed in a different node\footnote{When aggregators are served by arrival order and the slowest aggregators always
+arrive last, the overall collective I/O time dilates.}. In the `optimal scheduling behaviour' the slowest aggregator is always served first; in this case while aggregators are busy shuffling data to other
 processes, I/O servers can satisfy following read requests, thus overlapping network communication and I/O time, minimizing the runtime for all applications.
 %The first case describes the scenario in which every aggregator requests data from a different 
 %I/O server and the shuffle time is the same for each of them. In this case all the requests can be ideally scheduled at the same time giving the shortest running time for every application. The second 

@@ -66,7 +66,7 @@ For ext4 and Lustre this was accomplished by using the command line: $$echo\ 3 >
 the GPFS \textit{network shared disks} (NSDs)\footnote{GPFS name for I/O servers.} servers do not cache any data. 
 
 
-\subsection{Test Bed}
+\subsection{Testbed}
 Our testbed is composed by a test cluster of seven nodes, mainly intended to evaluate the proposed Linux kernel modifications with the Lustre file system. The reason 
 for using a smaller cluster instead of the Mogon system is that it was not possible to disrupt the production cluster, affecting hundreds of users, by re-installing 
 the operating system kernel. In order to make realistic comparisons between Lustre and GPFS, the test cluster also has a GPFS file system on comparable hardware. 
@@ -346,7 +346,7 @@ time is added to the total write time, thus reducing the bandwidth.
 \subsection{Testbed}
 Our testbed is a research cluster designed and developed in the context of the DEEP/-ER~\cite{Eicker2013} projects (Dynamic Exascale Entry Platform/-Extended Reach). The 
 DEEP/-ER cluster has 2048 cores distributed over 128 computing nodes (dual socket Sandy Bridge architecture). The storage system is composed of 6 Dell PowerEdge 
-R520 servers equipped with 2 Intel Xeon Quad-core CPUs and 32~GB of memory and run the BeeGFS file system from Fraunhofer ITWM~\cite{Mcpeek2002}
+R520 servers equipped with 2 Intel Xeon Quad-core CPUs and 32~GB of memory and run the BeeGFS file system from Fraunhofer ITWM~\cite{Heichler2014}
 (formerly known as FhGFS). The servers are connected to a SGI JBOD with 45 2TB SAS drives through a SAS switch using two 4x ports at 6~GB/s, for a total of four 
 8+2 RAID6 storage targets and 2 RAID1 targets for metadata and management data (1 drive is left as spare). One of the six I/O servers is dedicated as metadata 
 server, one as management server and the remaining four as data I/O servers.
@@ -477,7 +477,7 @@ to the fact that, unlike in coll\_perf, writes are not multiple of the stripe si
 Finally, we observe that the \textit{post\_write} contribution is more consistent this time. The reason, as already anticipated, is that Flash-IO does not write data with a single
 collective operation but instead uses multiple operations, thus increasing the number of \texttt{MPI\_Allreduce()} calls at the end of the ext2ph algorithm.
 
-When the cache is enable we can observe much better performance. Once again, 8 aggregators are not sufficient to completely hide cache synchronization cost to the application. As last
+When the cache is enabled we can observe much better performance. Once again, 8 aggregators are not sufficient to completely hide cache synchronization cost to the application. As last
 note, we see that in the case of 64 aggregators and 16~MB buffer size there is a drop of write bandwidth in Figure~\ref{figure: flash-bw} due to a peak in the \textit{post\_write}
 contribution in Figure~\ref{figure: flash-elaps-enable}. This tells us that when using the cache, although we can minimize the scheduling effects on I/O requests, a small variation 
 in the I/O time across aggregators can produce substantial effects on the perceived bandwidth. Indeed, we can see a drop of about 25~GB/s with respect to the 64 aggregators and 
