@@ -148,7 +148,7 @@ Atomicity means that if a file system operation is composed by multiple steps, e
 state to another; isolation means that the concurrent execution of multiple file system operations is equivalent to their sequential execution and; finally, durability means that once an operation has completed its 
 effects cannot be lost, even in the presence of a system crash.
 
-The POSIX-IO standard only enforces atomicity and consistency. Durability is not considered because it would result in serious performance penalties. For example, in a durable file system every write operation should be
+The POSIX-IO standard only enforces atomicity and consistency. Durability is not considered because it would result in serious performance penalties~\cite{Wright2007}. For example, in a durable file system every write operation should be
 carried out synchronously. Because disks are orders of magnitude slower than CPUs, the program would spend most of its time waiting on I/O, thus making little progresses. To avoid this, data and metadata updates are 
 applied to DRAM and are committed to disk only explicitly by the user through the invocation of either \texttt{sync()} or \texttt{close()} of the file. Isolation is also not considered because it would require the file 
 system to lock every data structure that can be accessed concurrently, even if this does not violate any invariant. However, the lack of isolation leaves programs open to vulnerabilities due to race conditions. For example, 
@@ -409,7 +409,7 @@ into \textit{erasure blocks}, using a NAND gate configuration. Data can be read 
 the flash chip cannot erase single pages but has instead to erase all the pages inside a block. %For this reason some of the pages in the block may need to be copied to DRAM or another set of pages in the chip before the block can be erased. 
 
 Normally read operations are quite fast because the value of the electrical charge in the cell can be retrieved easily (in the order of tens of microseconds). Write operations, on the other hand, are typically more expensive
-because the programming of the cell take more time (in the order of hundreds of microseconds). Additionally, at some point, block need to be erased and this causes a wear out of the device that has a limited number of
+because the programming of the cell takes more time (in the order of hundreds of microseconds). Additionally, at some point, block need to be erased and this causes a wear out of the device that has a limited number of
 erase/programming cycles. These two elements are important aspects that have to be considered when designing a solid state drive based on the flash technology. Figure~\ref{figure: flash-ssd} shows the high-level architecture
 of a flash based storage device as we have just described it.
 

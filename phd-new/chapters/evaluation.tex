@@ -44,10 +44,10 @@ I/O pattern of the application for different files looks similar\footnote{Due to
 change significantly. This general behaviour can be modelled using Mercury through a configuration file in which a `WillNeed' hint covers the whole file from beginning to end (i.e., `Offset' and `Length' equal to 
 0). The backwards seeks can be accounted for using the `CacheSize' parameter to keep previously accessed blocks in cache. In this way we effectively emulate a sliding window that tracks the application's 
 I/O behaviour. This would not be possible by just using a, e.g., \texttt{POSIX\_FADV\_WILLNEED} advice on the whole file before starting the application like shown by Figure~\ref{figure: fadvise_comparison}. 
-The reason is that if the file size is equal or smaller than the cache size, we would have a large number of valuable pages discarded from the cache to load data that will be accessed at the end of 
+The reason is that even if the file fits entirely into the cache, we would have a large number of valuable pages, possibly from other applications, discarded from the cache to load data that will be accessed at the end of 
 the application. Additionally, if the file size is bigger than the cache size we would have the file system discarding blocks at the beginning of the file as the blocks at the end are preloaded, 
 effectively forcing the application to access these blocks from the I/O servers instead of the cache. With our approach, on the other hand, we keep in the cache only a small, controlled number of 
-blocks (the ones currently accessed), while the older blocks are discarded since no longer needed. 
+blocks (the ones currently accessed), while the older blocks are discarded since no longer needed.
 
 \begin{figure}[!htb]
   \centering

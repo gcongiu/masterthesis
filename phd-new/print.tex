@@ -1,0 +1,352 @@
+\documentclass[a4paper,titlepage,oneside,11pt]{book}
+%*******************************************************************************************
+% USEPACKAGE
+%*******************************************************************************************
+\usepackage[ansinew]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{indentfirst}
+\usepackage{makeidx}
+\usepackage{graphicx}
+\usepackage[usenames]{color}
+\usepackage{float}
+\usepackage{amsmath,amssymb}
+\usepackage{mathtools}
+\usepackage{multicol}
+\usepackage{multirow/multirow}
+\usepackage{calc}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[a4paper,top=4.5cm,bottom=4.5cm,left=4.5cm,right=4.5cm]{geometry}
+\usepackage[pdfauthor={Giuseppe Congiu},pdftitle={PhD Thesis},bookmarks,colorlinks]{hyperref}
+\usepackage[all]{hypcap}
+\usepackage{fancyvrb}
+\usepackage{fancybox}
+\usepackage{paralist}
+\usepackage{listings}
+\usepackage{acronym}
+\usepackage{array, booktabs}
+\usepackage{microtype}
+\usepackage[htt]{hyphenat}
+\usepackage{titlesec}
+\usepackage[parfill]{parskip}
+%\setcounter{tocdepth}{5}
+%\setcounter{secnumdepth}{5}
+\newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+%\usepackage{mypref}
+%*******************************************************************************************
+% END USEPACKAGE
+%*******************************************************************************************
+
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+\pagestyle{headings}
+\definecolor{myblue}{rgb}{0,0,1}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mykey}{rgb}{0.7,0.4,0}
+\definecolor{stringa}{rgb}{1,0.4,0}
+\newcommand{\codeword}{\texttt}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+%\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{backcolour}{rgb}{1,1,1}
+ 
+\lstdefinestyle{mystyle}{
+        backgroundcolor=\color{backcolour},   
+        commentstyle=\color{codegray},
+        keywordstyle=\color{codegray},
+        numberstyle=\tiny\color{codegray},
+        stringstyle=\color{codegray},
+        basicstyle=\footnotesize\ttfamily,
+        breakatwhitespace=false,         
+        breaklines=true,                 
+        captionpos=b,                    
+        keepspaces=true,                 
+        numbers=left,                    
+        numbersep=5pt,                  
+        showspaces=false,                
+        showstringspaces=false,
+        showtabs=false,                  
+        tabsize=2
+}
+
+\lstset{style=mystyle}
+%*******************************************************************************************
+% FRONTESPIZIO
+%*******************************************************************************************
+% title
+%\title{Exploiting File Caching Infrastructures in HPC Using Guided I/O Interfaces}
+%\title{Improving I/O Performance in HPC Using Hint Driven Caching}
+
+%authors
+\author{Giuseppe Congiu}
+
+\makeglossary
+\makeindex
+
+\begin{document}
+
+\hypersetup{citecolor=black,filecolor=black,linkcolor=black,urlcolor=blue} %settare i calori dei link
+
+\begin{titlepage}
+\thispagestyle{empty}
+
+%\begin{flushleft}
+%\vbox to0pt{
+%\vbox to\textheight{\vfil
+%\vspace{10cm}
+%\includegraphics[width=5cm]{figures/uni-mainz}
+%\vfil}\vss}
+%\end{flushleft}
+
+%\begin{center}
+%        \large JOHANNES GUTENBERG-UNIVERSIT{\"A}T MAINZ \\
+%        \large \textbf{Department of Computer Science}
+%\end{center}
+
+\begin{center}
+	\vspace{2cm}
+    \Large \textbf{Improving I/O Performance in HPC Through Guided Prefetching and Non-Volatile Memory Devices} \\
+	\vspace{4cm}
+    \normalsize
+    Dissertation submitted \\
+    for the award of the title \\
+    ''Doctor \\
+    of Natural Sciences'' \\
+    to the Faculty of Physics, Mathematics, and Computer Science \\
+    of Johannes Gutenberg University Mainz \\
+    in Mainz \\
+    \vspace{0.5cm}
+    Giuseppe Congiu \\
+\end{center}
+\vspace{1.7cm}
+
+\newpage
+\thispagestyle{empty}
+\flushleft
+    \textbf{Reviewer}: Prof. Dr. Ing. Andr\'e Brinkmann\\
+    \textbf{External Reviewer}: Prof. Dr. Maria Perez, Universidad Politecnica de Madrid (UPM)\\
+    \textbf{Date}: 12/07/2018
+
+%\begin{flushright}
+%	Candidate:\\
+%	\textbf{Giuseppe Congiu}\\
+%%	Version 1.0, \today
+%\end{flushright}
+
+%\begin{flushright}
+%	Advisors:\\
+%	\textbf{Prof. Dr. Andr\'e Brinkmann}\\
+%        \textbf{Dr. Sai Narasimhamurthy}
+%\end{flushright}
+
+%\vspace{\fill}
+%\small This work has been funded by the FP7 program of the European Commission through the Scalus (Grant Agreement no. 238808) and DEEP-ER (Grant Agreement no. 610476) projects.
+
+\end{titlepage}
+%*******************************************************************************************
+%END FRONTESPIZIO
+%*******************************************************************************************
+
+\newpage
+\thispagestyle{empty}
+\newpage
+%\begin{center}
+%\textit{To my family.}\\
+%\textit{Dedicato alla mia famiglia che mi \`e sempre stata vicino in questi anni.}
+%\end{center}
+%\pagenumbering{roman}\setcounter{page}{1}
+%\newpage
+\thispagestyle{empty}
+\null
+\newpage
+\pagenumbering{roman}\setcounter{page}{1}
+\chapter*{Abstract}% \addcontentsline{toc}{chapter}{Abstract}
+High performance computing has become one of the fundamental contributors to the progress of science and technology. However, one challenge of high performance computing remains 
+the gap between compute components and hard disk drives performance, used to persistently store data, that has made I/O the main limitation to the scalability of applications.
+Over the years many research efforts have been dedicated to the alleviation of the I/O gap; a consistent portion of these has focused on caching techniques to hide disk accesses 
+and reduce the time applications spend stalled on I/O transfers. Two popular caching techniques used to improve read and write performance are, respectively, prefetching and 
+write-behind. Prefetching can mask disk accesses by preemptively loading data into main memory and serving it to applications from there, while write-behind buffers data updates 
+into main memory and allows applications to return to compute faster, taking care of moving data to the disk at a later time.
+
+More recently the emergence of larger dynamic random access memories and new storage technologies has opened up a new range of possibilities to implement caching. In this thesis 
+we focus on guided prefetching in Linux and collective write optimizations based on write-behind that exploit solid state drives on compute nodes of high performance computing clusters.
+Our prefetching strategy is directed to improve the I/O throughput of the parallel file system and hide its access time to scientific analysis codes; while our collective I/O solution 
+is directed to improve the I/O throughput of applications writing their datasets to the parallel file system for defensive checkpoint restart.
+
+We have implemented our prefetching strategy into a new middleware prototype called Mercury and extended the ROMIO MPI-IO implementation with additional support for solid state
+drives; these can be exploited during collective write operations to locally buffer bursts of I/O activity in compute nodes, postponing the transfer of the data to the global file
+system at a later time. 
+
+Experimental results in real environments demonstrate the effectiveness of our ideas and provide a base for the development of future production ready solutions based on these.
+
+\chapter*{Acknowledgments}
+This work would not have been possible without the many people that I have worked with in these years at Xyratex and Seagate. First of all Malcolm Muggeridge who offered me the possibility to work with his team of professionals.
+Among the people in the team special thanks go to Dr. Sai Narasimhamurthy and James Morse for their technical supervision and to Stuart Smithson for his helpful advice and encouragement. I would also like to thank my academic advisor 
+Prof. Andr\'e Brinkmann for his valuable help in overcoming difficulties with the progression of the Ph.D. and to all his team of Ph.D. students and Postdocs I had the pleasure to work with. Finally, I cannot forget my family and friends 
+that supported me morally during all these years.
+
+%*******************************************************************************************
+% LIST OF FIGURES
+%*******************************************************************************************
+\listoffigures
+\cleardoublepage
+
+%*******************************************************************************************
+% LIST OF TABLES
+%*******************************************************************************************
+\listoftables
+\cleardoublepage
+
+\tableofcontents
+\mainmatter
+
+%\begin{bibunit}
+% The \nocite{*} command simply lists all of the references found in the 
+% bibliography file, without a corresponding reference number in the text.
+%\nocite{*}
+% Here publications refers to our "publications.bib" file containing our 
+% publications list. Change it to the path to your publications list file
+%\putbib[publications]
+%\end{bibunit}
+
+%*******************************************************************************************
+% CHAPTERS
+%*******************************************************************************************
+\newpage
+\pagenumbering{arabic}\setcounter{page}{1}
+\input{chapters/introduction}
+\input{chapters/background}
+\input{chapters/prefetching}
+\input{chapters/checkpointing}
+\input{chapters/evaluation}
+\input{chapters/conclusion}
+\cleardoublepage
+
+%*******************************************************************************************
+% END OF CHAPTERS
+%*******************************************************************************************
+
+%*******************************************************************************************
+% BIBLIOGRAPHY
+%*******************************************************************************************
+\cleardoublepage
+\addcontentsline{toc}{chapter}{Bibliography}
+
+\bibliographystyle{alpha}
+\bibliography{bibliography}
+
+\cleardoublepage
+\newpage
+\newpage
+\thispagestyle{empty}
+\mbox{}
+
+\newpage
+\newpage
+\thispagestyle{empty}
+\mbox{}
+
+% curriculum vitae
+\newpage
+\pagestyle{empty} % non-numbered pages
+
+%--------------------TITLE-------------
+\par{\centering
+		{\Huge Curriculum Vitae}
+	\bigskip\par}
+
+%--------------------SECTIONS-----------------------------------
+%Section: Personal Data
+%\section*{Contact Information}
+%
+%\begin{tabular}{l}
+%    Mathematics and Computer Science (MCS) Division\\
+%    Argonne National Laboratory\\
+%    9700 South Cass Avenue, Bldg. 240\\
+%    Argonne, Illinois 60439-4844, USA\\
+%    Phone: +1 (630) 252-8227\\
+%    Email: gcongiu (at) anl (dot) gov
+%\end{tabular}
+
+%Section: Work Experience at the top
+\section*{Work Experience}
+\begin{tabular}{r|p{11cm}}
+\textsc{Sep 2017} & Pre-Doctoral Appointee at \textsc{Argonne National Laboratory}, USA \\\textsc{}&
+    \emph{Working on programming models and runtime systems in the Mathematics and Computer Science division}\\&
+    \footnotesize{Study of heterogeneous memory systems in message passing (MPI) communications.}\\\multicolumn{2}{c}{} \\
+\textsc{May 2017} & Research Engineer at \textsc{Seagate System UK} Ltd, Havant \\\textsc{Dec 2013}&\emph{Worked on EU funded research projects}\\&
+    \footnotesize{Design and implementation of parallel I/O improvements for the ROMIO middleware (MPI-IO implementation from Argonne National Laboratory),
+    during the course of the DEEP-ER project (\url{http://www.github.com/gcongiu/E10.git}). Basic working experience with scientific I/O libraries
+    (HDF5, NetCDF) gained during the course of the SAGE and ESiWACE projects, with special focus on HDF5 plugin development for different storage
+    backends.}\\\multicolumn{2}{c}{} \\
+\textsc{Dec 2013} & Early Stage Researcher at \textsc{Xyratex} Ltd, Havant \\\textsc{Feb 2011}&\emph{Marie Curie ITN Fellow}\\&
+    \footnotesize{Covered the role of research fellow in the SCALUS (SCALig by mean of Ubiquitous Storage, GA no. 238808) project (EU Funded Marie Curie ITN program).
+    Covered research topics included Guided I/O mechanisms for efficient I/O (\url{http://www.github.com/gcongiu/Mercury.git}) and parallel I/O
+    techniques.}\\\multicolumn{2}{c}{} \\
+\textsc{Aug 2010} & Software Developer at \textsc{Sardegna Ricerche \& IBM Italy}, Pula \\\textsc{Feb 2009}&
+    \footnotesize{Worked at the MIACell Project (Medical Image Analysis on Cell broadband engine).}
+\end{tabular}
+
+%Section: Education
+\section*{Education}
+\begin{tabular}{rl}
+\textsc{December} 2008 & Master of Science in \textsc{Electrical \& Electronic Engineering}, \\
+& \textbf{University of Cagliari}\\
+& Thesis: ``Cell BE: Performance Analysis of the Element\\
+& Interconnect Bus and Development of an Alternative Packed\\
+& Switched Solution'' | \small Advisor: Prof. Luigi \textsc{Raffo}\\
+\textsc{September} 2005& Undergraduate Degree in \textsc{Electrical \& Electronic Engineering} \\
+& \textbf{University of Cagliari}\\
+\end{tabular}
+
+
+%Section: Scholarships and additional info
+\section*{Scholarships and certificates}
+February 2016, Marie Curie Initial Training Network Certificate
+
+\section*{Professional Activities}
+
+\subsection*{Technical Reviewer for International Journals}
+\begin{itemize}
+    \item Elsevier Journal of Parallel and Distributed Computing (2017 -- 2018)
+    \item IEEE Transaction on Parallel and Distributed Systems (2017 -- 2018)
+\end{itemize}
+
+\subsection*{Technical Reviewer for International Conferences and Workshops}
+\begin{itemize}
+    \item IEEE/ACM International Symposium on Cluster, Cloud and Grid Computing (2015 -- 2016)
+\end{itemize}
+
+\section*{Publications}
+\begin{itemize}
+    \item G. Congiu, M. Grawinkel, S. Narasimhamurthy, and A. Brinkmann, ''One Phase Commit:
+        A Low Overhead Atomic Commitment Protocol for Scalable Metadata Services'', \textit{2012 IEEE
+        International Conference on Cluster Computing Workshops}, Beijing, 2012, pp. 16-24.
+        doi: 10.1109/ClusterW.2012.16
+    \item G. Congiu, M. Grawinkel, F. Padua, J. Morse, T. S\"{u}\ss, and A. Brinkmann, ''POSTER:
+        Optimizing scientific file I/O patterns using advice based knowledge'', \textit{2014 IEEE
+        International Conference on Cluster Computing (CLUSTER)}, Madrid, 2014, pp. 282-283.
+        doi: 10.1109/CLUSTER.2014.6968763
+    \item G. Congiu, S. Narasimhamurthy, T. S\"u\ss, and A. Brinkmann, ''Improving Collective
+        I/O Performance Using Non-volatile Memory Devices'', \textit{2016 IEEE International Conference on
+        Cluster Computing (CLUSTER)}, Taipei, 2016, pp. 120-129.
+        doi: 10.1109/CLUSTER.2016.37
+    \item G. Congiu, M. Grawinkel, F. Padua, J. Morse, T. S\"u\ss, and A. Brinkmann, ''MERCURY:
+        A Transparent Guided I/O Framework for High Performance I/O Stacks'', \textit{2017 IEEE
+        Euromicro International Conference on Parallel, Distributed and Network-based Processing (PDP)},
+        St. Petersburg, 2017. doi: 10.1109/PDP.2017.83
+\end{itemize}
+%*******************************************************************************************
+%END BIBLIOGRAFIA
+%*******************************************************************************************
+\end{document}
+%*******************************************************************************************
+%*******************************************************************************************
+%  END   DOCUMENT 
+%*******************************************************************************************
+%*******************************************************************************************

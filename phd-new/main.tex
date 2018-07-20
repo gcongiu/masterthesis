@@ -95,43 +95,56 @@
 \begin{titlepage}
 \thispagestyle{empty}
 
-\begin{flushleft}
-\vbox to0pt{
-\vbox to\textheight{\vfil
-\vspace{10cm}
-\includegraphics[width=5cm]{figures/uni-mainz}
-\vfil}\vss}
-\end{flushleft}
+%\begin{flushleft}
+%\vbox to0pt{
+%\vbox to\textheight{\vfil
+%\vspace{10cm}
+%\includegraphics[width=5cm]{figures/uni-mainz}
+%\vfil}\vss}
+%\end{flushleft}
+
+%\begin{center}
+%        \large JOHANNES GUTENBERG-UNIVERSIT{\"A}T MAINZ \\
+%        \large \textbf{Department of Computer Science}
+%\end{center}
 
 \begin{center}
-        \large JOHANNES GUTENBERG-UNIVERSIT{\"A}T MAINZ \\
-        \large \textbf{Department of Computer Science}
-\end{center}
-
-\begin{center}
-	\vspace{2cm}{
-                \Huge \textsc{\textbf{Improving I/O Performance in HPC Through Guided Prefetching and Non-Volatile Memory Devices}}\\
-	        \vspace{0.45cm}
-	        \rule{\textwidth}{1.5mm}
-        } \\
-	\vspace{0.2cm}
+	\vspace{2cm}
+    \Large \textbf{Improving I/O Performance in HPC Through Guided Prefetching and Non-Volatile Memory Devices} \\
+	\vspace{4cm}
+    \normalsize
+    Dissertation submitted \\
+    for the award of the title \\
+    ''Doctor \\
+    of Natural Sciences'' \\
+    to the Faculty of Physics, Mathematics, and Computer Science \\
+    of Johannes Gutenberg University Mainz \\
+    in Mainz \\
+    \vspace{0.5cm}
+    Giuseppe Congiu \\
 \end{center}
 \vspace{1.7cm}
 
-\begin{flushright}
-	Candidate:\\
-	\textbf{Giuseppe Congiu}\\
-%	Version 1.0, \today
-\end{flushright}
+%\newpage
+%\flushleft
+%    \textbf{Reviewer}: Prof. Dr. Ing. Andr\'e Brinkmann\\
+%    \textbf{External Reviewer}: Prof. Dr. Maria Perez, Universidad Politecnica de Madrid (UPM)\\
+%    \textbf{Date}: 12/07/2018
 
-\begin{flushright}
-	Advisors:\\
-	\textbf{Prof. Dr. Andr\'e Brinkmann}\\
-        \textbf{Dr. Sai Narasimhamurthy}
-\end{flushright}
+%\begin{flushright}
+%	Candidate:\\
+%	\textbf{Giuseppe Congiu}\\
+%%	Version 1.0, \today
+%\end{flushright}
 
-\vspace{\fill}
-\small This work has been funded by the FP7 program of the European Commission through the Scalus (Grant Agreement no. 238808) and DEEP-ER (Grant Agreement no. 610476) projects.
+%\begin{flushright}
+%	Advisors:\\
+%	\textbf{Prof. Dr. Andr\'e Brinkmann}\\
+%        \textbf{Dr. Sai Narasimhamurthy}
+%\end{flushright}
+
+%\vspace{\fill}
+%\small This work has been funded by the FP7 program of the European Commission through the Scalus (Grant Agreement no. 238808) and DEEP-ER (Grant Agreement no. 610476) projects.
 
 \end{titlepage}
 %*******************************************************************************************
@@ -141,17 +154,12 @@
 \newpage
 \thispagestyle{empty}
 \newpage
-%\begin{center}
-%\textit{To my family.}\\
-%\textit{Dedicato alla mia famiglia che mi \`e sempre stata vicino in questi anni.}
-%\end{center}
-%\pagenumbering{roman}\setcounter{page}{1}
-%\newpage
+
 \thispagestyle{empty}
 \null
 \newpage
 \pagenumbering{roman}\setcounter{page}{1}
-\chapter*{\centering \small Abstract}% \addcontentsline{toc}{chapter}{Abstract}
+\chapter*{Abstract}% \addcontentsline{toc}{chapter}{Abstract}
 High performance computing has become one of the fundamental contributors to the progress of science and technology. However, one challenge of high performance computing remains 
 the gap between compute components and hard disk drives performance, used to persistently store data, that has made I/O the main limitation to the scalability of applications.
 Over the years many research efforts have been dedicated to the alleviation of the I/O gap; a consistent portion of these has focused on caching techniques to hide disk accesses 
@@ -171,10 +179,11 @@ system at a later time.
 Experimental results in real environments demonstrate the effectiveness of our ideas and provide a base for the development of future production ready solutions based on these.
 
 \chapter*{Acknowledgments}
-This work would not have been possible without the many people that I have worked with in these years at Xyratex and Seagate. First of all Malcolm Muggeridge who offered me the possibility to work with his team of professionals.
-Among the people in the team special thanks go to Dr. Sai Narasimhamurthy and James Morse for their technical supervision and to Stuart Smithson for his helpful advice and encouragement. I would also like to thank my academic advisor 
-Prof. Andr\'e Brinkmann for his valuable help in overcoming difficulties with the progression of the Ph.D. and to all his team of Ph.D. students and Postdocs I had the pleasure to work with. Finally, I cannot forget my family and friends 
-that supported me morally during all these years.
+[Acknowledgements have been removed from the electronic version of the thesis to comply to University of Mainz regulations.]
+%This work would not have been possible without the many people that I have worked with in these years at Xyratex and Seagate. First of all Malcolm Muggeridge who offered me the possibility to work with his team of professionals.
+%Among the people in the team special thanks go to Dr. Sai Narasimhamurthy and James Morse for their technical supervision and to Stuart Smithson for his helpful advice and encouragement. I would also like to thank my academic advisor 
+%Prof. Andr\'e Brinkmann for his valuable help in overcoming difficulties with the progression of the Ph.D. and to all his team of Ph.D. students and Postdocs I had the pleasure to work with. Finally, I cannot forget my family and friends 
+%that supported me morally during all these years.
 
 %*******************************************************************************************
 % LIST OF FIGURES
@@ -236,6 +245,96 @@ that supported me morally during all these years.
 \newpage
 \thispagestyle{empty}
 \mbox{}
+
+% curriculum vitae
+\pagestyle{empty} % non-numbered pages
+
+%--------------------TITLE-------------
+\par{\centering
+		{\Huge Curriculum Vitae}
+	\bigskip\par}
+
+%--------------------SECTIONS-----------------------------------
+%Section: Personal Data
+%\section*{Contact Information}
+%
+%\begin{tabular}{l}
+%    Mathematics and Computer Science (MCS) Division\\
+%    Argonne National Laboratory\\
+%    9700 South Cass Avenue, Bldg. 240\\
+%    Argonne, Illinois 60439-4844, USA\\
+%    Phone: +1 (630) 252-8227\\
+%    Email: gcongiu (at) anl (dot) gov
+%\end{tabular}
+
+%Section: Work Experience at the top
+\section*{Work Experience}
+\begin{tabular}{r|p{11cm}}
+\textsc{Sep 2017} & Pre-Doctoral Appointee at \textsc{Argonne National Laboratory}, USA \\\textsc{}&
+    \emph{Working on programming models and runtime systems in the Mathematics and Computer Science division}\\&
+    \footnotesize{Study of heterogeneous memory systems in message passing (MPI) communications.}\\\multicolumn{2}{c}{} \\
+\textsc{May 2017} & Research Engineer at \textsc{Seagate System UK} Ltd, Havant \\\textsc{Dec 2013}&\emph{Worked on EU funded research projects}\\&
+    \footnotesize{Design and implementation of parallel I/O improvements for the ROMIO middleware (MPI-IO implementation from Argonne National Laboratory),
+    during the course of the DEEP-ER project (\url{http://www.github.com/gcongiu/E10.git}). Basic working experience with scientific I/O libraries
+    (HDF5, NetCDF) gained during the course of the SAGE and ESiWACE projects, with special focus on HDF5 plugin development for different storage
+    backends.}\\\multicolumn{2}{c}{} \\
+\textsc{Dec 2013} & Early Stage Researcher at \textsc{Xyratex} Ltd, Havant \\\textsc{Feb 2011}&\emph{Marie Curie ITN Fellow}\\&
+    \footnotesize{Covered the role of research fellow in the SCALUS (SCALig by mean of Ubiquitous Storage, GA no. 238808) project (EU Funded Marie Curie ITN program).
+    Covered research topics included Guided I/O mechanisms for efficient I/O (\url{http://www.github.com/gcongiu/Mercury.git}) and parallel I/O
+    techniques.}\\\multicolumn{2}{c}{} \\
+\textsc{Aug 2010} & Software Developer at \textsc{Sardegna Ricerche \& IBM Italy}, Pula \\\textsc{Feb 2009}&
+    \footnotesize{Worked at the MIACell Project (Medical Image Analysis on Cell broadband engine).}
+\end{tabular}
+
+%Section: Education
+\section*{Education}
+\begin{tabular}{rl}
+\textsc{December} 2008 & Master of Science in \textsc{Electrical \& Electronic Engineering}, \\
+& \textbf{University of Cagliari}\\
+& Thesis: ``Cell BE: Performance Analysis of the Element\\
+& Interconnect Bus and Development of an Alternative Packed\\
+& Switched Solution'' | \small Advisor: Prof. Luigi \textsc{Raffo}\\
+\textsc{September} 2005& Undergraduate Degree in \textsc{Electrical \& Electronic Engineering} \\
+& \textbf{University of Cagliari}\\
+\end{tabular}
+
+
+%Section: Scholarships and additional info
+\section*{Scholarships and certificates}
+February 2016, Marie Curie Initial Training Network Certificate
+
+\section*{Professional Activities}
+
+\subsection*{Technical Reviewer for International Journals}
+\begin{itemize}
+    \item Elsevier Journal of Parallel and Distributed Computing (2017 -- 2018)
+    \item IEEE Transaction on Parallel and Distributed Systems (2017 -- 2018)
+\end{itemize}
+
+\subsection*{Technical Reviewer for International Conferences and Workshops}
+\begin{itemize}
+    \item IEEE/ACM International Symposium on Cluster, Cloud and Grid Computing (2015 -- 2016)
+\end{itemize}
+
+\section*{Publications}
+\begin{itemize}
+    \item G. Congiu, M. Grawinkel, S. Narasimhamurthy, and A. Brinkmann, ''One Phase Commit:
+        A Low Overhead Atomic Commitment Protocol for Scalable Metadata Services'', \textit{2012 IEEE
+        International Conference on Cluster Computing Workshops}, Beijing, 2012, pp. 16-24.
+        doi: 10.1109/ClusterW.2012.16
+    \item G. Congiu, M. Grawinkel, F. Padua, J. Morse, T. S\"{u}\ss, and A. Brinkmann, ''POSTER:
+        Optimizing scientific file I/O patterns using advice based knowledge'', \textit{2014 IEEE
+        International Conference on Cluster Computing (CLUSTER)}, Madrid, 2014, pp. 282-283.
+        doi: 10.1109/CLUSTER.2014.6968763
+    \item G. Congiu, S. Narasimhamurthy, T. S\"u\ss, and A. Brinkmann, ''Improving Collective
+        I/O Performance Using Non-volatile Memory Devices'', \textit{2016 IEEE International Conference on
+        Cluster Computing (CLUSTER)}, Taipei, 2016, pp. 120-129.
+        doi: 10.1109/CLUSTER.2016.37
+    \item G. Congiu, M. Grawinkel, F. Padua, J. Morse, T. S\"u\ss, and A. Brinkmann, ''MERCURY:
+        A Transparent Guided I/O Framework for High Performance I/O Stacks'', \textit{2017 IEEE
+        Euromicro International Conference on Parallel, Distributed and Network-based Processing (PDP)},
+        St. Petersburg, 2017. doi: 10.1109/PDP.2017.83
+\end{itemize}
 %*******************************************************************************************
 %END BIBLIOGRAFIA
 %*******************************************************************************************
